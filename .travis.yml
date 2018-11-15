@@ -1,4 +1,11 @@
 language: node_js
+
+# This triggers builds to run on the new TravisCI infrastructure.
+# See: http://docs.travis-ci.com/user/workers/container-based-infrastructure/
+sudo: false
+
+cache: yarn
+
 node_js:
   - "node"
   - "lts/*"
