@@ -2,7 +2,8 @@
   "name": "open-api-sdk",
   "version": "0.0.0",
   "description": "Coconut Calendar JS Open API SDK",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc",
