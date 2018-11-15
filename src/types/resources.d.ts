@@ -1,13 +1,15 @@
-export interface Resource {
-  get(): Promise<any>;
-
-  sortBy(sortable: string): this;
-}
-
-export interface Pageable extends Resource {
+export interface Pageable extends Sortable {
   on(page: number): this;
 
   take(limit: number): this;
+}
+
+export interface Resource {
+  get(): Promise<any>;
+}
+
+export interface Sortable extends Resource {
+  sortBy(sortable: string): this;
 }
 
 export interface UserResource extends Pageable {

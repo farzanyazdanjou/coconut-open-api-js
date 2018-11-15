@@ -1,4 +1,5 @@
 import mockAxios from 'axios';
+
 import User from './user';
 
 it('will set assigned filter', async () => {
