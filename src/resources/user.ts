@@ -31,7 +31,7 @@ export default class User implements UserResource {
     const parameters = this.params();
     const params: Filterable<UserFilter> = {};
 
-    if (Object.keys(params).length) {
+    if (Object.keys(parameters).length) {
       params.filters = parameters;
     }
 

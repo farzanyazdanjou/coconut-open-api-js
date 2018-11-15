@@ -81,3 +81,35 @@ it('can string all filterable options together', async () => {
   });
   expected.toHaveProperty('sortable', 'created');
 });
+
+it('can get users without additional parameters', async () => {
+  const resource = new User(mockAxios);
+
+  await resource.get();
+
+  expect(mockAxios.get).toHaveBeenCalledTimes(1);
+  expect(mockAxios.get).toHaveBeenCalledWith('users', { params: {} });
+});
+
+it('can get users with additional parameters', async () => {
+  const resource = new User(mockAxios);
+
+  await resource
+    .assigned()
+    .at(1)
+    .performing([1, 2])
+    .sortBy('created')
+    .get();
+
+  expect(mockAxios.get).toHaveBeenCalledTimes(1);
+  expect(mockAxios.get).toHaveBeenCalledWith('users', {
+    params: {
+      filters: {
+        assigned: true,
+        location: 1,
+        service: [1, 2],
+      },
+      sort: 'created',
+    },
+  });
+});
