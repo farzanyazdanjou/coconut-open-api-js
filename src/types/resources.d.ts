@@ -1,7 +1,11 @@
 export interface Resource {
   get(): Promise<any>;
 
+  on(page: number): this;
+
   sortBy(sortable: string): this;
+
+  take(limit: number): this;
 }
 
 export interface UserResource extends Resource {

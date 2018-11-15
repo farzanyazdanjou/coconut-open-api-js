@@ -7,12 +7,16 @@ import { UserResource } from '../types/resources';
 export default class User implements UserResource {
   protected client: AxiosInstance;
   protected filters: UserFilter;
+  protected page: number | null;
   protected sortable: string | null;
+  protected limit: number | null;
 
   constructor(client: AxiosInstance) {
     this.client = client;
     this.filters = {};
+    this.page = null;
     this.sortable = null;
+    this.limit = null;
   }
 
   public assigned(assigned: boolean = true): this {
@@ -35,11 +39,25 @@ export default class User implements UserResource {
       params.filters = parameters;
     }
 
+    if (this.limit) {
+      params.limit = this.limit;
+    }
+
+    if (this.page) {
+      params.page = this.page;
+    }
+
     if (this.sortable) {
       params.sort = this.sortable;
     }
 
     return await this.client.get('users', { params });
+  }
+
+  public on(page: number): this {
+    this.page = page;
+
+    return this;
   }
 
   public performing(services: number | number[] | string | string[]): this {
@@ -50,6 +68,12 @@ export default class User implements UserResource {
 
   public sortBy(sortable: string): this {
     this.sortable = sortable;
+
+    return this;
+  }
+
+  public take(limit: number): this {
+    this.limit = limit;
 
     return this;
   }

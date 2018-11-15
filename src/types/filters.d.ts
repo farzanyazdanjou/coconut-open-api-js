@@ -1,5 +1,7 @@
 export interface Filterable<T> {
   filters?: T;
+  limit?: number;
+  page?: number;
   sort?: string;
 }
 
