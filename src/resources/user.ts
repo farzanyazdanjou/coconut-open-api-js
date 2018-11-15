@@ -28,11 +28,11 @@ export default class User implements UserResource {
   }
 
   public async get(): Promise<any> {
-    const values = this.params();
+    const parameters = this.params();
     const params: Filterable<UserFilter> = {};
 
     if (Object.keys(params).length) {
-      params.filters = values;
+      params.filters = parameters;
     }
 
     if (this.sortable) {
