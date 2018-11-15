@@ -8,6 +8,16 @@ export interface Resource {
   get(): Promise<any>;
 }
 
+export interface ServiceResource extends Pageable {
+  assigned(assigned: boolean): this;
+
+  at(location: number | string): this;
+
+  by(user: number | string): this;
+
+  in(category: number | string): this;
+}
+
 export interface Sortable extends Resource {
   sortBy(sortable: string): this;
 }
