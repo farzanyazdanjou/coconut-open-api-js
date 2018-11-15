@@ -2,16 +2,17 @@ import { AxiosInstance } from 'axios';
 
 import Client from './client';
 import User from './resources/user';
+import { OpenApiOptions } from './types/options';
 import { UserResource } from './types/resources';
 
 export default class OpenApi {
   protected client: AxiosInstance;
-  protected domain: string;
+  protected options: OpenApiOptions;
   protected user: UserResource;
 
-  constructor(domain: string) {
-    this.client = Client(domain);
-    this.domain = domain;
+  constructor({ domain, version = 'v2' }: OpenApiOptions) {
+    this.client = Client({ domain, version });
+    this.options = { domain, version };
     this.user = new User(this.client);
   }
 
