@@ -1,13 +1,10 @@
-.DS_Store
 /logs
-*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-coverage
 .nyc_output
+/.rpt2_cache
 /node_modules
 .npm
 .node_repl_history
-*.tgz
 /dist
