@@ -7,7 +7,7 @@ sudo: false
 cache: yarn
 
 install:
-  - yarn global add codecov
+  - yarn global add codecov jest
 
 node_js:
   - "node"
