@@ -6,6 +6,13 @@ sudo: false
 
 cache: yarn
 
+install:
+  - yarn global add codecov
+
 node_js:
   - "node"
   - "lts/*"
+
+script:
+  - npm run test:coverage
+  - codecov
