@@ -4,6 +4,7 @@
     "module": "es6",
     "moduleResolution": "node",
     "declaration": true,
+    "lib": ["dom", "es2015.promise", "es5", "scripthost"],
     "outDir": "./dist",
     "strict": true
   },

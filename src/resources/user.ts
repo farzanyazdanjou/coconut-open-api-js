@@ -27,7 +27,7 @@ export default class User implements UserResource {
     return this;
   }
 
-  public get(): Promise<any> {
+  public async get(): Promise<any> {
     const values = this.params();
     const params: Filterable<UserFilter> = {};
 
@@ -39,7 +39,7 @@ export default class User implements UserResource {
       params.sort = this.sortable;
     }
 
-    return this.client.get('users', { params });
+    return await this.client.get('users', { params });
   }
 
   public performing(services: number | number[] | string | string[]): this {
