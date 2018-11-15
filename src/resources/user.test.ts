@@ -9,6 +9,14 @@ it('will set assigned filter', async () => {
   });
 });
 
+it('will set assigned filter to false', async () => {
+  const resource = new User(mockAxios);
+
+  expect(resource.assigned(false)).toHaveProperty('filters', {
+    assigned: false,
+  });
+});
+
 it('will set location filter using a number', async () => {
   const resource = new User(mockAxios);
 
