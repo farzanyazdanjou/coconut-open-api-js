@@ -4,13 +4,13 @@ export interface Resource {
   sortBy(sortable: string): this;
 }
 
-export interface Listable extends Resource {
+export interface Pageable extends Resource {
   on(page: number): this;
 
   take(limit: number): this;
 }
 
-export interface UserResource extends Listable {
+export interface UserResource extends Pageable {
   assigned(assigned: boolean): this;
 
   at(location: number | string): this;
