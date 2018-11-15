@@ -1,0 +1,23 @@
+{
+  "name": "open-api-sdk",
+  "version": "0.0.0",
+  "description": "Coconut Calendar JS Open API SDK",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coconutcalendar/coconut-open-api-js.git"
+  },
+  "keywords": [
+    "coconut calendar",
+    "js",
+    "javascript",
+    "open api",
+    "api",
+    "sdk"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coconutcalendar/coconut-open-api-js/issues"
+  },
+  "homepage": "https://github.com/coconutcalendar/coconut-open-api-js#readme"
+}
