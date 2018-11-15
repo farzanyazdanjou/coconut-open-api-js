@@ -8,6 +8,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest --config jestconfig.json",
+    "test:watch": "npm run test -- --watch",
     "build": "rollup -c",
     "watch": "rollup -cw",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
