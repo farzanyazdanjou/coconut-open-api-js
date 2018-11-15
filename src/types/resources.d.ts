@@ -1,14 +1,16 @@
 export interface Resource {
   get(): Promise<any>;
 
-  on(page: number): this;
-
   sortBy(sortable: string): this;
+}
+
+export interface Listable extends Resource {
+  on(page: number): this;
 
   take(limit: number): this;
 }
 
-export interface UserResource extends Resource {
+export interface UserResource extends Listable {
   assigned(assigned: boolean): this;
 
   at(location: number | string): this;
