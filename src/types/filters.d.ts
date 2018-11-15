@@ -6,5 +6,5 @@ export interface Filterable<T> {
 export interface UserFilter {
   assigned?: boolean;
   services?: number | number[] | string | string[];
-  locations?: number | string;
+  location?: number | string;
 }

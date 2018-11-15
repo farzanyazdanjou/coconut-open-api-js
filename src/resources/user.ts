@@ -21,8 +21,8 @@ export default class User implements UserResource {
     return this;
   }
 
-  public at(locations: number | string): this {
-    this.filters.locations = locations;
+  public at(location: number | string): this {
+    this.filters.location = location;
 
     return this;
   }
@@ -65,8 +65,8 @@ export default class User implements UserResource {
       params.service = this.filters.services;
     }
 
-    if (typeof this.filters.locations !== 'undefined') {
-      params.location = this.filters.locations;
+    if (typeof this.filters.location !== 'undefined') {
+      params.location = this.filters.location;
     }
 
     return params;

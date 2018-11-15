@@ -7,7 +7,7 @@ export interface Resource {
 export interface UserResource extends Resource {
   assigned(assigned: boolean): this;
 
-  at(locations: number | string): this;
+  at(location: number | string): this;
 
   performing(services: number | number[] | string | string[]): this;
 }
