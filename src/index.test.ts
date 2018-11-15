@@ -15,7 +15,7 @@ it('will be constructed with appropriate required options', async () => {
 it('will be constructed with all options', async () => {
   const instance = new OpenApi({
     domain: 'admin',
-    version: 'some-version'
+    version: 'some-version',
   });
 
   expect(instance).toHaveProperty('options', {

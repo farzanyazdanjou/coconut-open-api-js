@@ -93,7 +93,7 @@ it('can string all filterable options together', async () => {
       .performing([1, 2])
       .sortBy('created')
       .take(5)
-      .on(1)
+      .on(1),
   );
 
   expected.toHaveProperty('filters', {
