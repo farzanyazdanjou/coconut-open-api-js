@@ -1,10 +1,8 @@
 import axios, { AxiosInstance } from 'axios';
 
-import { OpenApiOptions } from './types/options';
-
-const Client = ({ domain, version }: OpenApiOptions): AxiosInstance => {
+const Client = (domain: string): AxiosInstance => {
   return axios.create({
-    baseURL: `https://${domain}.coconutcalendar.com/api/${version}/open`,
+    baseURL: `https://${domain}.coconutcalendar.com/api/v2/open`,
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
