@@ -1,4 +1,5 @@
 import OpenApi from './index';
+import Location from './resources/location';
 import Question from './resources/question';
 import Service from './resources/service';
 import Setting from './resources/setting';
@@ -37,4 +38,11 @@ it('can access the question resource', async () => {
 
   expect(instance).toHaveProperty('questions');
   expect(instance.questions).toBeInstanceOf(Question.prototype.constructor);
+});
+
+it('can access the location resource', async () => {
+  const instance = new OpenApi('admin');
+
+  expect(instance).toHaveProperty('locations');
+  expect(instance.locations).toBeInstanceOf(Location.prototype.constructor);
 });
