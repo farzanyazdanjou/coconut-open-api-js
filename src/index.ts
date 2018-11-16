@@ -5,8 +5,16 @@ import Location from './resources/location';
 import Question from './resources/question';
 import Service from './resources/service';
 import Setting from './resources/setting';
+import TimeSlot from './resources/time-slot';
 import User from './resources/user';
-import { LocationResource, QuestionResource, Resource, ServiceResource, UserResource } from './types/resources';
+import {
+  LocationResource,
+  QuestionResource,
+  Resource,
+  ServiceResource,
+  TimeSlotResource,
+  UserResource
+} from './types/resources';
 
 export default class OpenApi {
   protected client: AxiosInstance;
@@ -15,6 +23,7 @@ export default class OpenApi {
   protected question: QuestionResource;
   protected service: ServiceResource;
   protected setting: Resource;
+  protected slot: TimeSlotResource;
   protected user: UserResource;
 
   constructor(domain: string) {
@@ -24,6 +33,7 @@ export default class OpenApi {
     this.question = new Question(this.client);
     this.service = new Service(this.client);
     this.setting = new Setting(this.client);
+    this.slot = new TimeSlot(this.client);
     this.user = new User(this.client);
   }
 
@@ -41,6 +51,10 @@ export default class OpenApi {
 
   get settings(): Resource {
     return this.setting;
+  }
+
+  get slots(): TimeSlotResource {
+    return this.slot;
   }
 
   get users(): UserResource {

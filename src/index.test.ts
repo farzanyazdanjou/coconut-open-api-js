@@ -4,6 +4,7 @@ import Question from './resources/question';
 import Service from './resources/service';
 import Setting from './resources/setting';
 import User from './resources/user';
+import TimeSlot from './resources/time-slot';
 
 it('will be constructed properly', async () => {
   const instance = new OpenApi('admin');
@@ -45,4 +46,11 @@ it('can access the location resource', async () => {
 
   expect(instance).toHaveProperty('locations');
   expect(instance.locations).toBeInstanceOf(Location.prototype.constructor);
+});
+
+it('can access the slots resource', async () => {
+  const instance = new OpenApi('admin');
+
+  expect(instance).toHaveProperty('slots');
+  expect(instance.slots).toBeInstanceOf(TimeSlot.prototype.constructor);
 });
