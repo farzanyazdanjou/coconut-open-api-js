@@ -1,3 +1,7 @@
+export interface QuestionParameters {
+  service?: number | number[] | string | string[];
+}
+
 export interface ServiceParameters {
   assigned?: boolean;
   category?: number | string;

@@ -8,6 +8,10 @@ export interface Resource {
   get(): Promise<any>;
 }
 
+export interface QuestionResource extends Pageable {
+  for(services: number | number[] | string | string[]): this;
+}
+
 export interface ServiceResource extends Pageable {
   assigned(assigned: boolean): this;
 

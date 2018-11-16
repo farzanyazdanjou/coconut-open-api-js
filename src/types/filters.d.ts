@@ -5,6 +5,10 @@ export interface Filterable<T> {
   sort?: string;
 }
 
+export interface QuestionFilter {
+  services?: number | number[] | string | string[];
+}
+
 export interface ServiceFilter {
   assigned?: boolean;
   category?: number | string;
