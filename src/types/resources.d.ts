@@ -34,6 +34,16 @@ export interface Sortable extends Resource {
   sortBy(sortable: string): this;
 }
 
+export interface TimeSlotResource extends Resource {
+  at(location: number): this;
+
+  between(start: string, end: string): this;
+
+  by(user: number): this;
+
+  for(services: number | number[]): this;
+}
+
 export interface UserResource extends Pageable {
   assigned(assigned: boolean): this;
 

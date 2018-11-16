@@ -15,6 +15,14 @@ export interface ServiceParameters {
   user?: number | string;
 }
 
+export interface TimeSlotParameters {
+  end?: string;
+  location_id?: number;
+  service_id?: number | number[];
+  staff_id?: number;
+  start?: string;
+}
+
 export interface UserParameters {
   assigned?: boolean;
   service?: number | number[] | string | string[];
