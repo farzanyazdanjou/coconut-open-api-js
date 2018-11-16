@@ -5,6 +5,12 @@ export interface Filterable<T> {
   sort?: string;
 }
 
+export interface LocationFilter {
+  assigned?: boolean;
+  services?: number | number[] | string | string[];
+  user?: number | string;
+}
+
 export interface QuestionFilter {
   services?: number | number[] | string | string[];
 }

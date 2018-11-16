@@ -1,3 +1,9 @@
+export interface LocationParameters {
+  assigned?: boolean;
+  service?: number | number[] | string | string[];
+  user?: number | string;
+}
+
 export interface QuestionParameters {
   service?: number | number[] | string | string[];
 }
