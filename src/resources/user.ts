@@ -33,7 +33,7 @@ export default class User implements UserResource {
 
   public async get(): Promise<any> {
     const parameters = this.params();
-    const params: Filterable<UserFilter> = {};
+    const params: Filterable<UserParameters> = {};
 
     if (Object.keys(parameters).length) {
       params.filters = parameters;

@@ -39,7 +39,7 @@ export default class Service implements ServiceResource {
 
   public async get(): Promise<any> {
     const parameters = this.params();
-    const params: Filterable<ServiceFilter> = {};
+    const params: Filterable<ServiceParameters> = {};
 
     if (Object.keys(parameters).length) {
       params.filters = parameters;
