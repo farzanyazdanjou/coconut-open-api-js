@@ -22,3 +22,22 @@ it('can set answers when providing multiple answers', async () => {
     })
   );
 });
+
+it('can set location detail parameters and maintain existing attributes', async () => {
+  const attendee = new Attendee;
+  const details = {
+    address: '123 Fake St',
+    city: 'Fake City',
+    country: 'FC',
+    postcode: 'X0X 0X0',
+    region: 'FR',
+    timezone: 'UTC',
+  };
+
+  expect(attendee.located(details).getAttributes()).toEqual(
+    expect.objectContaining({
+      ...attendee.getAttributes(),
+      ...details
+    })
+  );
+});

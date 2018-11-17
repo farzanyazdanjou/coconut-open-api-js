@@ -22,6 +22,8 @@ export default class Attendee extends Model implements AttendeeModel {
   }
 
   public located(details: LocationDetailParameters): this {
+    this.attributes = {...this.attributes, ...details};
+
     return this;
   }
 
