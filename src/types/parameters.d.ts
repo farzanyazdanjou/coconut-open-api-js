@@ -9,6 +9,13 @@ export interface LocationParameters {
   user?: number | string;
 }
 
+export interface PreferableParameters {
+  day?: number | null;
+  end?: string | null;
+  start?: string | null;
+  type?: number | null;
+}
+
 export interface QuestionParameters {
   service?: number | number[] | string | string[];
 }
