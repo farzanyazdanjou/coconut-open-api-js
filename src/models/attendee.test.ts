@@ -51,3 +51,51 @@ it('can set that an attendee is messagable', async () => {
     })
   );
 });
+
+it('can set an attendees first and last name', async () => {
+  const attendee = new Attendee;
+
+  expect(attendee.named('Jane', 'Doe').getAttributes()).toEqual(
+    expect.objectContaining({
+      first_name: 'Jane',
+      last_name: 'Doe',
+    })
+  );
+});
+
+it('can set any additional notes an attendee provides', async () => {
+  const attendee = new Attendee;
+
+  expect(attendee.provided('notes').getAttributes()).toEqual(
+    expect.objectContaining({
+      notes: 'notes',
+    })
+  );
+});
+
+it('can set the reachable details and maintain existing attributes', async () => {
+  const attendee = new Attendee;
+  const details = {
+    cell_phone: '5555555555',
+    email: 'jane@doe.com',
+    phone: '5555555555',
+    work_phone: '5555555555',
+  };
+
+  expect(attendee.reachable(details).getAttributes()).toEqual(
+    expect.objectContaining({
+      ...attendee.getAttributes(),
+      ...details
+    })
+  );
+});
+
+it('can set the language of the attendee', async () => {
+  const attendee = new Attendee;
+
+  expect(attendee.speaks('es').getAttributes()).toEqual(
+    expect.objectContaining({
+      language: 'es',
+    })
+  )
+});

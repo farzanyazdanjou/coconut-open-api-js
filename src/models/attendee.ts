@@ -34,18 +34,27 @@ export default class Attendee extends Model implements AttendeeModel {
   }
 
   public named(first: string, last: string): this {
+    this.attributes.first_name = first;
+    this.attributes.last_name = last;
+
     return this;
   }
 
   public provided(notes: string): this {
+    this.attributes.notes = notes;
+
     return this;
   }
 
   public reachable(details: ReachableDetailParameters): this {
+    this.attributes = {...this.attributes, ...details};
+
     return this;
   }
 
-  public speaks(lang: string): this {
+  public speaks(language: string): this {
+    this.attributes.language = language;
+
     return this;
   }
 }

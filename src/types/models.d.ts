@@ -19,7 +19,7 @@ export interface AttendeeModel {
 
   reachable(details: ReachableDetailParameters): this;
 
-  speaks(lang: string): this;
+  speaks(language: string): this;
 }
 
 export interface PreferenceModel {
