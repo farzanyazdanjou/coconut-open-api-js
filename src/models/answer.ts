@@ -1,20 +1,24 @@
-export default class Answer {
-  protected question: number | null;
-  protected value: string | null;
+import { Answerable } from '../types/models';
+import { AnswerableParameters } from '../types/parameters';
+
+export default class Answer implements Answerable {
+  protected attributes: AnswerableParameters;
 
   constructor() {
-    this.question = null;
-    this.value = null;
+    this.attributes = {
+      question: null,
+      value: null,
+    };
   }
 
   public for(question: number): this {
-    this.question = question;
+    this.attributes.question = question;
 
     return this;
   }
 
   public is(value: string): this {
-    this.value = value;
+    this.attributes.value = value;
 
     return this;
   }

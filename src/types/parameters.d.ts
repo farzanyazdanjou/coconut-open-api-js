@@ -1,3 +1,8 @@
+export interface AnswerableParameters {
+  question: number | null;
+  value: string | null;
+}
+
 export interface LocationParameters {
   assigned?: boolean;
   service?: number | number[] | string | string[];
