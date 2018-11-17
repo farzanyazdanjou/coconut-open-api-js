@@ -4,12 +4,11 @@ import Preference from './preference';
 it('sets the preference type to next available', async () => {
   const preference = new Preference;
 
-  expect(preference.next()).toHaveProperty('attributes', {
-    day: null,
-    end: null,
-    start: null,
-    type: Preference.NEXT_AVAILABLE,
-  });
+  expect(preference.next().getAttributes()).toEqual(
+    expect.objectContaining({
+      type: Preference.NEXT_AVAILABLE,
+    })
+  );
 });
 
 it('sets the preference type to next available', async () => {
@@ -39,11 +38,11 @@ it('can set any of the available days', async () => {
   days.forEach(day => {
     const preference = new Preference;
 
-    expect(preference.on(day)).toHaveProperty('attributes', {
-      day,
-      end: null,
-      start: null,
-      type: Preference.CERTAIN_DAYS,
-    });
+    expect(preference.on(day).getAttributes()).toEqual(
+      expect.objectContaining({
+        day,
+        type: Preference.CERTAIN_DAYS,
+      })
+    );
   });
 });

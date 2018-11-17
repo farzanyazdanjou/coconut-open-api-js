@@ -45,3 +45,24 @@ export default class Attendee extends Model implements AttendeeModel {
     return this;
   }
 }
+
+// attendee = (new Attendee)
+//   .named(first, last)
+//   .located({
+//     address,
+//     city,
+//     region,
+//     country,
+//     postcode,
+//     timezone,
+//   })
+//   .reachable({
+//     email,
+//     phone,
+//     cell_phone,
+//     work_phone,
+//   })
+//   .speaks(lang)
+//   .provided(notes)
+//   .messagable()
+//   .answers(answer | [answer, answer])
