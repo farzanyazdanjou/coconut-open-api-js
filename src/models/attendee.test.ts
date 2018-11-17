@@ -41,3 +41,13 @@ it('can set location detail parameters and maintain existing attributes', async 
     })
   );
 });
+
+it('can set that an attendee is messagable', async () => {
+  const attendee = new Attendee;
+
+  expect(attendee.messagable().getAttributes()).toEqual(
+    expect.objectContaining({
+      messagable: true,
+    })
+  );
+});

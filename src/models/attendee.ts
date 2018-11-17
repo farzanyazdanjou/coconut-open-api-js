@@ -28,6 +28,8 @@ export default class Attendee extends Model implements AttendeeModel {
   }
 
   public messagable(): this {
+    this.attributes.messagable = true;
+
     return this;
   }
 

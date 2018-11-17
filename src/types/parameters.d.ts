@@ -14,6 +14,7 @@ export interface AttendeeParameters {
   email: string | null;
   first_name: string | null;
   last_name: string | null;
+  messagable?: boolean;
   phone?: string;
   postcode?: string;
   region?: string;
