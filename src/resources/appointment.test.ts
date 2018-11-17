@@ -1,7 +1,7 @@
 import mockAxios from 'axios';
 
 import Attendee from '../models/attendee';
-import { AppointmentNotificationParameters } from '../types/parameters';
+import { AppointmentMatcherParameters, AppointmentNotificationParameters } from '../types/parameters';
 import Appointment from './appointment';
 
 it('can set the location property', async () => {
@@ -50,6 +50,22 @@ it('can set multiple attendees for the appointment', async () => {
   const attendee = new Attendee;
 
   expect(resource.with([attendee, attendee])).toHaveProperty('attendees', [attendee, attendee]);
+});
+
+it('can retrieve matching appointments using a given set of matchers', async () => {
+  const resource = new Appointment(mockAxios);
+  const matchers: AppointmentMatcherParameters = {
+    code: 'A9B8C7D6E5F4G3H2',
+    email: 'jane@doe.com',
+    id: 1,
+  };
+
+  await resource.matching(matchers).get();
+
+  expect(mockAxios.get).toHaveBeenCalledTimes(1);
+  expect(mockAxios.get).toBeCalledWith('appointments', {
+    params: matchers,
+  })
 });
 
 it('can cancel the given appointment for the given attendee', async () => {

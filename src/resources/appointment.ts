@@ -50,7 +50,9 @@ export default class Appointment implements AppointmentResource {
   }
 
   public async get(): Promise<any> {
-    //
+    return await this.client.get('appointments', {
+      params: this.matchers,
+    });
   }
 
   public matching(matchers: AppointmentMatcherParameters): this {
