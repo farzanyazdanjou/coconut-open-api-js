@@ -24,3 +24,26 @@ it('sets the preference type to next available', async () => {
     type: Preference.CERTAIN_DAYS,
   });
 });
+
+it('can set any of the available days', async () => {
+  const days = [
+    Days.SUNDAY,
+    Days.MONDAY,
+    Days.TUESDAY,
+    Days.WEDNESDAY,
+    Days.THURSDAY,
+    Days.FRIDAY,
+    Days.SATURDAY,
+  ];
+
+  days.forEach(day => {
+    const preference = new Preference;
+
+    expect(preference.on(day)).toHaveProperty('attributes', {
+      day,
+      end: null,
+      start: null,
+      type: Preference.CERTAIN_DAYS,
+    });
+  });
+});

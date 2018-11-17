@@ -63,7 +63,28 @@ it('can string all filterable options together', async () => {
   });
 });
 
-it('can get time slots', async () => {
+it('can get time slots for no particular user', async () => {
+  const resource = new TimeSlot(mockAxios);
+
+  await resource
+    .between('2018-01-01', '2018-01-31')
+    .at(1)
+    .for([1, 2])
+    .get();
+
+  expect(mockAxios.get).toHaveBeenCalledTimes(1);
+  expect(mockAxios.get).toHaveBeenCalledWith('times', {
+    params: {
+      end: '2018-01-31',
+      location_id: 1,
+      service_id: [1, 2],
+      start: '2018-01-01',
+    },
+  });
+});
+
+
+it('can get time slots for a specified user', async () => {
   const resource = new TimeSlot(mockAxios);
 
   await resource
