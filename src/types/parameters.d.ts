@@ -6,6 +6,11 @@ export interface AppointmentMatcherParameters {
   id: string | number;
 }
 
+export interface AppointmentNotificationParameters {
+  client?: boolean;
+  user?: boolean;
+}
+
 export interface AnswerParameters {
   question: number | null;
   value: string | null;

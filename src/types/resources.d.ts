@@ -1,5 +1,5 @@
 import { AttendeeModel } from './models';
-import { AppointmentMatcherParameters } from './parameters';
+import { AppointmentMatcherParameters, AppointmentNotificationParameters } from './parameters';
 
 export interface AppointmentResource extends Resource {
   at(location: number): this;
@@ -14,7 +14,7 @@ export interface AppointmentResource extends Resource {
 
   matching(matchers: AppointmentMatcherParameters): this;
 
-  notify(notifications: object): this;
+  notify(notifications: AppointmentNotificationParameters): this;
 
   with(attendees: AttendeeModel | AttendeeModel[]): this;
 }
