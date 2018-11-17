@@ -1,10 +1,13 @@
 import { AnswerModel, AttendeeModel } from '../types/models';
 import { AttendeeParameters, LocationDetailParameters, ReachableDetailParameters } from '../types/parameters';
+import Model from './model';
 
-export default class Attendee implements AttendeeModel {
+export default class Attendee extends Model implements AttendeeModel {
   protected attributes: AttendeeParameters;
 
   constructor() {
+    super();
+
     this.attributes = {
       email: null,
       first_name: null,
@@ -13,6 +16,8 @@ export default class Attendee implements AttendeeModel {
   }
 
   public answers(answers: AnswerModel | AnswerModel[]): this {
+    this.attributes.answers = Array.isArray(answers) ? answers : [answers];
+
     return this;
   }
 
