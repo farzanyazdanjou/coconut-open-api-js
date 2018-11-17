@@ -1,17 +1,21 @@
+import { AxiosInstance } from 'axios';
+
 import { AttendeeModel } from '../types/models';
 import { AppointmentMatcherParameters, AppointmentNotificationParameters } from '../types/parameters';
 import { AppointmentResource } from '../types/resources';
 
 export default class Appointment implements AppointmentResource {
   protected attendees: AttendeeModel[] | null;
+  protected client: AxiosInstance;
   protected location: number | null;
   protected matchers: AppointmentMatcherParameters | null;
   protected notifications: AppointmentNotificationParameters | null;
   protected services: number | number[] | null;
   protected user: number | null;
 
-  constructor() {
+  constructor(client: AxiosInstance) {
     this.attendees = null;
+    this.client = client;
     this.location = null;
     this.matchers = null;
     this.notifications = null;
@@ -36,7 +40,7 @@ export default class Appointment implements AppointmentResource {
   }
 
   public async cancel(appointment: number, attendee: number): Promise<any> {
-    //
+    return await this.client.delete(`appointments/${appointment}/${attendee}`);
   }
 
   public for(services: number | number[]): this {
