@@ -1,8 +1,8 @@
-import { Answerable } from '../types/models';
-import { AnswerableParameters } from '../types/parameters';
+import { AnswerModel } from '../types/models';
+import { AnswerParameters } from '../types/parameters';
 
-export default class Answer implements Answerable {
-  protected attributes: AnswerableParameters;
+export default class Answer implements AnswerModel {
+  protected attributes: AnswerParameters;
 
   constructor() {
     this.attributes = {

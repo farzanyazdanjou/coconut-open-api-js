@@ -1,4 +1,4 @@
-export interface AnswerableParameters {
+export interface AnswerParameters {
   question: number | null;
   value: string | null;
 }
@@ -9,7 +9,7 @@ export interface LocationParameters {
   user?: number | string;
 }
 
-export interface PreferableParameters {
+export interface PreferenceParameters {
   day?: number | null;
   end?: string | null;
   start?: string | null;

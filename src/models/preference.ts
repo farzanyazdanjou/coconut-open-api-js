@@ -1,11 +1,11 @@
-import { Preferable } from '../types/models';
-import { PreferableParameters } from '../types/parameters';
+import { PreferenceModel } from '../types/models';
+import { PreferenceParameters } from '../types/parameters';
 
 const NEXT_AVAILABLE = 1;
 const CERTAIN_DAYS = 2;
 
-export default class Preference implements Preferable {
-  protected attributes: PreferableParameters;
+export default class Preference implements PreferenceModel {
+  protected attributes: PreferenceParameters;
 
   constructor() {
     this.attributes = {
