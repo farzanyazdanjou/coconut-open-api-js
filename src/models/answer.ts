@@ -1,10 +1,13 @@
 import { AnswerModel } from '../types/models';
 import { AnswerParameters } from '../types/parameters';
+import Model from './model';
 
-export default class Answer implements AnswerModel {
+export default class Answer extends Model implements AnswerModel {
   protected attributes: AnswerParameters;
 
   constructor() {
+    super();
+
     this.attributes = {
       question: null,
       value: null,

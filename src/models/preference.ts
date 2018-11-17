@@ -1,13 +1,16 @@
 import { PreferenceModel } from '../types/models';
 import { PreferenceParameters } from '../types/parameters';
+import Model from './model';
 
 const NEXT_AVAILABLE = 1;
 const CERTAIN_DAYS = 2;
 
-export default class Preference implements PreferenceModel {
+export default class Preference extends Model implements PreferenceModel {
   protected attributes: PreferenceParameters;
 
   constructor() {
+    super();
+
     this.attributes = {
       day: null,
       end: null,
