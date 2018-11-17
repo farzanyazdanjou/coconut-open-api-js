@@ -1,3 +1,24 @@
+import { AttendeeModel } from './models';
+import { AppointmentMatcherParameters } from './parameters';
+
+export interface AppointmentResource extends Resource {
+  at(location: number): this;
+
+  book(): Promise<any>;
+
+  by(user: number): this;
+
+  cancel(appointment: number, attendee: number): Promise<any>;
+
+  for(services: number | number[]): this;
+
+  matching(matchers: AppointmentMatcherParameters): this;
+
+  notify(notifications: object): this;
+
+  with(attendees: AttendeeModel | AttendeeModel[]): this;
+}
+
 export interface LocationResource extends Pageable {
   assigned(assigned: boolean): this;
 

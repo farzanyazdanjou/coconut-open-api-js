@@ -1,5 +1,11 @@
 import { AnswerModel } from './models';
 
+export interface AppointmentMatcherParameters {
+  code: string;
+  email: string;
+  id: string | number;
+}
+
 export interface AnswerParameters {
   question: number | null;
   value: string | null;
