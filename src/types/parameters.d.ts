@@ -3,6 +3,30 @@ export interface AnswerParameters {
   value: string | null;
 }
 
+export interface AttendeeParameters {
+  first_name: string | null;
+  last_name: string | null;
+  email: string | null;
+  address?: string;
+  city?: string;
+  region?: string;
+  country?: string;
+  postcode?: string;
+  timezone?: string;
+  phone?: string;
+  cell_phone?: string;
+  work_phone?: string;
+}
+
+export interface LocationDetailParameters {
+  address?: string;
+  city?: string;
+  region?: string;
+  country?: string;
+  postcode?: string;
+  timezone?: string;
+}
+
 export interface LocationParameters {
   assigned?: boolean;
   service?: number | number[] | string | string[];
@@ -18,6 +42,13 @@ export interface PreferenceParameters {
 
 export interface QuestionParameters {
   service?: number | number[] | string | string[];
+}
+
+export interface ReachableDetailParameters {
+  email: string;
+  phone?: string;
+  cell_phone?: string;
+  work_phone?: string;
 }
 
 export interface ServiceParameters {

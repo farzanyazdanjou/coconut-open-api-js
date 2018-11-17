@@ -1,0 +1,2 @@
+import Attendee from './attendee';
+
