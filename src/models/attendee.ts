@@ -21,10 +21,6 @@ export default class Attendee extends Model implements AttendeeModel {
     return this;
   }
 
-  public getAnswers() {
-    return this.attributes.answers || [];
-  }
-
   public located(details: LocationDetailParameters): this {
     this.attributes = {...this.attributes, ...details};
 
@@ -62,7 +58,26 @@ export default class Attendee extends Model implements AttendeeModel {
     return this;
   }
 
-  public toResponse(): object {
+  public transform(): object {
+    let parameters: object = this.parameters();
+    const answers = this.attributes.answers || [];
+
+    if (answers.length > 0) {
+      parameters = {
+        ...parameters,
+        relationships: {
+          answers: {
+            data: (answers as AnswerModel[])
+              .map((answer: AnswerModel) => answer.transform())
+          }
+        }
+      }
+    }
+
+    return parameters;
+  }
+
+  protected parameters(): object {
     const attributes: object = {
       address: this.attributes.address,
       cell_phone: this.attributes.cell_phone,

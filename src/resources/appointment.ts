@@ -80,21 +80,7 @@ export default class Appointment implements AppointmentResource {
   protected params(): AppointmentParameters {
     const attendees = (this.relationships.attendees as AttendeeModel[])
       .map((attendee: AttendeeModel): object => {
-        const answers = attendee.getAnswers();
-        let parameters: object = attendee.toResponse();
-
-        if (answers.length > 0) {
-          parameters = {
-            ...parameters,
-            relationships: {
-              answers: {
-                data: (answers as AnswerModel[]).map((answer: AnswerModel) => answer.toResponse())
-              }
-            }
-          }
-        }
-
-        return parameters;
+        return attendee.transform();
       });
 
     let params: AppointmentParameters = {

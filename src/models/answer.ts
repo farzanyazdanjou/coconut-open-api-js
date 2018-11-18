@@ -26,7 +26,7 @@ export default class Answer extends Model implements AnswerModel {
     return this;
   }
 
-  public toResponse(): object {
+  public transform(): object {
     return {
       attributes: {
         question_id: this.attributes.question,

@@ -9,13 +9,11 @@ export interface AnswerModel extends Model {
 
   is(value: string): this;
 
-  toResponse(): object;
+  transform(): object;
 }
 
 export interface AttendeeModel extends Model {
   answers(answers: AnswerModel | AnswerModel[]): this;
-
-  getAnswers(): AnswerModel[] | [];
 
   located(details: LocationDetailParameters): this;
 
@@ -29,7 +27,7 @@ export interface AttendeeModel extends Model {
 
   speaks(language: string): this;
 
-  toResponse(): object;
+  transform(): object;
 }
 
 export interface PreferenceModel extends Model {
