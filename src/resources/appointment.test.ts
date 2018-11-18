@@ -9,25 +9,33 @@ import Appointment from './appointment';
 it('can set the location property', async () => {
   const resource = new Appointment(mockAxios);
 
-  expect(resource.at(1)).toHaveProperty('location', 1);
+  expect(resource.at(1)).toHaveProperty('filters', {
+    location: 1,
+  });
 });
 
 it('can set the user property', async () => {
   const resource = new Appointment(mockAxios);
 
-  expect(resource.by(1)).toHaveProperty('user', 1);
+  expect(resource.by(1)).toHaveProperty('filters', {
+    user: 1,
+  });
 });
 
 it('can set the service property using a single number', async () => {
   const resource = new Appointment(mockAxios);
 
-  expect(resource.for(1)).toHaveProperty('services', 1);
+  expect(resource.for(1)).toHaveProperty('filters', {
+    services: 1,
+  });
 });
 
 it('can set the service property using a multiple numbers', async () => {
   const resource = new Appointment(mockAxios);
 
-  expect(resource.for([1, 2])).toHaveProperty('services', [1, 2]);
+  expect(resource.for([1, 2])).toHaveProperty('filters', {
+    services: [1, 2],
+  });
 });
 
 it('can set the notifications property', async () => {
@@ -37,28 +45,36 @@ it('can set the notifications property', async () => {
     user: true,
   };
 
-  expect(resource.notify(notifications)).toHaveProperty('notifications', notifications);
+  expect(resource.notify(notifications)).toHaveProperty('filters', {
+    notifications,
+  });
 });
 
 it('can set the starting time property', async () => {
   const resource = new Appointment(mockAxios);
   const start = '2018-01-01 12:00:00';
 
-  expect(resource.starting(start)).toHaveProperty('start', start)
+  expect(resource.starting(start)).toHaveProperty('filters', {
+    start,
+  })
 });
 
 it('can set a single attendee for the appointment', async () => {
   const resource = new Appointment(mockAxios);
   const attendee = new Attendee;
 
-  expect(resource.with(attendee)).toHaveProperty('attendees', [attendee]);
+  expect(resource.with(attendee)).toHaveProperty('relationships', {
+    attendees: [attendee],
+  });
 });
 
 it('can set multiple attendees for the appointment', async () => {
   const resource = new Appointment(mockAxios);
   const attendee = new Attendee;
 
-  expect(resource.with([attendee, attendee])).toHaveProperty('attendees', [attendee, attendee]);
+  expect(resource.with([attendee, attendee])).toHaveProperty('relationships', {
+    attendees: [attendee, attendee],
+  });
 });
 
 it('can book an appointment with the minimum required parameters', async () => {

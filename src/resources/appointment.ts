@@ -1,36 +1,28 @@
 import { AxiosInstance } from 'axios';
 
+import { AppointmentFilter } from '../types/filters';
 import { AnswerModel, AttendeeModel } from '../types/models';
 import {
   AppointmentMatcherParameters,
   AppointmentNotificationParameters,
   AppointmentParameters
 } from '../types/parameters';
+import { AppointmentRelationship } from '../types/relationships';
 import { AppointmentResource } from '../types/resources';
 
 export default class Appointment implements AppointmentResource {
-  protected attendees: AttendeeModel[] | [];
   protected client: AxiosInstance;
-  protected location: number | null;
-  protected matchers: AppointmentMatcherParameters | null;
-  protected notifications: AppointmentNotificationParameters | null;
-  protected services: number | number[] | null;
-  protected start: string | null;
-  protected user: number | null;
+  protected filters: AppointmentFilter;
+  protected relationships: AppointmentRelationship;
 
   constructor(client: AxiosInstance) {
-    this.attendees = [];
     this.client = client;
-    this.location = null;
-    this.matchers = null;
-    this.notifications = null;
-    this.services = null;
-    this.start = null;
-    this.user = null;
+    this.filters = {};
+    this.relationships = {};
   }
 
   public at(location: number): this {
-    this.location = location;
+    this.filters.location = location;
 
     return this;
   }
@@ -40,7 +32,7 @@ export default class Appointment implements AppointmentResource {
   }
 
   public by(user: number): this {
-    this.user = user;
+    this.filters.user = user;
 
     return this;
   }
@@ -50,43 +42,43 @@ export default class Appointment implements AppointmentResource {
   }
 
   public for(services: number | number[]): this {
-    this.services = services;
+    this.filters.services = services;
 
     return this;
   }
 
   public async get(): Promise<any> {
     return await this.client.get('appointments', {
-      params: this.matchers,
+      params: this.filters.matchers,
     });
   }
 
   public matching(matchers: AppointmentMatcherParameters): this {
-    this.matchers = matchers;
+    this.filters.matchers = matchers;
 
     return this;
   }
 
   public notify(notifications: AppointmentNotificationParameters): this {
-    this.notifications = notifications;
+    this.filters.notifications = notifications;
 
     return this;
   }
 
   public starting(start: string): this {
-    this.start = start;
+    this.filters.start = start;
 
     return this;
   }
 
   public with(attendees: AttendeeModel | AttendeeModel[]): this {
-    this.attendees = Array.isArray(attendees) ? attendees : [attendees];
+    this.relationships.attendees = Array.isArray(attendees) ? attendees : [attendees];
 
     return this;
   }
 
   protected params(): AppointmentParameters {
-    const attendees = (this.attendees as AttendeeModel[])
+    const attendees = (this.relationships.attendees as AttendeeModel[])
       .map((attendee: AttendeeModel): object => {
         const answers = attendee.getAnswers();
         let parameters: object = attendee.toResponse();
@@ -108,10 +100,10 @@ export default class Appointment implements AppointmentResource {
     let params: AppointmentParameters = {
       data: {
         attributes: {
-          location_id: this.location,
-          service_id: this.services,
+          location_id: this.filters.location,
+          service_id: this.filters.services,
           staff_id: null,
-          start: this.start,
+          start: this.filters.start,
         },
         relationships: {
           attendees: {
@@ -122,15 +114,15 @@ export default class Appointment implements AppointmentResource {
       },
     };
 
-    if (this.user) {
-      params.data.attributes.staff_id = this.user;
+    if (this.filters.user) {
+      params.data.attributes.staff_id = this.filters.user;
     }
 
-    if (this.notifications) {
+    if (this.filters.notifications) {
       params = {
         ...params,
         meta: {
-          notify: this.notifications,
+          notify: this.filters.notifications,
         },
       };
     }

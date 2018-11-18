@@ -1,8 +1,19 @@
+import { AppointmentMatcherParameters, AppointmentNotificationParameters } from './parameters';
+
 export interface Filterable<T> {
   filters?: T;
   limit?: number;
   page?: number;
   sort?: string;
+}
+
+export interface AppointmentFilter {
+  location?: number;
+  matchers?: AppointmentMatcherParameters;
+  notifications?: AppointmentNotificationParameters;
+  services?: number | number[];
+  start?: string;
+  user?: number;
 }
 
 export interface LocationFilter {

@@ -3,10 +3,10 @@ import { AnswerModel } from './models';
 export interface AppointmentParameters {
   data: {
     attributes: {
-      location_id: number | null;
-      service_id: number | number[] | null;
+      location_id: number | undefined;
+      service_id: number | number[] | undefined;
       staff_id: number | null;
-      start: string | null;
+      start: string | undefined;
     },
     relationships: {
       attendees: {
