@@ -21,6 +21,10 @@ export default class Attendee extends Model implements AttendeeModel {
     return this;
   }
 
+  public getAnswers() {
+    return this.attributes.answers || [];
+  }
+
   public located(details: LocationDetailParameters): this {
     this.attributes = {...this.attributes, ...details};
 
@@ -56,5 +60,34 @@ export default class Attendee extends Model implements AttendeeModel {
     this.attributes.language = language;
 
     return this;
+  }
+
+  public toResponse(): object {
+    const attributes: object = {
+      address: this.attributes.address,
+      cell_phone: this.attributes.cell_phone,
+      city: this.attributes.city,
+      country: this.attributes.country,
+      email: this.attributes.email,
+      first_name: this.attributes.first_name,
+      lang: this.attributes.language,
+      last_name: this.attributes.last_name,
+      phone: this.attributes.phone,
+      prov_state: this.attributes.region,
+      receive_sms: this.attributes.messagable,
+      timezone: this.attributes.timezone,
+      work_phone: this.attributes.work_phone,
+      zip_postal: this.attributes.postcode,
+    };
+
+    Object.keys(attributes).forEach(key => {
+      const value = (attributes as any)[key];
+
+      if (value === undefined || value === null) {
+        delete (attributes as any)[key];
+      }
+    });
+
+    return attributes;
   }
 }

@@ -16,6 +16,8 @@ export interface AppointmentResource extends Resource {
 
   notify(notifications: AppointmentNotificationParameters): this;
 
+  starting(start: string): this;
+
   with(attendees: AttendeeModel | AttendeeModel[]): this;
 }
 

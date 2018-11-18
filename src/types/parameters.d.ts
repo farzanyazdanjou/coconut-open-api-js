@@ -1,5 +1,28 @@
 import { AnswerModel } from './models';
 
+export interface AppointmentParameters {
+  data: {
+    attributes: {
+      location_id: number | null;
+      service_id: number | number[] | null;
+      staff_id: number | null;
+      start: string | null;
+    },
+    relationships: {
+      attendees: {
+        data: object[];
+      };
+    },
+    type: string;
+  };
+  meta?: {
+    notify?: {
+      client?: boolean,
+      user?: boolean,
+    },
+  },
+}
+
 export interface AppointmentMatcherParameters {
   code: string;
   email: string;
@@ -18,7 +41,7 @@ export interface AnswerParameters {
 
 export interface AttendeeParameters {
   address?: string;
-  answers?: AnswerModel | AnswerModel[];
+  answers?: AnswerModel[] | [];
   cell_phone?: string;
   city?: string;
   country?: string;

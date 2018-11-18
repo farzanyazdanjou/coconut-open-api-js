@@ -1,13 +1,21 @@
 import { LocationDetailParameters, ReachableDetailParameters } from './parameters';
 
-export interface AnswerModel {
+interface Model {
+  getAttributes(): object;
+}
+
+export interface AnswerModel extends Model {
   for(question: number): this;
 
   is(value: string): this;
+
+  toResponse(): object;
 }
 
-export interface AttendeeModel {
+export interface AttendeeModel extends Model {
   answers(answers: AnswerModel | AnswerModel[]): this;
+
+  getAnswers(): AnswerModel[] | [];
 
   located(details: LocationDetailParameters): this;
 
@@ -20,9 +28,11 @@ export interface AttendeeModel {
   reachable(details: ReachableDetailParameters): this;
 
   speaks(language: string): this;
+
+  toResponse(): object;
 }
 
-export interface PreferenceModel {
+export interface PreferenceModel extends Model {
   between(start: string, end: string): this;
 
   next(): this;
