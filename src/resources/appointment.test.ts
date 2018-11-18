@@ -108,93 +108,98 @@ it('can book an appointment with all available parameters', async () => {
   const start = '2018-01-01 12:00:00';
   const attendee = new Attendee;
   const answer = new Answer;
+  const notifications = [
+    Notifications.CLIENT,
+    Notifications.USER,
+    Notifications.ALL,
+  ];
 
-  await resource
-    .at(1)
-    .for([2, 3])
-    .by(4)
-    .starting(start)
-    .with(
-      attendee
-        .named('Jane', 'Doe')
-        .reachable({
-          cell_phone: '5555555555',
-          email: 'jane@doe.com',
-          phone: '5555555555',
-          work_phone: '5555555555',
-        })
-        .located({
-          address: '123 Fake St',
-          city: 'Fake City',
-          country: 'FC',
-          postcode: 'X0X 0X0',
-          region: 'FR',
-          timezone: 'UTC',
-        })
-        .messagable()
-        .provided('notes')
-        .speaks('es')
-        .answers(answer.for(1).is('this answer'))
-    )
-    .notify(Notifications.ALL)
-    .book();
+  notifications.forEach(async (notification: object) => {
+    await resource
+      .at(1)
+      .for([2, 3])
+      .by(4)
+      .starting(start)
+      .with(
+        attendee
+          .named('Jane', 'Doe')
+          .reachable({
+            cell_phone: '5555555555',
+            email: 'jane@doe.com',
+            phone: '5555555555',
+            work_phone: '5555555555',
+          })
+          .located({
+            address: '123 Fake St',
+            city: 'Fake City',
+            country: 'FC',
+            postcode: 'X0X 0X0',
+            region: 'FR',
+            timezone: 'UTC',
+          })
+          .messagable()
+          .provided('notes')
+          .speaks('es')
+          .answers(answer.for(1).is('this answer'))
+      )
+      .notify(notification)
+      .book();
 
-  expect(mockAxios.post).toHaveBeenCalledTimes(1);
-  expect(mockAxios.post).toBeCalledWith('appointments', {
-    data: {
-      attributes: {
-        location_id: 1,
-        service_id: [2, 3],
-        staff_id: 4,
-        start,
-      },
-      relationships: {
-        attendees: {
-          data: [
-            {
-              attributes: {
-                address: '123 Fake St',
-                cell_phone: '5555555555',
-                city: 'Fake City',
-                country: 'FC',
-                email: 'jane@doe.com',
-                first_name: 'Jane',
-                lang: 'es',
-                last_name: 'Doe',
-                phone: '5555555555',
-                prov_state: 'FR',
-                receive_sms: true,
-                timezone: 'UTC',
-                work_phone: '5555555555',
-                zip_postal: 'X0X 0X0',
-              },
-              relationships: {
-                answers: {
-                  data: [
-                    {
-                      attributes: {
-                        question_id: 1,
-                        value: 'this answer',
-                      },
-                      type: 'answers',
-                    }
-                  ]
-                }
-              },
-              type: 'attendees'
-            },
-          ],
+    expect(mockAxios.post).toBeCalledWith('appointments', {
+      data: {
+        attributes: {
+          location_id: 1,
+          service_id: [2, 3],
+          staff_id: 4,
+          start,
         },
+        relationships: {
+          attendees: {
+            data: [
+              {
+                attributes: {
+                  address: '123 Fake St',
+                  cell_phone: '5555555555',
+                  city: 'Fake City',
+                  country: 'FC',
+                  email: 'jane@doe.com',
+                  first_name: 'Jane',
+                  lang: 'es',
+                  last_name: 'Doe',
+                  phone: '5555555555',
+                  prov_state: 'FR',
+                  receive_sms: true,
+                  timezone: 'UTC',
+                  work_phone: '5555555555',
+                  zip_postal: 'X0X 0X0',
+                },
+                relationships: {
+                  answers: {
+                    data: [
+                      {
+                        attributes: {
+                          question_id: 1,
+                          value: 'this answer',
+                        },
+                        type: 'answers',
+                      }
+                    ]
+                  }
+                },
+                type: 'attendees'
+              },
+            ],
+          },
+        },
+        type: 'appointments',
       },
-      type: 'appointments',
-    },
-    meta: {
-      notify: {
-        client: true,
-        user: true,
+      meta: {
+        notify: notification,
       },
-    },
-  })
+    });
+
+    expect(mockAxios.post).toHaveBeenCalledTimes(3);
+  });
 });
 
 it('can retrieve matching appointments using a given set of matchers', async () => {
