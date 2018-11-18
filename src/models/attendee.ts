@@ -88,6 +88,9 @@ export default class Attendee extends Model implements AttendeeModel {
       }
     });
 
-    return attributes;
+    return {
+      attributes,
+      type: 'attendees',
+    };
   }
 }

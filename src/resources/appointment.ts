@@ -88,12 +88,8 @@ export default class Appointment implements AppointmentResource {
   protected params(): AppointmentParameters {
     const attendees = (this.attendees as AttendeeModel[])
       .map((attendee: AttendeeModel): object => {
-        let parameters: object = {
-          attributes: attendee.toResponse(),
-          type: 'attendees',
-        };
-
         const answers = attendee.getAnswers();
+        let parameters: object = attendee.toResponse();
 
         if (answers.length > 0) {
           parameters = {
