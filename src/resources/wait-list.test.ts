@@ -1,11 +1,12 @@
 import mockAxios from 'axios';
 
+import Attendee from '../models/attendee';
 import WaitList from './wait-list';
 
 it('will set location filter using a number', async () => {
   const resource = new WaitList(mockAxios);
 
-  expect(resource.at(1)).toHaveProperty('filters', {
+  expect(resource.at(1)).toHaveProperty('relationships', {
     location: 1,
   });
 });
@@ -13,7 +14,7 @@ it('will set location filter using a number', async () => {
 it('will set location filter using a numeric string', async () => {
   const resource = new WaitList(mockAxios);
 
-  expect(resource.at('1')).toHaveProperty('filters', {
+  expect(resource.at('1')).toHaveProperty('relationships', {
     location: '1',
   });
 });
@@ -21,7 +22,7 @@ it('will set location filter using a numeric string', async () => {
 it('will set service filter using a number', async () => {
   const resource = new WaitList(mockAxios);
 
-  expect(resource.seeking(1)).toHaveProperty('filters', {
+  expect(resource.seeking(1)).toHaveProperty('relationships', {
     service: 1,
   });
 });
@@ -29,7 +30,7 @@ it('will set service filter using a number', async () => {
 it('will set service filter using a numeric string', async () => {
   const resource = new WaitList(mockAxios);
 
-  expect(resource.seeking('1')).toHaveProperty('filters', {
+  expect(resource.seeking('1')).toHaveProperty('relationships', {
     service: '1',
   });
 });
@@ -37,7 +38,7 @@ it('will set service filter using a numeric string', async () => {
 it('will set user filter using a number', async () => {
   const resource = new WaitList(mockAxios);
 
-  expect(resource.with(1)).toHaveProperty('filters', {
+  expect(resource.with(1)).toHaveProperty('relationships', {
     user: 1,
   });
 });
@@ -45,7 +46,7 @@ it('will set user filter using a number', async () => {
 it('will set user filter using a numeric string', async () => {
   const resource = new WaitList(mockAxios);
 
-  expect(resource.with('1')).toHaveProperty('filters', {
+  expect(resource.with('1')).toHaveProperty('relationships', {
     user: '1',
   });
 });
@@ -71,6 +72,15 @@ it('will set the includes parameter using a comma separated string', async () =>
 
   expect(resource.include('relationships,go,here')).toHaveProperty('parameters', {
     include: 'relationships,go,here',
+  });
+});
+
+it('can set an attendee for the wait list request', async () => {
+  const resource = new WaitList(mockAxios);
+  const attendee = new Attendee;
+
+  expect(resource.for(attendee)).toHaveProperty('relationships', {
+    attendee,
   });
 });
 

@@ -90,6 +90,8 @@ export interface WaitListResource {
 
   prefers(preferences: PreferenceModel | PreferenceModel[]): this;
 
+  provided(notes: string): this;
+
   remove(list: number | string): Promise<any>;
 
   seeking(service: number | string): this;

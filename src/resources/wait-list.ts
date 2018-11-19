@@ -1,19 +1,19 @@
 import { AxiosInstance } from 'axios';
 
-import { WaitListFilter } from '../types/filters';
 import { AttendeeModel, PreferenceModel } from '../types/models';
 import { IncludableParameters, WaitListUrlParameters } from '../types/parameters';
+import { WaitListRelationship } from '../types/relationships';
 import { WaitListResource } from '../types/resources';
 
 export default class WaitList implements WaitListResource {
   protected client: AxiosInstance;
-  protected filters: WaitListFilter;
   protected parameters: WaitListUrlParameters;
+  protected relationships: WaitListRelationship;
 
   constructor(client: AxiosInstance) {
     this.client = client;
-    this.filters = {};
     this.parameters = {};
+    this.relationships = {};
   }
 
   public async add(): Promise<any> {
@@ -21,7 +21,7 @@ export default class WaitList implements WaitListResource {
   }
 
   public at(location: number | string): this {
-    this.filters.location = location;
+    this.relationships.location = location;
 
     return this;
   }
@@ -44,6 +44,8 @@ export default class WaitList implements WaitListResource {
   }
 
   public for(attendee: AttendeeModel): this {
+    this.relationships.attendee = attendee;
+
     return this;
   }
 
@@ -57,6 +59,10 @@ export default class WaitList implements WaitListResource {
     return this;
   }
 
+  public provided(notes: string): this {
+    return this;
+  }
+
   public async remove(list: number | string): Promise<any> {
     const { client } = this.parameters;
 
@@ -64,7 +70,7 @@ export default class WaitList implements WaitListResource {
   }
 
   public seeking(service: number | string): this {
-    this.filters.service = service;
+    this.relationships.service = service;
 
     return this;
   }
@@ -74,7 +80,7 @@ export default class WaitList implements WaitListResource {
   }
 
   public with(user: number | string): this {
-    this.filters.user = user;
+    this.relationships.user = user;
 
     return this;
   }
