@@ -1,5 +1,5 @@
 {
-  "name": "open-api-sdk",
+  "name": "coconut-open-api-js",
   "version": "0.0.0",
   "description": "Coconut Calendar JS Open API SDK",
   "main": "dist/index.js",
