@@ -1,5 +1,6 @@
 import mockAxios from 'axios';
 
+import Days from '../constants/days';
 import Attendee from '../models/attendee';
 import Preference from '../models/preference';
 import WaitList from './wait-list';
@@ -168,7 +169,71 @@ it('can create a new wait list request for a given client using only required at
 });
 
 it('can create a new wait list request for a given client using all attributes', async () => {
-  //
+  const resource = new WaitList(mockAxios);
+  const attendee = new Attendee();
+  const preference = new Preference();
+
+  await resource
+    .for(attendee.named('Jane', 'Doe').reachable({ email: 'jane@doe.com' }))
+    .at(1)
+    .seeking(2)
+    .with(3)
+    .provided('some more notes')
+    .prefers(preference.on(Days.WEDNESDAY).between('9:00 AM', '11:00 AM'))
+    .add();
+
+  expect(mockAxios.post).toHaveBeenCalledTimes(1);
+  expect(mockAxios.post).toHaveBeenCalledWith('requests', {
+    data: {
+      attributes: {
+        details: 'some more notes',
+      },
+      relationships: {
+        client: {
+          data: {
+            attributes: {
+              email: 'jane@doe.com',
+              first_name: 'Jane',
+              last_name: 'Doe',
+            },
+            type: 'clients',
+          },
+        },
+        location: {
+          data: {
+            id: '1',
+            type: 'locations',
+          },
+        },
+        preferences: {
+          data: [
+            {
+              attributes: {
+                day: Days.WEDNESDAY,
+                end: '11:00 AM',
+                start: '9:00 AM',
+                type: Preference.CERTAIN_DAYS,
+              },
+              type: 'request-preferences',
+            },
+          ],
+        },
+        service: {
+          data: {
+            id: '2',
+            type: 'services',
+          },
+        },
+        user: {
+          data: {
+            id: '3',
+            type: 'users',
+          },
+        },
+      },
+      type: 'requests',
+    },
+  });
 });
 
 it('can retrieve a clients matching wait list request', async () => {

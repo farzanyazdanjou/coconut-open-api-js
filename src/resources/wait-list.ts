@@ -100,7 +100,7 @@ export default class WaitList implements WaitListResource {
       },
     );
 
-    return {
+    const params: WaitListParameters = {
       data: {
         attributes: {},
         relationships: {
@@ -129,5 +129,20 @@ export default class WaitList implements WaitListResource {
         type: 'requests',
       },
     };
+
+    if (this.attributes.notes) {
+      params.data.attributes.details = this.attributes.notes;
+    }
+
+    if (this.relationships.user) {
+      params.data.relationships.user = {
+        data: {
+          id: String(this.relationships.user),
+          type: 'users',
+        },
+      };
+    }
+
+    return params;
   }
 }

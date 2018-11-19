@@ -118,7 +118,9 @@ export interface UserParameters {
 
 export interface WaitListParameters {
   data: {
-    attributes: {};
+    attributes: {
+      details?: string;
+    };
     relationships: {
       client: {
         data: object;
@@ -133,6 +135,12 @@ export interface WaitListParameters {
         data: object[];
       };
       service: {
+        data: {
+          id: string;
+          type: string;
+        };
+      };
+      user?: {
         data: {
           id: string;
           type: string;
