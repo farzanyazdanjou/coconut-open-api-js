@@ -74,7 +74,11 @@ it('will set the includes parameter using a comma separated string', async () =>
   });
 });
 
-it('can create a new wait list request for a given client', async () => {
+it('can create a new wait list request for a given client using only required attributes', async () => {
+  //
+});
+
+it('can create a new wait list request for a given client using all attributes', async () => {
   //
 });
 
@@ -105,7 +109,11 @@ it('can retrieve a clients matching wait list request without including preferen
   expect(mockAxios.get).toHaveBeenCalledWith('clients/1/requests/2', { params: {} });
 });
 
-it('can update a clients wait list request', async () => {
+it('can update a clients wait list request using only required attributes', async () => {
+  //
+});
+
+it('can update a clients wait list request using all attributes', async () => {
   //
 });
 
