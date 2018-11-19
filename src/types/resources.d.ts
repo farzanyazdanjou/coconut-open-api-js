@@ -1,4 +1,4 @@
-import { AttendeeModel } from './models';
+import { AttendeeModel, PreferenceModel } from './models';
 import { AppointmentMatcherParameters, AppointmentNotificationParameters } from './parameters';
 
 export interface AppointmentResource extends Resource {
@@ -73,4 +73,28 @@ export interface UserResource extends Pageable {
   at(location: number | string): this;
 
   performing(services: number | number[] | string | string[]): this;
+}
+
+export interface WaitListResource {
+  add(): Promise<any>;
+
+  at(location: number | string): this;
+
+  belonging(client: number): this;
+
+  find(list: number | string): Promise<any>;
+
+  for(attendee: AttendeeModel): this;
+
+  include(includes: string): this;
+
+  prefers(preferences: PreferenceModel | PreferenceModel[]): this;
+
+  remove(list: number | string): Promise<any>;
+
+  seeking(service: number | string): this;
+
+  update(list: number | string): Promise<any>;
+
+  with(user: number | string): this;
 }
