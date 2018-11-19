@@ -58,6 +58,10 @@ export interface AttendeeParameters {
   work_phone?: string;
 }
 
+export interface IncludableParameters {
+  include?: string;
+}
+
 export interface LocationDetailParameters {
   address?: string;
   city?: string;

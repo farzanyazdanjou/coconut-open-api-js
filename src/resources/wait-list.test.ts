@@ -79,7 +79,30 @@ it('can create a new wait list request for a given client', async () => {
 });
 
 it('can retrieve a clients matching wait list request', async () => {
-  //
+  const resource = new WaitList(mockAxios);
+
+  await resource
+    .belonging(1)
+    .include('preferences')
+    .find(2);
+
+  expect(mockAxios.get).toHaveBeenCalledTimes(1);
+  expect(mockAxios.get).toHaveBeenCalledWith('clients/1/requests/2', {
+    params: {
+      include: 'preferences',
+    },
+  });
+});
+
+it('can retrieve a clients matching wait list request without including preferences', async () => {
+  const resource = new WaitList(mockAxios);
+
+  await resource
+    .belonging(1)
+    .find(2);
+
+  expect(mockAxios.get).toHaveBeenCalledTimes(1);
+  expect(mockAxios.get).toHaveBeenCalledWith('clients/1/requests/2', { params: {} });
 });
 
 it('can update a clients wait list request', async () => {

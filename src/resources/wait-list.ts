@@ -2,7 +2,7 @@ import { AxiosInstance } from 'axios';
 
 import { WaitListFilter } from '../types/filters';
 import { AttendeeModel, PreferenceModel } from '../types/models';
-import { WaitListUrlParameters } from '../types/parameters';
+import { IncludableParameters, WaitListUrlParameters } from '../types/parameters';
 import { WaitListResource } from '../types/resources';
 
 export default class WaitList implements WaitListResource {
@@ -33,7 +33,14 @@ export default class WaitList implements WaitListResource {
   }
 
   public async find(list: number | string): Promise<any> {
-    //
+    const params: IncludableParameters = {};
+    const { client, include } = this.parameters;
+
+    if (include) {
+      params.include = include;
+    }
+
+    return await this.client.get(`clients/${client}/requests/${list}`, { params });
   }
 
   public for(attendee: AttendeeModel): this {
