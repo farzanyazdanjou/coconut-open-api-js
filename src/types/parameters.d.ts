@@ -122,19 +122,19 @@ export interface WaitListParameters {
       details?: string;
     };
     relationships: {
-      client: {
+      client?: {
         data: object;
       };
-      location: {
+      location?: {
         data: {
           id: string;
           type: string;
         };
       };
-      preferences: {
+      preferences?: {
         data: object[];
       };
-      service: {
+      service?: {
         data: {
           id: string;
           type: string;

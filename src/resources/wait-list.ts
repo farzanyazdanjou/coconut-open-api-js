@@ -83,7 +83,9 @@ export default class WaitList implements WaitListResource {
   }
 
   public async update(list: number | string): Promise<any> {
-    //
+    const { client } = this.parameters;
+
+    return await this.client.patch(`clients/${client}/requests/${list}`, this.params());
   }
 
   public with(user: number | string): this {
@@ -93,42 +95,54 @@ export default class WaitList implements WaitListResource {
   }
 
   protected params(): WaitListParameters {
-    const attendee = (this.relationships.attendee as AttendeeModel).transform();
-    const preferences = (this.relationships.preferences as PreferenceModel[]).map(
-      (preference: PreferenceModel): object => {
-        return preference.transform();
-      },
-    );
-
     const params: WaitListParameters = {
       data: {
         attributes: {},
-        relationships: {
-          client: {
-            data: {
-              ...attendee,
-              type: 'clients',
-            },
-          },
-          location: {
-            data: {
-              id: String(this.relationships.location),
-              type: 'locations',
-            },
-          },
-          preferences: {
-            data: preferences,
-          },
-          service: {
-            data: {
-              id: String(this.relationships.service),
-              type: 'services',
-            },
-          },
-        },
+        relationships: {},
         type: 'requests',
       },
     };
+
+    if (this.relationships.attendee) {
+      const attendee = (this.relationships.attendee as AttendeeModel).transform();
+
+      params.data.relationships.client = {
+        data: {
+          ...attendee,
+          type: 'clients',
+        },
+      };
+
+    }
+    if (this.relationships.location) {
+      params.data.relationships.location = {
+        data: {
+          id: String(this.relationships.location),
+            type: 'locations',
+        },
+      };
+    }
+
+    if (this.relationships.preferences) {
+      const preferences = (this.relationships.preferences as PreferenceModel[]).map(
+        (preference: PreferenceModel): object => {
+          return preference.transform();
+        },
+      );
+
+      params.data.relationships.preferences = {
+        data: preferences,
+      };
+    }
+
+    if (this.relationships.service) {
+      params.data.relationships.service = {
+        data: {
+          id: String(this.relationships.service),
+            type: 'services',
+        },
+      };
+    }
 
     if (this.attributes.notes) {
       params.data.attributes.details = this.attributes.notes;

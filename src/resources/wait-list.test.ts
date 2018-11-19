@@ -261,12 +261,72 @@ it('can retrieve a clients matching wait list request without including preferen
   expect(mockAxios.get).toHaveBeenCalledWith('clients/1/requests/2', { params: {} });
 });
 
-it('can update a clients wait list request using only required attributes', async () => {
-  //
+it('can update a clients wait list request using a single relation', async () => {
+  const resource = new WaitList(mockAxios);
+
+  await resource
+    .belonging(1)
+    .with(2)
+    .update(3);
+
+  expect(mockAxios.patch).toHaveBeenCalledTimes(1);
+  expect(mockAxios.patch).toHaveBeenCalledWith('clients/1/requests/3', {
+    data: {
+      attributes: {},
+      relationships: {
+        user: {
+          data: {
+            id: '2',
+            type: 'users',
+          },
+        },
+      },
+      type: 'requests',
+    },
+  });
 });
 
-it('can update a clients wait list request using all attributes', async () => {
-  //
+it('can update a clients wait list request using attributes and a relation', async () => {
+  const resource = new WaitList(mockAxios);
+  const preference = new Preference();
+
+  await resource
+    .belonging(1)
+    .with(2)
+    .prefers(preference.on(Days.WEDNESDAY).between('9:00 AM', '11:00 AM'))
+    .provided('some notes here')
+    .update(3);
+
+  expect(mockAxios.patch).toHaveBeenCalledTimes(1);
+  expect(mockAxios.patch).toHaveBeenCalledWith('clients/1/requests/3', {
+    data: {
+      attributes: {
+        details: 'some notes here',
+      },
+      relationships: {
+        preferences: {
+          data: [
+            {
+              attributes: {
+                day: Days.WEDNESDAY,
+                end: '11:00 AM',
+                start: '9:00 AM',
+                type: Preference.CERTAIN_DAYS,
+              },
+              type: 'request-preferences',
+            },
+          ],
+        },
+        user: {
+          data: {
+            id: '2',
+            type: 'users',
+          },
+        },
+      },
+      type: 'requests',
+    },
+  });
 });
 
 it('can delete a clients wait list request', async () => {
