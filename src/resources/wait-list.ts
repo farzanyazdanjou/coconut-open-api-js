@@ -51,7 +51,9 @@ export default class WaitList implements WaitListResource {
   }
 
   public async remove(list: number | string): Promise<any> {
-    //
+    const { client } = this.parameters;
+
+    return await this.client.delete(`clients/${client}/requests/${list}`);
   }
 
   public seeking(service: number | string): this {

@@ -87,5 +87,12 @@ it('can update a clients wait list request', async () => {
 });
 
 it('can delete a clients wait list request', async () => {
-  //
+  const resource = new WaitList(mockAxios);
+
+  await resource
+    .belonging(1)
+    .remove(2);
+
+  expect(mockAxios.delete).toHaveBeenCalledTimes(1);
+  expect(mockAxios.delete).toHaveBeenCalledWith('clients/1/requests/2');
 });
