@@ -92,7 +92,7 @@ it('can book an appointment with the minimum required parameters', async () => {
     .book();
 
   expect(mockAxios.post).toHaveBeenCalledTimes(1);
-  expect(mockAxios.post).toBeCalledWith('appointments', {
+  expect(mockAxios.post).toHaveBeenCalledWith('appointments', {
     data: {
       attributes: {
         location_id: 1,
@@ -161,7 +161,7 @@ it('can book an appointment with all available parameters', async () => {
       .notify(notification)
       .book();
 
-    expect(mockAxios.post).toBeCalledWith('appointments', {
+    expect(mockAxios.post).toHaveBeenCalledWith('appointments', {
       data: {
         attributes: {
           location_id: 1,
@@ -229,7 +229,7 @@ it('can retrieve matching appointments using a given set of matchers', async () 
   await resource.matching(matchers).get();
 
   expect(mockAxios.get).toHaveBeenCalledTimes(1);
-  expect(mockAxios.get).toBeCalledWith('appointments', {
+  expect(mockAxios.get).toHaveBeenCalledWith('appointments', {
     params: matchers,
   })
 });
@@ -240,5 +240,5 @@ it('can cancel the given appointment for the given attendee', async () => {
   await resource.cancel(1, 2);
 
   expect(mockAxios.delete).toHaveBeenCalledTimes(1);
-  expect(mockAxios.delete).toBeCalledWith('appointments/1/2');
+  expect(mockAxios.delete).toHaveBeenCalledWith('appointments/1/2');
 });
