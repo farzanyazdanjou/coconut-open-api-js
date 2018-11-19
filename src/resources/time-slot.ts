@@ -1,8 +1,8 @@
 import { AxiosInstance } from 'axios';
 
 import { TimeSlotFilter } from '../types/filters';
-import { TimeSlotResource } from '../types/resources';
 import { TimeSlotParameters } from '../types/parameters';
+import { TimeSlotResource } from '../types/resources';
 
 export default class TimeSlot implements TimeSlotResource {
   protected client: AxiosInstance;
@@ -52,4 +52,4 @@ export default class TimeSlot implements TimeSlotResource {
 
     return await this.client.get('times', { params });
   }
-};
+}

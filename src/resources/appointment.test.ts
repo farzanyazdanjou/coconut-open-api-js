@@ -56,12 +56,12 @@ it('can set the starting time property', async () => {
 
   expect(resource.starting(start)).toHaveProperty('filters', {
     start,
-  })
+  });
 });
 
 it('can set a single attendee for the appointment', async () => {
   const resource = new Appointment(mockAxios);
-  const attendee = new Attendee;
+  const attendee = new Attendee();
 
   expect(resource.with(attendee)).toHaveProperty('relationships', {
     attendees: [attendee],
@@ -70,7 +70,7 @@ it('can set a single attendee for the appointment', async () => {
 
 it('can set multiple attendees for the appointment', async () => {
   const resource = new Appointment(mockAxios);
-  const attendee = new Attendee;
+  const attendee = new Attendee();
 
   expect(resource.with([attendee, attendee])).toHaveProperty('relationships', {
     attendees: [attendee, attendee],
@@ -80,15 +80,13 @@ it('can set multiple attendees for the appointment', async () => {
 it('can book an appointment with the minimum required parameters', async () => {
   const resource = new Appointment(mockAxios);
   const start = '2018-01-01 12:00:00';
-  const attendee = new Attendee;
+  const attendee = new Attendee();
 
   await resource
     .at(1)
     .for(2)
     .starting(start)
-    .with(
-      attendee.named('Jane', 'Doe').reachable({ email: 'jane@doe.com' })
-    )
+    .with(attendee.named('Jane', 'Doe').reachable({ email: 'jane@doe.com' }))
     .book();
 
   expect(mockAxios.post).toHaveBeenCalledTimes(1);
@@ -116,19 +114,15 @@ it('can book an appointment with the minimum required parameters', async () => {
       },
       type: 'appointments',
     },
-  })
+  });
 });
 
 it('can book an appointment with all available parameters', async () => {
   const resource = new Appointment(mockAxios);
   const start = '2018-01-01 12:00:00';
-  const attendee = new Attendee;
-  const answer = new Answer;
-  const notifications = [
-    Notifications.CLIENT,
-    Notifications.USER,
-    Notifications.ALL,
-  ];
+  const attendee = new Attendee();
+  const answer = new Answer();
+  const notifications = [Notifications.CLIENT, Notifications.USER, Notifications.ALL];
 
   notifications.forEach(async (notification: object) => {
     await resource
@@ -156,7 +150,7 @@ it('can book an appointment with all available parameters', async () => {
           .messagable()
           .provided('notes')
           .speaks('es')
-          .answers(answer.for(1).is('this answer'))
+          .answers(answer.for(1).is('this answer')),
       )
       .notify(notification)
       .book();
@@ -198,11 +192,11 @@ it('can book an appointment with all available parameters', async () => {
                           value: 'this answer',
                         },
                         type: 'answers',
-                      }
-                    ]
-                  }
+                      },
+                    ],
+                  },
                 },
-                type: 'attendees'
+                type: 'attendees',
               },
             ],
           },
@@ -231,7 +225,7 @@ it('can retrieve matching appointments using a given set of matchers', async () 
   expect(mockAxios.get).toHaveBeenCalledTimes(1);
   expect(mockAxios.get).toHaveBeenCalledWith('appointments', {
     params: matchers,
-  })
+  });
 });
 
 it('can cancel the given appointment for the given attendee', async () => {

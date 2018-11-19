@@ -7,20 +7,20 @@ export interface AppointmentParameters {
       service_id: number | number[] | undefined;
       staff_id: number | null;
       start: string | undefined;
-    },
+    };
     relationships: {
       attendees: {
         data: object[];
       };
-    },
+    };
     type: string;
   };
   meta?: {
     notify?: {
-      client?: boolean,
-      user?: boolean,
-    },
-  },
+      client?: boolean;
+      user?: boolean;
+    };
+  };
 }
 
 export interface AppointmentMatcherParameters {
@@ -118,7 +118,7 @@ export interface UserParameters {
 
 export interface WaitListParameters {
   data: {
-    attributes: {},
+    attributes: {};
     relationships: {
       client: {
         data: object;
@@ -138,7 +138,7 @@ export interface WaitListParameters {
           type: string;
         };
       };
-    },
+    };
     type: string;
   };
 }

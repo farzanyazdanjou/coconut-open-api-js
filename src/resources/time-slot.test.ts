@@ -83,7 +83,6 @@ it('can get time slots for no particular user', async () => {
   });
 });
 
-
 it('can get time slots for a specified user', async () => {
   const resource = new TimeSlot(mockAxios);
 

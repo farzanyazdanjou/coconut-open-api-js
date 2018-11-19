@@ -36,25 +36,25 @@ it('will set service filter using an array of strings', async () => {
 });
 
 it('will set the page we are on', async () => {
-const resource = new Question(mockAxios);
+  const resource = new Question(mockAxios);
 
   expect(resource.on(4)).toHaveProperty('page', 4);
 });
 
 it('will set the limit given', async () => {
-const resource = new Question(mockAxios);
+  const resource = new Question(mockAxios);
 
   expect(resource.take(5)).toHaveProperty('limit', 5);
 });
 
 it('will set the sortable filter', async () => {
-const resource = new Question(mockAxios);
+  const resource = new Question(mockAxios);
 
   expect(resource.sortBy('name,-created')).toHaveProperty('sortable', 'name,-created');
 });
 
 it('can string all filterable options together', async () => {
-const resource = new Question(mockAxios);
+  const resource = new Question(mockAxios);
 
   const expected = expect(
     resource
@@ -73,7 +73,7 @@ const resource = new Question(mockAxios);
 });
 
 it('can get questions without additional parameters', async () => {
-const resource = new Question(mockAxios);
+  const resource = new Question(mockAxios);
 
   await resource.get();
 
@@ -82,7 +82,7 @@ const resource = new Question(mockAxios);
 });
 
 it('can get questions with additional parameters', async () => {
-const resource = new Question(mockAxios);
+  const resource = new Question(mockAxios);
 
   await resource
     .for(3)

@@ -13,7 +13,7 @@ import {
   Resource,
   ServiceResource,
   TimeSlotResource,
-  UserResource
+  UserResource,
 } from './types/resources';
 
 export default class OpenApi {

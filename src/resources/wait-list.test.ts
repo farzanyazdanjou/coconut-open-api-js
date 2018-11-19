@@ -86,7 +86,7 @@ it('can set additional details for the wait list request', async () => {
 
 it('can set an attendee for the wait list request', async () => {
   const resource = new WaitList(mockAxios);
-  const attendee = new Attendee;
+  const attendee = new Attendee();
 
   expect(resource.for(attendee)).toHaveProperty('relationships', {
     attendee,
@@ -95,7 +95,7 @@ it('can set an attendee for the wait list request', async () => {
 
 it('can set a single preference for the wait list request', async () => {
   const resource = new WaitList(mockAxios);
-  const preference = new Preference;
+  const preference = new Preference();
 
   expect(resource.prefers(preference)).toHaveProperty('relationships', {
     preferences: [preference],
@@ -104,7 +104,7 @@ it('can set a single preference for the wait list request', async () => {
 
 it('can set a multiple preferences for the wait list request', async () => {
   const resource = new WaitList(mockAxios);
-  const preference = new Preference;
+  const preference = new Preference();
 
   expect(resource.prefers([preference, preference])).toHaveProperty('relationships', {
     preferences: [preference, preference],
@@ -113,18 +113,14 @@ it('can set a multiple preferences for the wait list request', async () => {
 
 it('can create a new wait list request for a given client using only required attributes', async () => {
   const resource = new WaitList(mockAxios);
-  const attendee = new Attendee;
-  const preference = new Preference;
+  const attendee = new Attendee();
+  const preference = new Preference();
 
   await resource
-    .for(
-      attendee.named('Jane', 'Doe').reachable({ email: 'jane@doe.com' })
-    )
+    .for(attendee.named('Jane', 'Doe').reachable({ email: 'jane@doe.com' }))
     .at(1)
     .seeking(2)
-    .prefers(
-      preference.next()
-    )
+    .prefers(preference.next())
     .add();
 
   expect(mockAxios.post).toHaveBeenCalledTimes(1);
@@ -139,33 +135,35 @@ it('can create a new wait list request for a given client using only required at
               first_name: 'Jane',
               last_name: 'Doe',
             },
-            type: 'clients'
-          }
+            type: 'clients',
+          },
         },
         location: {
           data: {
             id: '1',
             type: 'locations',
-          }
+          },
         },
         preferences: {
-          data: [{
-            attributes: {
-              start: Preference.now(),
-              type: Preference.NEXT_AVAILABLE,
+          data: [
+            {
+              attributes: {
+                start: Preference.now(),
+                type: Preference.NEXT_AVAILABLE,
+              },
+              type: 'request-preferences',
             },
-            type: 'request-preferences'
-          }]
+          ],
         },
         service: {
           data: {
             id: '2',
             type: 'services',
-          }
+          },
         },
       },
-      type: 'requests'
-    }
+      type: 'requests',
+    },
   });
 });
 
@@ -192,9 +190,7 @@ it('can retrieve a clients matching wait list request', async () => {
 it('can retrieve a clients matching wait list request without including preferences', async () => {
   const resource = new WaitList(mockAxios);
 
-  await resource
-    .belonging(1)
-    .find(2);
+  await resource.belonging(1).find(2);
 
   expect(mockAxios.get).toHaveBeenCalledTimes(1);
   expect(mockAxios.get).toHaveBeenCalledWith('clients/1/requests/2', { params: {} });
@@ -211,9 +207,7 @@ it('can update a clients wait list request using all attributes', async () => {
 it('can delete a clients wait list request', async () => {
   const resource = new WaitList(mockAxios);
 
-  await resource
-    .belonging(1)
-    .remove(2);
+  await resource.belonging(1).remove(2);
 
   expect(mockAxios.delete).toHaveBeenCalledTimes(1);
   expect(mockAxios.delete).toHaveBeenCalledWith('clients/1/requests/2');

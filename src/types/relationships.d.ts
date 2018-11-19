@@ -1,7 +1,7 @@
 import { AttendeeModel, PreferenceModel } from './models';
 
 export interface AppointmentRelationship {
-  attendees?: AttendeeModel[] | []
+  attendees?: AttendeeModel[] | [];
 }
 
 export interface WaitListRelationship {

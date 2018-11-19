@@ -5,7 +5,7 @@ import { AttendeeModel } from '../types/models';
 import {
   AppointmentMatcherParameters,
   AppointmentNotificationParameters,
-  AppointmentParameters
+  AppointmentParameters,
 } from '../types/parameters';
 import { AppointmentRelationship } from '../types/relationships';
 import { AppointmentResource } from '../types/resources';
@@ -78,10 +78,11 @@ export default class Appointment implements AppointmentResource {
   }
 
   protected params(): AppointmentParameters {
-    const attendees = (this.relationships.attendees as AttendeeModel[])
-      .map((attendee: AttendeeModel): object => {
+    const attendees = (this.relationships.attendees as AttendeeModel[]).map(
+      (attendee: AttendeeModel): object => {
         return attendee.transform();
-      });
+      },
+    );
 
     let params: AppointmentParameters = {
       data: {

@@ -20,7 +20,7 @@ export default class WaitList implements WaitListResource {
   }
 
   public async add(): Promise<any> {
-    return await this.client.post('requests', this.params())
+    return await this.client.post('requests', this.params());
   }
 
   public at(location: number | string): this {
@@ -94,10 +94,11 @@ export default class WaitList implements WaitListResource {
 
   protected params(): WaitListParameters {
     const attendee = (this.relationships.attendee as AttendeeModel).transform();
-    const preferences = (this.relationships.preferences as PreferenceModel[])
-      .map((preference: PreferenceModel): object => {
+    const preferences = (this.relationships.preferences as PreferenceModel[]).map(
+      (preference: PreferenceModel): object => {
         return preference.transform();
-      });
+      },
+    );
 
     return {
       data: {
@@ -107,7 +108,7 @@ export default class WaitList implements WaitListResource {
             data: {
               ...attendee,
               type: 'clients',
-            }
+            },
           },
           location: {
             data: {

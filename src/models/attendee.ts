@@ -22,7 +22,7 @@ export default class Attendee extends Model implements AttendeeModel {
   }
 
   public located(details: LocationDetailParameters): this {
-    this.attributes = {...this.attributes, ...details};
+    this.attributes = { ...this.attributes, ...details };
 
     return this;
   }
@@ -47,7 +47,7 @@ export default class Attendee extends Model implements AttendeeModel {
   }
 
   public reachable(details: ReachableDetailParameters): this {
-    this.attributes = {...this.attributes, ...details};
+    this.attributes = { ...this.attributes, ...details };
 
     return this;
   }
@@ -67,11 +67,10 @@ export default class Attendee extends Model implements AttendeeModel {
         ...parameters,
         relationships: {
           answers: {
-            data: (answers as AnswerModel[])
-              .map((answer: AnswerModel) => answer.transform())
-          }
-        }
-      }
+            data: (answers as AnswerModel[]).map((answer: AnswerModel) => answer.transform()),
+          },
+        },
+      };
     }
 
     return parameters;
