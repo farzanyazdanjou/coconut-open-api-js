@@ -6,6 +6,7 @@
     "declaration": true,
     "lib": ["dom", "es2015.promise", "es5", "scripthost"],
     "outDir": "./dist",
+    "removeComments": true,
     "strict": true
   },
   "include": ["./src/**/*"],
