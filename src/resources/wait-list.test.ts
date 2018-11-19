@@ -49,3 +49,27 @@ it('will set user filter using a numeric string', async () => {
     user: '1',
   });
 });
+
+it('will set the client parameter using a number', async () => {
+  const resource = new WaitList(mockAxios);
+
+  expect(resource.belonging(1)).toHaveProperty('parameters', {
+    client: 1,
+  });
+});
+
+it('will set the client parameter using a numeric string', async () => {
+  const resource = new WaitList(mockAxios);
+
+  expect(resource.belonging('1')).toHaveProperty('parameters', {
+    client: '1',
+  });
+});
+
+it('will set the includes parameter using a comma separated string', async () => {
+  const resource = new WaitList(mockAxios);
+
+  expect(resource.include('relationships,go,here')).toHaveProperty('parameters', {
+    include: 'relationships,go,here',
+  });
+});

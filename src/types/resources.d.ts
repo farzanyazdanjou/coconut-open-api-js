@@ -80,7 +80,7 @@ export interface WaitListResource {
 
   at(location: number | string): this;
 
-  belonging(client: number): this;
+  belonging(client: number | string): this;
 
   find(list: number | string): Promise<any>;
 

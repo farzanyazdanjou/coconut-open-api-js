@@ -2,15 +2,18 @@ import { AxiosInstance } from 'axios';
 
 import { WaitListFilter } from '../types/filters';
 import { AttendeeModel, PreferenceModel } from '../types/models';
+import { WaitListUrlParameters } from '../types/parameters';
 import { WaitListResource } from '../types/resources';
 
 export default class WaitList implements WaitListResource {
   protected client: AxiosInstance;
   protected filters: WaitListFilter;
+  protected parameters: WaitListUrlParameters;
 
   constructor(client: AxiosInstance) {
     this.client = client;
-    this.filters = {}
+    this.filters = {};
+    this.parameters = {};
   }
 
   public async add(): Promise<any> {
@@ -23,7 +26,9 @@ export default class WaitList implements WaitListResource {
     return this;
   }
 
-  public belonging(client: number): this {
+  public belonging(client: number | string): this {
+    this.parameters.client = client;
+
     return this;
   }
 
@@ -36,6 +41,8 @@ export default class WaitList implements WaitListResource {
   }
 
   public include(includes: string): this {
+    this.parameters.include = includes;
+
     return this;
   }
 

@@ -111,3 +111,8 @@ export interface UserParameters {
   service?: number | number[] | string | string[];
   location?: number | string;
 }
+
+export interface WaitListUrlParameters {
+  client?: number | string;
+  include?: string;
+}
