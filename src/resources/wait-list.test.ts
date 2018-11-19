@@ -75,6 +75,10 @@ it('will set the includes parameter using a comma separated string', async () =>
   });
 });
 
+it('can set additional details for the wait list request', async () => {
+//
+});
+
 it('can set an attendee for the wait list request', async () => {
   const resource = new WaitList(mockAxios);
   const attendee = new Attendee;
@@ -82,6 +86,14 @@ it('can set an attendee for the wait list request', async () => {
   expect(resource.for(attendee)).toHaveProperty('relationships', {
     attendee,
   });
+});
+
+it('can set a single preference for the wait list request', async () => {
+  //
+});
+
+it('can set a multiple preferences for the wait list request', async () => {
+  //
 });
 
 it('can create a new wait list request for a given client using only required attributes', async () => {
