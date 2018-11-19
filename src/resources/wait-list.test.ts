@@ -1,6 +1,7 @@
 import mockAxios from 'axios';
 
 import Attendee from '../models/attendee';
+import Preference from '../models/preference';
 import WaitList from './wait-list';
 
 it('will set location filter using a number', async () => {
@@ -76,7 +77,11 @@ it('will set the includes parameter using a comma separated string', async () =>
 });
 
 it('can set additional details for the wait list request', async () => {
-//
+  const resource = new WaitList(mockAxios);
+
+  expect(resource.provided('additional notes')).toHaveProperty('attributes', {
+    notes: 'additional notes',
+  });
 });
 
 it('can set an attendee for the wait list request', async () => {
@@ -89,11 +94,21 @@ it('can set an attendee for the wait list request', async () => {
 });
 
 it('can set a single preference for the wait list request', async () => {
-  //
+  const resource = new WaitList(mockAxios);
+  const preference = new Preference;
+
+  expect(resource.prefers(preference)).toHaveProperty('relationships', {
+    preferences: [preference],
+  });
 });
 
 it('can set a multiple preferences for the wait list request', async () => {
-  //
+  const resource = new WaitList(mockAxios);
+  const preference = new Preference;
+
+  expect(resource.prefers([preference, preference])).toHaveProperty('relationships', {
+    preferences: [preference, preference],
+  });
 });
 
 it('can create a new wait list request for a given client using only required attributes', async () => {

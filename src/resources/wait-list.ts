@@ -1,16 +1,19 @@
 import { AxiosInstance } from 'axios';
 
+import { WaitListAttributes } from '../types/attributes';
 import { AttendeeModel, PreferenceModel } from '../types/models';
 import { IncludableParameters, WaitListUrlParameters } from '../types/parameters';
 import { WaitListRelationship } from '../types/relationships';
 import { WaitListResource } from '../types/resources';
 
 export default class WaitList implements WaitListResource {
+  protected attributes: WaitListAttributes;
   protected client: AxiosInstance;
   protected parameters: WaitListUrlParameters;
   protected relationships: WaitListRelationship;
 
   constructor(client: AxiosInstance) {
+    this.attributes = {};
     this.client = client;
     this.parameters = {};
     this.relationships = {};
@@ -56,10 +59,14 @@ export default class WaitList implements WaitListResource {
   }
 
   public prefers(preferences: PreferenceModel | PreferenceModel[]): this {
+    this.relationships.preferences = Array.isArray(preferences) ? preferences : [preferences];
+
     return this;
   }
 
   public provided(notes: string): this {
+    this.attributes.notes = notes;
+
     return this;
   }
 

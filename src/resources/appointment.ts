@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios';
 
 import { AppointmentFilter } from '../types/filters';
-import { AnswerModel, AttendeeModel } from '../types/models';
+import { AttendeeModel } from '../types/models';
 import {
   AppointmentMatcherParameters,
   AppointmentNotificationParameters,
