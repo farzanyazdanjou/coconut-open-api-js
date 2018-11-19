@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "description": "Coconut Calendar JS Open API SDK",
   "main": "dist/index.js",
-  "module": "dist/index.es.js",
   "files": ["dist"],
   "types": "dist/index.d.ts",
   "scripts": {
