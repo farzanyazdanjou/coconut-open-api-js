@@ -2,7 +2,7 @@ import { AxiosInstance } from 'axios';
 
 import { WaitListAttributes } from '../types/attributes';
 import { AttendeeModel, PreferenceModel } from '../types/models';
-import { IncludableParameters, WaitListUrlParameters } from '../types/parameters';
+import { IncludableParameters, WaitListParameters, WaitListUrlParameters } from '../types/parameters';
 import { WaitListRelationship } from '../types/relationships';
 import { WaitListResource } from '../types/resources';
 
@@ -20,7 +20,7 @@ export default class WaitList implements WaitListResource {
   }
 
   public async add(): Promise<any> {
-    //
+    return await this.client.post('requests', this.params())
   }
 
   public at(location: number | string): this {
@@ -90,5 +90,43 @@ export default class WaitList implements WaitListResource {
     this.relationships.user = user;
 
     return this;
+  }
+
+  protected params(): WaitListParameters {
+    const attendee = (this.relationships.attendee as AttendeeModel).transform();
+    const preferences = (this.relationships.preferences as PreferenceModel[])
+      .map((preference: PreferenceModel): object => {
+        return preference.transform();
+      });
+
+    return {
+      data: {
+        attributes: {},
+        relationships: {
+          client: {
+            data: {
+              ...attendee,
+              type: 'clients',
+            }
+          },
+          location: {
+            data: {
+              id: String(this.relationships.location),
+              type: 'locations',
+            },
+          },
+          preferences: {
+            data: preferences,
+          },
+          service: {
+            data: {
+              id: String(this.relationships.service),
+              type: 'services',
+            },
+          },
+        },
+        type: 'requests',
+      },
+    };
   }
 }

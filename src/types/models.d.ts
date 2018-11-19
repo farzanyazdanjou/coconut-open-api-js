@@ -36,4 +36,6 @@ export interface PreferenceModel extends Model {
   next(): this;
 
   on(day: number): this;
+
+  transform(): object;
 }

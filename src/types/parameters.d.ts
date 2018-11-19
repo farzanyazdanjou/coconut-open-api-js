@@ -116,6 +116,33 @@ export interface UserParameters {
   location?: number | string;
 }
 
+export interface WaitListParameters {
+  data: {
+    attributes: {},
+    relationships: {
+      client: {
+        data: object;
+      };
+      location: {
+        data: {
+          id: string;
+          type: string;
+        };
+      };
+      preferences: {
+        data: object[];
+      };
+      service: {
+        data: {
+          id: string;
+          type: string;
+        };
+      };
+    },
+    type: string;
+  };
+}
+
 export interface WaitListUrlParameters {
   client?: number | string;
   include?: string;

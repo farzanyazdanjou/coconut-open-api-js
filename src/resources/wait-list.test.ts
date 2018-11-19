@@ -112,7 +112,61 @@ it('can set a multiple preferences for the wait list request', async () => {
 });
 
 it('can create a new wait list request for a given client using only required attributes', async () => {
-  //
+  const resource = new WaitList(mockAxios);
+  const attendee = new Attendee;
+  const preference = new Preference;
+
+  await resource
+    .for(
+      attendee.named('Jane', 'Doe').reachable({ email: 'jane@doe.com' })
+    )
+    .at(1)
+    .seeking(2)
+    .prefers(
+      preference.next()
+    )
+    .add();
+
+  expect(mockAxios.post).toHaveBeenCalledTimes(1);
+  expect(mockAxios.post).toHaveBeenCalledWith('requests', {
+    data: {
+      attributes: {},
+      relationships: {
+        client: {
+          data: {
+            attributes: {
+              email: 'jane@doe.com',
+              first_name: 'Jane',
+              last_name: 'Doe',
+            },
+            type: 'clients'
+          }
+        },
+        location: {
+          data: {
+            id: '1',
+            type: 'locations',
+          }
+        },
+        preferences: {
+          data: [{
+            attributes: {
+              start: Preference.now(),
+              type: Preference.NEXT_AVAILABLE,
+            },
+            type: 'request-preferences'
+          }]
+        },
+        service: {
+          data: {
+            id: '2',
+            type: 'services',
+          }
+        },
+      },
+      type: 'requests'
+    }
+  });
 });
 
 it('can create a new wait list request for a given client using all attributes', async () => {
