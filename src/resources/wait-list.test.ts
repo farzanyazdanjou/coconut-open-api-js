@@ -73,3 +73,19 @@ it('will set the includes parameter using a comma separated string', async () =>
     include: 'relationships,go,here',
   });
 });
+
+it('can create a new wait list request for a given client', async () => {
+  //
+});
+
+it('can retrieve a clients matching wait list request', async () => {
+  //
+});
+
+it('can update a clients wait list request', async () => {
+  //
+});
+
+it('can delete a clients wait list request', async () => {
+  //
+});
