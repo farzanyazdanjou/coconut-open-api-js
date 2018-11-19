@@ -46,3 +46,9 @@ export interface UserFilter {
   services?: number | number[] | string | string[];
   location?: number | string;
 }
+
+export interface WaitListFilter {
+  location?: number | string;
+  service?: number | string;
+  user?: number | string;
+}
