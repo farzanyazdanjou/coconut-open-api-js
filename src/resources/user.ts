@@ -1,8 +1,26 @@
 import { AxiosInstance } from 'axios';
 
-import { Filterable, UserFilter } from '../types/filters';
-import { UserParameters } from '../types/parameters';
-import { UserResource } from '../types/resources';
+import { Filterable, Pageable } from '../index';
+
+export interface UserFilter {
+  assigned?: boolean;
+  services?: number | number[] | string | string[];
+  location?: number | string;
+}
+
+export interface UserParameters {
+  assigned?: boolean;
+  service?: number | number[] | string | string[];
+  location?: number | string;
+}
+
+export interface UserResource extends Pageable {
+  assigned(assigned: boolean): this;
+
+  at(location: number | string): this;
+
+  performing(services: number | number[] | string | string[]): this;
+}
 
 export default class User implements UserResource {
   protected client: AxiosInstance;

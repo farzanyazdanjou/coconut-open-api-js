@@ -1,8 +1,26 @@
 import { AxiosInstance } from 'axios';
 
-import { Filterable, LocationFilter } from '../types/filters';
-import { LocationParameters } from '../types/parameters';
-import { LocationResource } from '../types/resources';
+import { Filterable, Pageable } from '../index';
+
+export interface LocationFilter {
+  assigned?: boolean;
+  services?: number | number[] | string | string[];
+  user?: number | string;
+}
+
+export interface LocationParameters {
+  assigned?: boolean;
+  service?: number | number[] | string | string[];
+  user?: number | string;
+}
+
+export interface LocationResource extends Pageable {
+  assigned(assigned: boolean): this;
+
+  containing(user: number | string): this;
+
+  providing(services: number | number[] | string | string[]): this;
+}
 
 export default class Location implements LocationResource {
   protected client: AxiosInstance;

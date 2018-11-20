@@ -1,8 +1,30 @@
 import { AxiosInstance } from 'axios';
 
-import { Filterable, ServiceFilter } from '../types/filters';
-import { ServiceParameters } from '../types/parameters';
-import { ServiceResource } from '../types/resources';
+import { Filterable, Pageable } from '../index';
+
+export interface ServiceFilter {
+  assigned?: boolean;
+  category?: number | string;
+  location?: number | string;
+  user?: number | string;
+}
+
+export interface ServiceParameters {
+  assigned?: boolean;
+  category?: number | string;
+  location?: number | string;
+  user?: number | string;
+}
+
+export interface ServiceResource extends Pageable {
+  assigned(assigned: boolean): this;
+
+  at(location: number | string): this;
+
+  by(user: number | string): this;
+
+  in(category: number | string): this;
+}
 
 export default class Service implements ServiceResource {
   protected client: AxiosInstance;

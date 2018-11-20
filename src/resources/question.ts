@@ -1,8 +1,18 @@
 import { AxiosInstance } from 'axios';
 
-import { Filterable, QuestionFilter } from '../types/filters';
-import { QuestionParameters } from '../types/parameters';
-import { QuestionResource } from '../types/resources';
+import { Filterable, Pageable } from '../index';
+
+export interface QuestionFilter {
+  services?: number | number[] | string | string[];
+}
+
+export interface QuestionParameters {
+  service?: number | number[] | string | string[];
+}
+
+export interface QuestionResource extends Pageable {
+  for(services: number | number[] | string | string[]): this;
+}
 
 export default class Question implements QuestionResource {
   protected client: AxiosInstance;

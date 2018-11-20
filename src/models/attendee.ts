@@ -1,6 +1,59 @@
-import { AnswerModel, AttendeeModel } from '../types/models';
-import { AttendeeParameters, LocationDetailParameters, ReachableDetailParameters } from '../types/parameters';
+import { ModelInterface } from '../index';
+import { AnswerModel } from './answer';
 import Model from './model';
+
+export interface AttendeeModel extends ModelInterface {
+  answers(answers: AnswerModel | AnswerModel[]): this;
+
+  located(details: LocatableDetailParameters): this;
+
+  messagable(): this;
+
+  named(first: string, last: string): this;
+
+  provided(notes: string): this;
+
+  reachable(details: ReachableDetailParameters): this;
+
+  speaks(language: string): this;
+
+  transform(): object;
+}
+
+export interface AttendeeParameters {
+  address?: string;
+  answers?: AnswerModel[] | [];
+  cell_phone?: string;
+  city?: string;
+  country?: string;
+  email: string | null;
+  first_name: string | null;
+  last_name: string | null;
+  language?: string;
+  messagable?: boolean;
+  notes?: string;
+  phone?: string;
+  postcode?: string;
+  region?: string;
+  timezone?: string;
+  work_phone?: string;
+}
+
+export interface LocatableDetailParameters {
+  address?: string;
+  city?: string;
+  country?: string;
+  postcode?: string;
+  region?: string;
+  timezone?: string;
+}
+
+export interface ReachableDetailParameters {
+  cell_phone?: string;
+  email: string;
+  phone?: string;
+  work_phone?: string;
+}
 
 export default class Attendee extends Model implements AttendeeModel {
   protected attributes: AttendeeParameters;
@@ -21,7 +74,7 @@ export default class Attendee extends Model implements AttendeeModel {
     return this;
   }
 
-  public located(details: LocationDetailParameters): this {
+  public located(details: LocatableDetailParameters): this {
     this.attributes = { ...this.attributes, ...details };
 
     return this;

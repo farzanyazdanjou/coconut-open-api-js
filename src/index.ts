@@ -1,20 +1,41 @@
 import { AxiosInstance } from 'axios';
 
 import Client from './client';
-import Location from './resources/location';
-import Question from './resources/question';
-import Service from './resources/service';
+import Location, { LocationResource } from './resources/location';
+import Question, { QuestionResource } from './resources/question';
+import Service, { ServiceResource } from './resources/service';
 import Setting from './resources/setting';
-import TimeSlot from './resources/time-slot';
-import User from './resources/user';
-import {
-  LocationResource,
-  QuestionResource,
-  Resource,
-  ServiceResource,
-  TimeSlotResource,
-  UserResource,
-} from './types/resources';
+import TimeSlot, { TimeSlotResource } from './resources/time-slot';
+import User, { UserResource } from './resources/user';
+
+export interface Filterable<T> {
+  filters?: T;
+  limit?: number;
+  page?: number;
+  sort?: string;
+}
+
+export interface IncludableParameters {
+  include?: string;
+}
+
+export interface ModelInterface {
+  getAttributes(): object;
+}
+
+export interface Pageable extends Sortable {
+  on(page: number): this;
+
+  take(limit: number): this;
+}
+
+export interface Resource {
+  get(): Promise<any>;
+}
+
+export interface Sortable extends Resource {
+  sortBy(sortable: string): this;
+}
 
 export default class OpenApi {
   protected client: AxiosInstance;

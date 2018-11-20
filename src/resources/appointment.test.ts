@@ -3,8 +3,7 @@ import mockAxios from 'axios';
 import Notifications from '../constants/notifications';
 import Answer from '../models/answer';
 import Attendee from '../models/attendee';
-import { AppointmentMatcherParameters, AppointmentNotificationParameters } from '../types/parameters';
-import Appointment from './appointment';
+import Appointment, { AppointmentMatcherParameters, AppointmentNotificationParameters } from './appointment';
 
 it('can set the location property', async () => {
   const resource = new Appointment(mockAxios);

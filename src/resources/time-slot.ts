@@ -1,8 +1,32 @@
 import { AxiosInstance } from 'axios';
 
-import { TimeSlotFilter } from '../types/filters';
-import { TimeSlotParameters } from '../types/parameters';
-import { TimeSlotResource } from '../types/resources';
+import { Resource } from '../index';
+
+export interface TimeSlotFilter {
+  end?: string;
+  location?: number;
+  services?: number | number[];
+  start?: string;
+  user?: number;
+}
+
+export interface TimeSlotParameters {
+  end?: string;
+  location_id?: number;
+  service_id?: number | number[];
+  staff_id?: number;
+  start?: string;
+}
+
+export interface TimeSlotResource extends Resource {
+  at(location: number): this;
+
+  between(start: string, end: string): this;
+
+  by(user: number): this;
+
+  for(services: number | number[]): this;
+}
 
 export default class TimeSlot implements TimeSlotResource {
   protected client: AxiosInstance;

@@ -1,14 +1,74 @@
 import { AxiosInstance } from 'axios';
 
-import { AppointmentFilter } from '../types/filters';
-import { AttendeeModel } from '../types/models';
-import {
-  AppointmentMatcherParameters,
-  AppointmentNotificationParameters,
-  AppointmentParameters,
-} from '../types/parameters';
-import { AppointmentRelationship } from '../types/relationships';
-import { AppointmentResource } from '../types/resources';
+import { Resource } from '../index';
+import { AttendeeModel } from '../models/attendee';
+
+export interface AppointmentFilter {
+  location?: number;
+  matchers?: AppointmentMatcherParameters;
+  notifications?: AppointmentNotificationParameters;
+  services?: number | number[];
+  start?: string;
+  user?: number;
+}
+
+export interface AppointmentMatcherParameters {
+  code: string;
+  email: string;
+  id: string | number;
+}
+
+export interface AppointmentNotificationParameters {
+  client?: boolean;
+  user?: boolean;
+}
+
+export interface AppointmentParameters {
+  data: {
+    attributes: {
+      location_id: number | undefined;
+      service_id: number | number[] | undefined;
+      staff_id: number | null;
+      start: string | undefined;
+    };
+    relationships: {
+      attendees: {
+        data: object[];
+      };
+    };
+    type: string;
+  };
+  meta?: {
+    notify?: {
+      client?: boolean;
+      user?: boolean;
+    };
+  };
+}
+
+export interface AppointmentResource extends Resource {
+  at(location: number): this;
+
+  book(): Promise<any>;
+
+  by(user: number): this;
+
+  cancel(appointment: number, attendee: number): Promise<any>;
+
+  for(services: number | number[]): this;
+
+  matching(matchers: AppointmentMatcherParameters): this;
+
+  notify(notifications: AppointmentNotificationParameters): this;
+
+  starting(start: string): this;
+
+  with(attendees: AttendeeModel | AttendeeModel[]): this;
+}
+
+export interface AppointmentRelationship {
+  attendees?: AttendeeModel[] | [];
+}
 
 export default class Appointment implements AppointmentResource {
   protected client: AxiosInstance;

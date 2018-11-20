@@ -1,6 +1,22 @@
-import { PreferenceModel } from '../types/models';
-import { PreferenceParameters } from '../types/parameters';
+import { ModelInterface } from '../index';
 import Model from './model';
+
+export interface PreferenceModel extends ModelInterface {
+  between(start: string, end: string): this;
+
+  next(): this;
+
+  on(day: number): this;
+
+  transform(): object;
+}
+
+export interface PreferenceParameters {
+  day?: number | null;
+  end?: string | null;
+  start?: string | null;
+  type?: number | null;
+}
 
 const NEXT_AVAILABLE = 1;
 const CERTAIN_DAYS = 2;

@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 
-import { Resource } from '../types/resources';
+import { Resource } from '../index';
 
 export default class Setting implements Resource {
   protected client: AxiosInstance;

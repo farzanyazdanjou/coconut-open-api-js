@@ -1,6 +1,18 @@
-import { AnswerModel } from '../types/models';
-import { AnswerParameters } from '../types/parameters';
+import { ModelInterface } from '../index';
 import Model from './model';
+
+export interface AnswerModel extends ModelInterface {
+  for(question: number): this;
+
+  is(value: string): this;
+
+  transform(): object;
+}
+
+export interface AnswerParameters {
+  question: number | null;
+  value: string | null;
+}
 
 export default class Answer extends Model implements AnswerModel {
   protected attributes: AnswerParameters;

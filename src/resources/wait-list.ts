@@ -1,10 +1,86 @@
 import { AxiosInstance } from 'axios';
 
-import { WaitListAttributes } from '../types/attributes';
-import { AttendeeModel, PreferenceModel } from '../types/models';
-import { IncludableParameters, WaitListParameters, WaitListUrlParameters } from '../types/parameters';
-import { WaitListRelationship } from '../types/relationships';
-import { WaitListResource } from '../types/resources';
+import { IncludableParameters } from '../index';
+import { AttendeeModel } from '../models/attendee';
+import { PreferenceModel } from '../models/preference';
+
+export interface WaitListAttributes {
+  notes?: string;
+}
+
+export interface WaitListParameters {
+  data: {
+    attributes: {
+      details?: string;
+    };
+    relationships: {
+      client?: {
+        data: object;
+      };
+      location?: {
+        data: {
+          id: string;
+          type: string;
+        };
+      };
+      preferences?: {
+        data: object[];
+      };
+      service?: {
+        data: {
+          id: string;
+          type: string;
+        };
+      };
+      user?: {
+        data: {
+          id: string;
+          type: string;
+        };
+      };
+    };
+    type: string;
+  };
+}
+
+export interface WaitListRelationship {
+  attendee?: AttendeeModel;
+  location?: number | string;
+  preferences?: PreferenceModel | PreferenceModel[];
+  service?: number | string;
+  user?: number | string;
+}
+
+export interface WaitListResource {
+  add(): Promise<any>;
+
+  at(location: number | string): this;
+
+  belonging(client: number | string): this;
+
+  find(list: number | string): Promise<any>;
+
+  for(attendee: AttendeeModel): this;
+
+  include(includes: string): this;
+
+  prefers(preferences: PreferenceModel | PreferenceModel[]): this;
+
+  provided(notes: string): this;
+
+  remove(list: number | string): Promise<any>;
+
+  seeking(service: number | string): this;
+
+  update(list: number | string): Promise<any>;
+
+  with(user: number | string): this;
+}
+
+export interface WaitListUrlParameters {
+  client?: number | string;
+  include?: string;
+}
 
 export default class WaitList implements WaitListResource {
   protected attributes: WaitListAttributes;
