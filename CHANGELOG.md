@@ -2,6 +2,18 @@
 
 ## [Unreleased]
 
+## [0.2.0] - 2018-11-30
+
+### Added
+- Adds install instructions, changelog link and testing instructions to readme [`3cb6230fed`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3cb6230fed)
+- Adds npm badges [`5225b982b4`](https://github.com/coconutcalendar/coconut-open-api-js/commit/5225b982b4)
+
+### Changed
+- Converts filter output to match expected query string for users [`3bcc9a06b2`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3bcc9a06b2)
+- Converts filter output to match expected query string for services [`26a3bb4cf8`](https://github.com/coconutcalendar/coconut-open-api-js/commit/26a3bb4cf8)
+- Converts filter output to match expected query string for questions [`9d975f49e3`](https://github.com/coconutcalendar/coconut-open-api-js/commit/9d975f49e3)
+- Converts filter output to match expected query string for locations resource [`839d9dd1bf`](https://github.com/coconutcalendar/coconut-open-api-js/commit/839d9dd1bf)
+
 ## 0.1.0 - 2018-11-19
 
 ### Added
@@ -97,4 +109,5 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.1.0...v0.2.0
