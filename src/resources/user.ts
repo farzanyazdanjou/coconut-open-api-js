@@ -1,5 +1,6 @@
 import { AxiosInstance } from 'axios';
 
+import { combine } from '../helpers/filters';
 import { Filterable, Pageable } from '../index';
 
 export interface UserFilter {
@@ -51,10 +52,10 @@ export default class User implements UserResource {
 
   public async get(): Promise<any> {
     const parameters = this.params();
-    const params: Filterable<UserParameters> = {};
+    let params: Filterable<UserParameters> = {};
 
     if (Object.keys(parameters).length) {
-      params.filters = parameters;
+      params = combine(params, parameters);
     }
 
     if (this.limit) {
