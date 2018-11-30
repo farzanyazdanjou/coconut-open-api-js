@@ -1,5 +1,6 @@
 import { AxiosInstance } from 'axios';
 
+import { combine } from '../helpers/filters';
 import { Filterable, Pageable } from '../index';
 
 export interface ServiceFilter {
@@ -61,10 +62,10 @@ export default class Service implements ServiceResource {
 
   public async get(): Promise<any> {
     const parameters = this.params();
-    const params: Filterable<ServiceParameters> = {};
+    let params: Filterable<ServiceParameters> = {};
 
     if (Object.keys(parameters).length) {
-      params.filters = parameters;
+      params = combine(params, parameters);
     }
 
     if (this.limit) {
