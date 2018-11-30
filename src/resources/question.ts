@@ -1,5 +1,6 @@
 import { AxiosInstance } from 'axios';
 
+import { combine } from '../helpers/filters';
 import { Filterable, Pageable } from '../index';
 
 export interface QuestionFilter {
@@ -37,10 +38,10 @@ export default class Question implements QuestionResource {
 
   public async get(): Promise<any> {
     const parameters = this.params();
-    const params: Filterable<QuestionParameters> = {};
+    let params: Filterable<QuestionParameters> = {};
 
     if (Object.keys(parameters).length) {
-      params.filters = parameters;
+      params = combine(params, parameters);
     }
 
     if (this.limit) {
