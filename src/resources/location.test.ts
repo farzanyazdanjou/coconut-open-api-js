@@ -131,11 +131,9 @@ it('can get locations with additional parameters', async () => {
   expect(mockAxios.get).toHaveBeenCalledTimes(1);
   expect(mockAxios.get).toHaveBeenCalledWith('locations', {
     params: {
-      filters: {
-        assigned: true,
-        service: [1, 2],
-        user: 1,
-      },
+      'filter[assigned]': true,
+      'filter[service]': [1, 2],
+      'filter[user]': 1,
       limit: 5,
       page: 1,
       sort: 'created',

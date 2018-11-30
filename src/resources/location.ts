@@ -1,5 +1,6 @@
 import { AxiosInstance } from 'axios';
 
+import { combine } from '../helpers/filters';
 import { Filterable, Pageable } from '../index';
 
 export interface LocationFilter {
@@ -51,10 +52,10 @@ export default class Location implements LocationResource {
 
   public async get(): Promise<any> {
     const parameters = this.params();
-    const params: Filterable<LocationParameters> = {};
+    let params: Filterable<LocationFilter> = {};
 
     if (Object.keys(parameters).length) {
-      params.filters = parameters;
+      params = combine(params, parameters);
     }
 
     if (this.limit) {

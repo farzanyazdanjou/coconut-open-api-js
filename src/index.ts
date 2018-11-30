@@ -9,7 +9,7 @@ import TimeSlot, { TimeSlotResource } from './resources/time-slot';
 import User, { UserResource } from './resources/user';
 
 export interface Filterable<T> {
-  filters?: T;
+  filter?: T;
   limit?: number;
   page?: number;
   sort?: string;
