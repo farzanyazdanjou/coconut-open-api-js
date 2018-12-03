@@ -66,6 +66,14 @@ it('will set category filter using a string', async () => {
   });
 });
 
+it('will set the invite only filter', async () => {
+  const resource = new Service(mockAxios);
+
+  expect(resource.invitable()).toHaveProperty('filters', {
+    invitable: 1,
+  });
+});
+
 it('will set the page we are on', async () => {
   const resource = new Service(mockAxios);
 
@@ -93,6 +101,7 @@ it('can string all filterable options together', async () => {
       .at(1)
       .by(2)
       .in(3)
+      .invitable()
       .sortBy('created')
       .take(5)
       .on(1),
@@ -101,6 +110,7 @@ it('can string all filterable options together', async () => {
   expected.toHaveProperty('filters', {
     assigned: true,
     category: 3,
+    invitable: 1,
     location: 1,
     user: 2,
   });
@@ -126,6 +136,7 @@ it('can get services with additional parameters', async () => {
     .at(1)
     .by(2)
     .in(3)
+    .invitable()
     .sortBy('created')
     .take(5)
     .on(1)
@@ -136,6 +147,7 @@ it('can get services with additional parameters', async () => {
     params: {
       'filter[assigned]': true,
       'filter[category]': 3,
+      'filter[invite_only]': 1,
       'filter[location]': 1,
       'filter[user]': 2,
       limit: 5,

@@ -6,6 +6,7 @@ import { Filterable, Pageable } from '../index';
 export interface ServiceFilter {
   assigned?: boolean;
   category?: number | string;
+  invitable?: number;
   location?: number | string;
   user?: number | string;
 }
@@ -13,6 +14,7 @@ export interface ServiceFilter {
 export interface ServiceParameters {
   assigned?: boolean;
   category?: number | string;
+  invite_only?: number;
   location?: number | string;
   user?: number | string;
 }
@@ -25,6 +27,8 @@ export interface ServiceResource extends Pageable {
   by(user: number | string): this;
 
   in(category: number | string): this;
+
+  invitable(): this;
 }
 
 export default class Service implements ServiceResource {
@@ -89,6 +93,12 @@ export default class Service implements ServiceResource {
     return this;
   }
 
+  public invitable(): this {
+    this.filters.invitable = 1;
+
+    return this;
+  }
+
   public on(page: number): this {
     this.page = page;
 
@@ -116,6 +126,10 @@ export default class Service implements ServiceResource {
 
     if (typeof this.filters.category !== 'undefined') {
       params.category = this.filters.category;
+    }
+
+    if (typeof this.filters.invitable !== 'undefined') {
+      params.invite_only = this.filters.invitable;
     }
 
     if (typeof this.filters.location !== 'undefined') {

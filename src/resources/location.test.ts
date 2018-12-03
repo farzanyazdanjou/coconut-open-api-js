@@ -34,6 +34,14 @@ it('will set user filter using a string', async () => {
   });
 });
 
+it('will set the invite only filter', async () => {
+  const resource = new Location(mockAxios);
+
+  expect(resource.invitable()).toHaveProperty('filters', {
+    invitable: 1,
+  });
+});
+
 it('will set the page we are on', async () => {
   const resource = new Location(mockAxios);
 
@@ -92,6 +100,7 @@ it('can string all filterable options together', async () => {
       .assigned()
       .providing([1, 2])
       .containing(1)
+      .invitable()
       .sortBy('created')
       .take(5)
       .on(1),
@@ -99,6 +108,7 @@ it('can string all filterable options together', async () => {
 
   expected.toHaveProperty('filters', {
     assigned: true,
+    invitable: 1,
     services: [1, 2],
     user: 1,
   });
@@ -123,6 +133,7 @@ it('can get locations with additional parameters', async () => {
     .assigned()
     .providing([1, 2])
     .containing(1)
+    .invitable()
     .sortBy('created')
     .take(5)
     .on(1)
@@ -132,6 +143,7 @@ it('can get locations with additional parameters', async () => {
   expect(mockAxios.get).toHaveBeenCalledWith('locations', {
     params: {
       'filter[assigned]': true,
+      'filter[invite_only]': 1,
       'filter[service]': [1, 2],
       'filter[user]': 1,
       limit: 5,

@@ -5,12 +5,14 @@ import { Filterable, Pageable } from '../index';
 
 export interface LocationFilter {
   assigned?: boolean;
+  invitable?: number;
   services?: number | number[] | string | string[];
   user?: number | string;
 }
 
 export interface LocationParameters {
   assigned?: boolean;
+  invite_only?: number;
   service?: number | number[] | string | string[];
   user?: number | string;
 }
@@ -19,6 +21,8 @@ export interface LocationResource extends Pageable {
   assigned(assigned: boolean): this;
 
   containing(user: number | string): this;
+
+  invitable(): this;
 
   providing(services: number | number[] | string | string[]): this;
 }
@@ -73,6 +77,12 @@ export default class Location implements LocationResource {
     return await this.client.get('locations', { params });
   }
 
+  public invitable(): this {
+    this.filters.invitable = 1;
+
+    return this;
+  }
+
   public on(page: number): this {
     this.page = page;
 
@@ -102,6 +112,10 @@ export default class Location implements LocationResource {
 
     if (typeof this.filters.assigned !== 'undefined') {
       params.assigned = this.filters.assigned;
+    }
+
+    if (typeof this.filters.invitable !== 'undefined') {
+      params.invite_only = this.filters.invitable;
     }
 
     if (typeof this.filters.services !== 'undefined') {
