@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.2.1] - 2018-12-03
+
+### Added
+- Adds invitable filter to location and service resources [`8e7de92e15`](https://github.com/coconutcalendar/coconut-open-api-js/commit/8e7de92e15)
+
 ## [0.2.0] - 2018-11-30
 
 ### Added
@@ -109,5 +114,6 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.1.0...v0.2.0
