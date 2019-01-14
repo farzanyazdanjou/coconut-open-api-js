@@ -211,6 +211,34 @@ class Locations {
 }
 ```
 
+### Preferences
+
+##### Methods
+
+- `between(start: string, end: string)`
+
+Set the attributes to determine the start and end time of the wait list request preference.
+
+- `next()`
+
+Set an attribute to say that the preference is for the next available opening.
+
+- `on(day: number)`
+
+Set the attribute to determine the preferred day of the wait list request preference and that it should only be for the certain supplied days. 
+
+##### Example
+
+```javascript
+import { Preference } from 'coconut-open-api-js';
+
+class Preferences {
+  static create({ day, start, end }) {
+    return (new Preference).between(start, end).on(day);
+  }
+}
+```
+
 ### Questions
 
 ##### Methods
