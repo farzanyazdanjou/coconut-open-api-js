@@ -1,4 +1,4 @@
-import OpenApi from './index';
+import { OpenApi } from './index';
 import Appointment from './resources/appointment';
 import Location from './resources/location';
 import Question from './resources/question';

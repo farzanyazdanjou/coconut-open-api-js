@@ -1,6 +1,9 @@
 import { AxiosInstance } from 'axios';
 
 import Client from './client';
+import Answer from './models/Answer';
+import Attendee from './models/attendee';
+import Preference from './models/preference';
 import Appointment, { AppointmentResource } from './resources/appointment';
 import Location, { LocationResource } from './resources/location';
 import Question, { QuestionResource } from './resources/question';
@@ -39,7 +42,9 @@ export interface Sortable extends Resource {
   sortBy(sortable: string): this;
 }
 
-export default class OpenApi {
+export { Answer, Attendee, Preference };
+
+export class OpenApi {
   protected appointment: AppointmentResource;
   protected client: AxiosInstance;
   protected domain: string;

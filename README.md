@@ -109,7 +109,7 @@ Set the limit which you want returned.
 ##### Example
 
 ```javascript
-import OpenApi from 'coconut-open-api-js';
+import { OpenApi } from 'coconut-open-api-js';
 
 class Locations {
   constructor() {
@@ -158,7 +158,7 @@ Set the limit which you want returned.
 ##### Example
 
 ```javascript
-import OpenApi from 'coconut-open-api-js';
+import { OpenApi } from 'coconut-open-api-js';
 
 class Questions {
   constructor() {
@@ -220,7 +220,7 @@ Set the limit which you want returned.
 ##### Example
 
 ```javascript
-import OpenApi from 'coconut-open-api-js';
+import { OpenApi } from 'coconut-open-api-js';
 
 class Services {
   constructor() {
@@ -254,7 +254,7 @@ Send the API request.
 ##### Example
 
 ```javascript
-import OpenApi from 'coconut-open-api-js';
+import { OpenApi } from 'coconut-open-api-js';
 
 class Settings {
   constructor() {
@@ -294,7 +294,7 @@ Send the API request using the pre-set filters.
 ##### Example
 
 ```javascript
-import OpenApi from 'coconut-open-api-js';
+import { OpenApi } from 'coconut-open-api-js';
 
 class TimeSlots {
   constructor() {
@@ -348,7 +348,7 @@ Set the limit which you want returned.
 ##### Example
 
 ```javascript
-import OpenApi from 'coconut-open-api-js';
+import { OpenApi } from 'coconut-open-api-js';
 
 class Users {
   constructor() {
