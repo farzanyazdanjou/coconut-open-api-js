@@ -22,6 +22,54 @@ $ yarn add coconut-open-api-js
 
 ## Usage
 
+### Wait Lists
+
+##### Methods
+
+- `at(location: number)`
+
+Set a relationship which will tell the API to use the given location identifier when creating an appointment.
+
+- `book()`
+
+Create a new appointment using the pre-set parameters.
+
+- `by(user: number)`
+
+Set a relationship which will tell the API to use the given user identifier when creating an appointment.
+
+- `cancel(appointment: number, attendee: number)`
+
+Cancel an appointment for a specific attendee matching the given appointment and attendee identifiers.
+
+- `for(services: number | numbers[])`
+
+Set a relationship which will tell the API to use the given service identifier when creating an appointment.
+
+- `get()`
+
+Find an appointment matching the pre-set matching parameters.
+
+- `matching(matchers: AppointmentMatcherParameters)`
+
+Set a filter to use in order to find an existing appointment.
+
+- `notify(notifications: AppointmentNotificationParameters)`
+
+Set a filter to determine who should be notified when booking an appointment.
+
+- `starting(start: string)`
+
+Set an attribute which will tell the API to use the given start date time string as the start time of the new appointment.
+
+- `with(attendees: AttendeeModel | AttendeeModel[])`
+
+Set a relationship which will tell the API to use the given attendee model(s) when creating a new appointment.
+
+##### Example
+
+// TODO: Add example including attendee models for booking, cancelling and retrieving appointments.
+
 ### Locations
 
 ##### Methods
