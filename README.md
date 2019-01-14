@@ -195,6 +195,30 @@ class Services {
 }
 ```
 
+### Settings
+
+##### Methods
+
+- `get()`
+
+Send the API request.
+
+##### Example
+
+```javascript
+import OpenApi from 'coconut-open-api-js';
+
+class Settings {
+  constructor() {
+    this.api = new OpenApi();
+  }
+
+  async get() {
+    return await this.api.settings.get();
+  }
+}
+```
+
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
