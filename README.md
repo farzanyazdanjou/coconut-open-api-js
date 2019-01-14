@@ -28,7 +28,7 @@ $ yarn add coconut-open-api-js
 
 - `assigned(assigned: boolean = true)`
 
-Set a filter which will tell the API to return locations that have a public user and service assignments.
+Set a filter which will tell the API to return locations that have public user and service assignments.
 
 - `containing(user: number | string)`
 
@@ -135,7 +135,7 @@ class Questions {
 
 - `assigned(assigned: boolean = true)`
 
-Set a filter which will tell the API to return services that have a public user and location assignments.
+Set a filter which will tell the API to return services that have public user and location assignments.
 
 - `at(location: number | string)`
 
@@ -261,6 +261,62 @@ class TimeSlots {
         .for(3)
         .between('2019-01-01', '2019-01-14')
         .get()
+  }
+}
+```
+
+### Users
+
+##### Methods
+
+- `assigned(assigned: boolean = true)`
+
+Set a filter which will tell the API to return users that have public location and service assignment.
+
+- `at(location: number | string)`
+
+Set a filter which will tell the API to return users that are assigned at the location matching the provided identifier.
+
+- `get()`
+
+Send the API request using the pre-set filters.
+
+- `on(page: number)`
+
+Set the page offset which you want to view.
+
+- `performing(services: number | number[] | string | string[])`
+
+Set a filter which will tell the API to return users that are assigned to the service(s) matching the provided identifier(s).
+
+- `sortBy(sortable: string)`
+
+Set a sorting string to determine how the returned results are sorted.
+
+- `take(limit: number)`
+
+Set the limit which you want returned.
+
+##### Example
+
+```javascript
+import OpenApi from 'coconut-open-api-js';
+
+class Users {
+  constructor() {
+    this.api = new OpenApi();
+  }
+
+  async get() {
+    return await this.api
+        .users
+        .assigned()
+        .at(1)
+        .performing([2, 3])
+        .on(2)
+        .sortBy('sort_order')
+        .take(10)
+        .get();
   }
 }
 ```
