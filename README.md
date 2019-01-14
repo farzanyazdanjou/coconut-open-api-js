@@ -20,6 +20,69 @@ Using yarn:
 $ yarn add coconut-open-api-js
 ```
 
+## Usage
+
+### Locations
+
+##### Methods
+
+- `assigned(assigned: boolean = true)` 
+
+Set a filter which will tell the API to return locations that have public user and service assignments.
+
+- `containing(user: number | string)` 
+
+Set a filter which will tell the API to return locations where the supplied user identifier is assigned.
+
+- `get()` 
+
+Send the API request using the pre-set filters.
+
+- `invitable()` 
+
+Set a filter which will tell the API to return locations that are specifically invite only.
+
+- `on(page: number)` 
+
+Set the page offset which you want to view.
+
+- `providing(services: number | number[] | string | string[])` 
+
+Set a filter which will tell the API to return locations where the supplied service identifier(s) is / are assigned.
+
+- `sortBy(sortable: string)` 
+
+Set a sorting string to determine how the returned results are sorted.
+
+- `take(limit: number)` 
+
+Set the limit which you want returned.
+
+##### Example
+
+```javascript
+import OpenApi from 'coconut-open-api-js';
+
+class Locations {
+  constructor() {
+    this.api = new OpenApi();
+  }
+
+  async get() {
+    return await this.api
+        .locations
+        .assigned()
+        .containing(1)
+        .invitable()
+        .providing([2, 3])
+        .sortBy('name,-created')
+        .on(2)
+        .take(10)
+        .get();
+  }
+}
+```
+
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
