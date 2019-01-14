@@ -219,6 +219,52 @@ class Settings {
 }
 ```
 
+### Time Slots
+
+##### Methods
+
+- `at(location: number)`
+
+Set a filter which will tell the API to return time slots at the location matching the provided identifier.
+
+- `between(start: string, end: string)`
+
+Set a filter which will tell the API to return time slots between a given start and end date time string.
+
+- `by(user: number)`
+
+Set a filter which will tell the API to return time slots that are specifically for the user matching the provided identifier.
+
+- `for(services: number | number[])`
+
+Set a filter which will tell the API to return time slots that are specifically for the service(s) matching the provided identifier(s).
+
+- `get()`
+
+Send the API request using the pre-set filters.
+
+##### Example
+
+```javascript
+import OpenApi from 'coconut-open-api-js';
+
+class TimeSlots {
+  constructor() {
+    this.api = new OpenApi();
+  }
+
+  async get() {
+    return await this.api
+        .slots
+        .at(1)
+        .by(2)
+        .for(3)
+        .between('2019-01-01', '2019-01-14')
+        .get()
+  }
+}
+```
+
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
