@@ -1,12 +1,14 @@
 import { AxiosInstance } from 'axios';
 
 import Client from './client';
+import Appointment, { AppointmentResource } from './resources/appointment';
 import Location, { LocationResource } from './resources/location';
 import Question, { QuestionResource } from './resources/question';
 import Service, { ServiceResource } from './resources/service';
 import Setting from './resources/setting';
 import TimeSlot, { TimeSlotResource } from './resources/time-slot';
 import User, { UserResource } from './resources/user';
+import WaitList, { WaitListResource } from './resources/wait-list';
 
 export interface Filterable<T> {
   filter?: T;
@@ -38,8 +40,10 @@ export interface Sortable extends Resource {
 }
 
 export default class OpenApi {
+  protected appointment: AppointmentResource;
   protected client: AxiosInstance;
   protected domain: string;
+  protected list: WaitListResource;
   protected location: LocationResource;
   protected question: QuestionResource;
   protected service: ServiceResource;
@@ -50,12 +54,22 @@ export default class OpenApi {
   constructor(domain: string) {
     this.client = Client(domain);
     this.domain = domain;
+    this.appointment = new Appointment(this.client);
+    this.list = new WaitList(this.client);
     this.location = new Location(this.client);
     this.question = new Question(this.client);
     this.service = new Service(this.client);
     this.setting = new Setting(this.client);
     this.slot = new TimeSlot(this.client);
     this.user = new User(this.client);
+  }
+
+  get appointments(): AppointmentResource {
+    return this.appointment;
+  }
+
+  get lists(): WaitListResource {
+    return this.list;
   }
 
   get locations(): LocationResource {

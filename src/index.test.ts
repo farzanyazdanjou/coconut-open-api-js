@@ -1,10 +1,12 @@
 import OpenApi from './index';
+import Appointment from './resources/appointment';
 import Location from './resources/location';
 import Question from './resources/question';
 import Service from './resources/service';
 import Setting from './resources/setting';
-import User from './resources/user';
 import TimeSlot from './resources/time-slot';
+import User from './resources/user';
+import WaitList from './resources/wait-list';
 
 it('will be constructed properly', async () => {
   const instance = new OpenApi('admin');
@@ -53,4 +55,18 @@ it('can access the slots resource', async () => {
 
   expect(instance).toHaveProperty('slots');
   expect(instance.slots).toBeInstanceOf(TimeSlot.prototype.constructor);
+});
+
+it('can access the wait list resource', async () => {
+  const instance = new OpenApi('admin');
+
+  expect(instance).toHaveProperty('lists');
+  expect(instance.lists).toBeInstanceOf(WaitList.prototype.constructor);
+});
+
+it('can access the appointment resource', async () => {
+  const instance = new OpenApi('admin');
+
+  expect(instance).toHaveProperty('appointments');
+  expect(instance.appointments).toBeInstanceOf(Appointment.prototype.constructor);
 });
