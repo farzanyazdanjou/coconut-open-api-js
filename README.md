@@ -83,6 +83,52 @@ class Locations {
 }
 ```
 
+### Questions
+
+##### Methods
+
+- `for(services: number | number[] | string | string[])`
+
+Set a filter which will tell the API to return questions which are specifically assigned to the given service identifier(s).
+
+- `get()`
+
+Send the API request using the pre-set filters.
+
+- `on(page: number)`
+
+Set the page offset which you want to view.
+
+- `sortBy(sortable: string)`
+
+Set a sorting string to determine how the returned results are sorted.
+
+- `take(limit: number)`
+
+Set the limit which you want returned.
+
+##### Example
+
+```javascript
+import OpenApi from 'coconut-open-api-js';
+
+class Questions {
+  constructor() {
+    this.api = new OpenApi();
+  }
+
+  async get() {
+    return await this.api
+        .questions
+        .for([1, 2, 3])
+        .on(2)
+        .sortBy('label,-required')
+        .take(10)
+        .get()
+  }
+}
+```
+
 ### Services
 
 ##### Methods
