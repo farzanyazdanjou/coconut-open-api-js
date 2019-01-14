@@ -321,6 +321,62 @@ class Users {
 }
 ```
 
+### Wait Lists
+
+##### Methods
+
+- `add()`
+
+Create a new wait list request using the pre-set parameters.
+
+- `at(location: number | string)`
+
+Set a relationship which will tell the API to use the given location identifier when creating or updating a wait list request.
+
+- `belonging(client: number | string)`
+
+Set a parameter which will tell the API to use the given client identifier when looking for an existing wait list request.
+
+- `find(list: number | string)`
+
+Find an existing wait list request matching the given identifier.
+
+- `for(attendee: AttendeeModel)`
+
+Set a relationship which will tell the API to use the given attendee model when creating or updating a wait list request.
+
+- `include(includes: string)`
+
+Set an inclusion parameter to include other relationships when fetching an existing wait list request.
+
+- `prefers(preferences: PreferenceModel | PreferenceModel[])`
+
+Set a relationship which will tell the API to use the given preference model(s) when creating or updating a wait list request.
+
+- `provided(notes: string)`
+
+Set an attribute which will tell the API to use the given notes as additional details when creating or updating a wait list request.
+
+- `remove(list: number | string)`
+
+Remove a pre-set client's wait list request that matches the given identifier.
+
+- `seeking(service: number | string)`
+
+Set a relationship which will tell the API to use the service identifier when creating or updating a wait list request.
+
+- `update(list: number | string)`
+
+Update the wait list request matching the given identifier with pre-set attributes / relationships.
+
+- `with(user: number | string)`
+
+Set a relationship which will tell the API to use the user identifier when creating or updating a wait list request.
+
+##### Example
+
+// TODO: Add example including preference and attendee models for creating, reading, updating and deleting wait list request preferences.
+
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
