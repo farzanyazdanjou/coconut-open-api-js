@@ -22,7 +22,7 @@ $ yarn add coconut-open-api-js
 
 ## Usage
 
-### Wait Lists
+### Appointments
 
 ##### Methods
 
