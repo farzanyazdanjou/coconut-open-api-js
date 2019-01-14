@@ -22,6 +22,32 @@ $ yarn add coconut-open-api-js
 
 ## Usage
 
+### Answers
+
+##### Methods
+
+- `for(question: number)`
+
+Set an attribute to determine the identifier of the question being answer.
+
+- `is(value: string)`
+
+Set an attribute to determine the actual answer's value.
+
+##### Example
+
+```javascript
+import { Answer } from 'coconut-open-api-js';
+
+class Answers {
+  static create({ question, value }) {
+    return (new Answer)
+      .for(question)
+      .is(value);
+  }
+}
+```
+
 ### Appointments
 
 ##### Methods
@@ -69,6 +95,60 @@ Set a relationship which will tell the API to use the given attendee model(s) wh
 ##### Example
 
 // TODO: Add example including attendee models for booking, cancelling and retrieving appointments.
+
+### Attendees
+
+##### Methods
+
+- `answers(answers: AnswerModel | AnswerModel[])`
+
+Set a relationship which will tell the API to use the given answer model(s) for the attendee when booking an appointment.
+
+- `located(details: LocatableDetailParameters)`
+
+Set certain attributes on the attendee related to location details such as address and city.
+
+- `messageable()`
+
+Set a flag on the attendee which determines that they have opted to receive sms messages.
+
+- `named(first: string, last: string)`
+
+Set the first and last name of the attendee.
+
+- `provided(notes: string)`
+
+Set any additional details the attendee has provided when booking an appointment.
+
+- `reachable(details: ReachableDetailParameters)`
+
+Set certain attributes on the attendee related to contact details such as cell phone and email.
+
+- `speaks(language: string)`
+
+Set the preferred locale of the attendee.
+
+##### Example
+
+```javascript
+import { Attendee, Answer } from 'coconut-open-api-js';
+
+class Attendees {
+  static create(attributes) {
+    const { address, city, country, firstName, lastName, notes, phone, email, language, question, value } = attributes;
+    const answer = (new Answer).for(question).is(value);
+
+    return (new Attendee)
+      .answers(answer)
+      .located({ address, city, country })
+      .messagable()
+      .named(firstName, lastName)
+      .provided(notes)
+      .reachable({ phone, email })
+      .speaks(language);
+  }
+}
+```
 
 ### Locations
 
@@ -118,15 +198,15 @@ class Locations {
 
   async get() {
     return await this.api
-        .locations
-        .assigned()
-        .containing(1)
-        .invitable()
-        .providing([2, 3])
-        .sortBy('name,-created')
-        .on(2)
-        .take(10)
-        .get();
+      .locations
+      .assigned()
+      .containing(1)
+      .invitable()
+      .providing([2, 3])
+      .sortBy('name,-created')
+      .on(2)
+      .take(10)
+      .get();
   }
 }
 ```
@@ -167,12 +247,12 @@ class Questions {
 
   async get() {
     return await this.api
-        .questions
-        .for([1, 2, 3])
-        .on(2)
-        .sortBy('label,-required')
-        .take(10)
-        .get()
+      .questions
+      .for([1, 2, 3])
+      .on(2)
+      .sortBy('label,-required')
+      .take(10)
+      .get()
   }
 }
 ```
@@ -229,16 +309,16 @@ class Services {
 
   async get() {
     return await this.api
-        .services
-        .assigned()
-        .at(1)
-        .by(2)
-        .in(3)
-        .invitable()
-        .on(2)
-        .sortBy('name,-created')
-        .take(10)
-        .get()
+      .services
+      .assigned()
+      .at(1)
+      .by(2)
+      .in(3)
+      .invitable()
+      .on(2)
+      .sortBy('name,-created')
+      .take(10)
+      .get()
   }
 }
 ```
@@ -303,12 +383,12 @@ class TimeSlots {
 
   async get() {
     return await this.api
-        .slots
-        .at(1)
-        .by(2)
-        .for(3)
-        .between('2019-01-01', '2019-01-14')
-        .get()
+      .slots
+      .at(1)
+      .by(2)
+      .for(3)
+      .between('2019-01-01', '2019-01-14')
+      .get()
   }
 }
 ```
@@ -357,14 +437,14 @@ class Users {
 
   async get() {
     return await this.api
-        .users
-        .assigned()
-        .at(1)
-        .performing([2, 3])
-        .on(2)
-        .sortBy('sort_order')
-        .take(10)
-        .get();
+      .users
+      .assigned()
+      .at(1)
+      .performing([2, 3])
+      .on(2)
+      .sortBy('sort_order')
+      .take(10)
+      .get();
   }
 }
 ```
