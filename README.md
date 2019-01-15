@@ -20,6 +20,10 @@ Using yarn:
 $ yarn add coconut-open-api-js
 ```
 
+## Official Documentation
+
+Documentation for the Open API can be found on the [Developer Portal][link-developers].
+
 ## Usage
 
 ### Answers
@@ -656,3 +660,4 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [link-travis]: https://travis-ci.org/coconutcalendar/coconut-open-api-js
 [link-codecov]: https://codecov.io/gh/coconutcalendar/coconut-open-api-js
 [link-downloads]: http://npm-stat.com/charts.html?package=coconut-open-api-js
+[link-developers]: https://developers.coconutsoftware.com/docs/v2/api/open-appointments
