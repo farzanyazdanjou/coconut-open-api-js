@@ -41,7 +41,7 @@ import { Answer } from 'coconut-open-api-js';
 
 class Answers {
   static create({ question, value }) {
-    return (new Answer)
+    return (new Answer())
       .for(question)
       .is(value);
   }
@@ -94,7 +94,55 @@ Set a relationship which will tell the API to use the given attendee model(s) wh
 
 ##### Example
 
-// TODO: Add example including attendee models for booking, cancelling and retrieving appointments.
+```javascript
+import { OpenApi, Attendee, Answer } from 'coconut-open-api-js';
+
+class Appointments {
+  constructor() {
+    this.api = new OpenApi();
+  }
+
+  async book(attributes) {
+    const {
+      address, city, country, email, firstName, language, lastName,
+      location, notes, phone, question, service, start, user, value,
+    } = attributes;
+
+    const answer = (new Answer())
+      .for(question)
+      .is(value);
+    const attendee = (new Attendee())
+      .answers(answer)
+      .located({ address, city, country })
+      .messagable()
+      .named(firstName, lastName)
+      .provided(notes)
+      .reachable({ phone, email })
+      .speaks(language);
+
+    return this.api
+      .appointments
+      .at(location)
+      .by(user)
+      .for(service)
+      .starting(start)
+      .with(attendee)
+      .notify({
+        user: true,
+        client: true,
+      })
+      .book();
+  }
+
+  async cancel({ appointment, attendee }) {
+    return this.api.appointments.cancel(appointment, attendee);
+  }
+
+  async fetch({ code, email, id }) {
+    return this.api.appointments.matching({ code, email, id }).get();
+  }
+}
+```
 
 ### Attendees
 
@@ -135,10 +183,14 @@ import { Attendee, Answer } from 'coconut-open-api-js';
 
 class Attendees {
   static create(attributes) {
-    const { address, city, country, firstName, lastName, notes, phone, email, language, question, value } = attributes;
-    const answer = (new Answer).for(question).is(value);
+    const {
+      address, city, country, firstName, lastName,
+      notes, phone, email, language, question, value
+    } = attributes;
 
-    return (new Attendee)
+    const answer = (new Answer()).for(question).is(value);
+
+    return (new Attendee())
       .answers(answer)
       .located({ address, city, country })
       .messagable()
@@ -196,16 +248,16 @@ class Locations {
     this.api = new OpenApi();
   }
 
-  async get() {
+  async get({ page, limit, services, sortable, user }) {
     return await this.api
       .locations
       .assigned()
-      .containing(1)
+      .containing(user)
       .invitable()
-      .providing([2, 3])
-      .sortBy('name,-created')
-      .on(2)
-      .take(10)
+      .providing(services)
+      .sortBy(sortable)
+      .on(page)
+      .take(limit)
       .get();
   }
 }
@@ -234,7 +286,7 @@ import { Preference } from 'coconut-open-api-js';
 
 class Preferences {
   static create({ day, start, end }) {
-    return (new Preference).between(start, end).on(day);
+    return (new Preference()).between(start, end).on(day);
   }
 }
 ```
@@ -273,13 +325,13 @@ class Questions {
     this.api = new OpenApi();
   }
 
-  async get() {
+  async get({ limit, page, services, sortable }) {
     return await this.api
       .questions
-      .for([1, 2, 3])
-      .on(2)
-      .sortBy('label,-required')
-      .take(10)
+      .for(services)
+      .on(page)
+      .sortBy(sortable)
+      .take(limit)
       .get()
   }
 }
@@ -335,17 +387,17 @@ class Services {
     this.api = new OpenApi();
   }
 
-  async get() {
+  async get({ category, limit, location, page, sortable, user }) {
     return await this.api
       .services
       .assigned()
-      .at(1)
-      .by(2)
-      .in(3)
+      .at(location)
+      .by(user)
+      .in(category)
       .invitable()
-      .on(2)
-      .sortBy('name,-created')
-      .take(10)
+      .on(page)
+      .sortBy(sortable)
+      .take(limit)
       .get()
   }
 }
@@ -409,13 +461,13 @@ class TimeSlots {
     this.api = new OpenApi();
   }
 
-  async get() {
+  async get({ end, location, service, start, user }) {
     return await this.api
       .slots
-      .at(1)
-      .by(2)
-      .for(3)
-      .between('2019-01-01', '2019-01-14')
+      .at(location)
+      .by(user)
+      .for(service)
+      .between(start, end)
       .get()
   }
 }
@@ -463,15 +515,15 @@ class Users {
     this.api = new OpenApi();
   }
 
-  async get() {
+  async get({ limit, location, page, services, sortable }) {
     return await this.api
       .users
       .assigned()
-      .at(1)
-      .performing([2, 3])
-      .on(2)
-      .sortBy('sort_order')
-      .take(10)
+      .at(location)
+      .performing(services)
+      .on(page)
+      .sortBy(sortable)
+      .take(limit)
       .get();
   }
 }
@@ -531,7 +583,54 @@ Set a relationship which will tell the API to use the user identifier when creat
 
 ##### Example
 
-// TODO: Add example including preference and attendee models for creating, reading, updating and deleting wait list request preferences.
+```javascript
+import { OpenApi, Attendee, Preference } from 'coconut-open-api-js';
+
+class WaitLists {
+  constructor() {
+    this.api = new OpenApi();
+  }
+
+  async add({ firstName, lastName, email, day, start, end, location, service, user, notes }) {
+    const attendee = (new Attendee()).named({ firstName, lastName }).reachable({ email });
+    const preference = (new Preference()).on(day).between(start, end);
+
+    return this.api
+      .lists
+      .for(attendee)
+      .at(location)
+      .seeking(service)
+      .with(user)
+      .provided(notes)
+      .prefers(preference)
+      .add();
+  }
+
+  async find({ client, inclusions, list }) {
+    return this.api
+      .lists
+      .belonging(client)
+      .include(inclusions)
+      .find(list);
+  }
+
+  async remove({ client, list }) {
+    return this.api.lists.belonging(client).remove(list);
+  }
+
+  async update({ client, list, notes, user }) {
+    const preference = (new Preference()).next();
+
+    return this.api
+      .lists
+      .belonging(client)
+      .with(user)
+      .prefers(preference)
+      .provided(notes)
+      .update(list);
+  }
+}
+```
 
 ## Change log
 
