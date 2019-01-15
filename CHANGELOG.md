@@ -2,6 +2,28 @@
 
 ## [Unreleased]
 
+## [0.3.0] - 2019-01-15
+
+### Added
+- Adds link to official api documentation [`8b070dc163`](https://github.com/coconutcalendar/coconut-open-api-js/commit/8b070dc163)
+- Adds missing documentation. Updates examples to not use hard coded values [`c70cb51bf7`](https://github.com/coconutcalendar/coconut-open-api-js/commit/c70cb51bf7)
+- Adds preference model documentation [`07f16da18b`](https://github.com/coconutcalendar/coconut-open-api-js/commit/07f16da18b)
+- Adds documentation for answer and attendee models [`3006df17f3`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3006df17f3)
+- Converts export to not use default. Exports model classes from entrypoint. Updates existing documentation [`6cf45fdaa6`](https://github.com/coconutcalendar/coconut-open-api-js/commit/6cf45fdaa6)
+- Adds accessors for appointment and wait list resources [`60a0618c89`](https://github.com/coconutcalendar/coconut-open-api-js/commit/60a0618c89)
+- Adds appointment resource documentation without examples [`2bb8d7e445`](https://github.com/coconutcalendar/coconut-open-api-js/commit/2bb8d7e445)
+- Adds wait list resource documentation without examples [`b929edfc3f`](https://github.com/coconutcalendar/coconut-open-api-js/commit/b929edfc3f)
+- Adds user resource documentation [`4f7ca7d393`](https://github.com/coconutcalendar/coconut-open-api-js/commit/4f7ca7d393)
+- Adds time slots resource documentation [`80ec0d52ed`](https://github.com/coconutcalendar/coconut-open-api-js/commit/80ec0d52ed)
+- Adds settings resource documentation [`6c37e5751e`](https://github.com/coconutcalendar/coconut-open-api-js/commit/6c37e5751e)
+- Adds question resource documentation [`9defa80d41`](https://github.com/coconutcalendar/coconut-open-api-js/commit/9defa80d41)
+- Adds service resource documentation [`9aafb048ef`](https://github.com/coconutcalendar/coconut-open-api-js/commit/9aafb048ef)
+- Adds location resource documentation [`d24e1ac152`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d24e1ac152)
+- Exports constants [`ff77db1be9`](https://github.com/coconutcalendar/coconut-open-api-js/commit/ff77db1be9)
+
+### Fixed
+- Fixes improperly named section [`073970f67a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/073970f67a)
+
 ## [0.2.1] - 2018-12-03
 
 ### Added
@@ -114,6 +136,7 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.2.1...v0.3.0
 [0.2.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.1.0...v0.2.0
