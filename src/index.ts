@@ -3,7 +3,7 @@ import { AxiosInstance } from 'axios';
 import Client from './client';
 import Days from './constants/days';
 import Notifications from './constants/notifications';
-import Answer from './models/Answer';
+import Answer from './models/answer';
 import Attendee from './models/attendee';
 import Preference from './models/preference';
 import Appointment, { AppointmentResource } from './resources/appointment';
