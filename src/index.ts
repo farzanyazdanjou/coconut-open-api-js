@@ -49,7 +49,7 @@ export { Answer, Attendee, Days, Notifications, Preference };
 export class OpenApi {
   protected appointment: AppointmentResource;
   protected client: AxiosInstance;
-  protected domain: string;
+  protected domain?: string;
   protected list: WaitListResource;
   protected location: LocationResource;
   protected question: QuestionResource;
@@ -58,7 +58,7 @@ export class OpenApi {
   protected slot: TimeSlotResource;
   protected user: UserResource;
 
-  constructor(domain: string) {
+  constructor(domain?: string) {
     this.client = Client(domain);
     this.domain = domain;
     this.appointment = new Appointment(this.client);
