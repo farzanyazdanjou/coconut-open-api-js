@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.3.2] - 2019-05-13
+
+- Allows domain to be optional when constructing the client [`663e9f8d1d`](https://github.com/coconutcalendar/coconut-open-api-js/commit/663e9f8d1d)
+
 ## [0.3.1] - 2019-01-15
 
 ### Fixed
@@ -141,7 +145,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.3.1...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.3.2...HEAD
+[0.3.2]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.2.1...v0.3.0
 [0.2.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.2.0...v0.2.1
