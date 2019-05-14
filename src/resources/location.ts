@@ -2,6 +2,7 @@ import { AxiosInstance } from 'axios';
 
 import { combine } from '../helpers/filters';
 import { Filterable, Pageable } from '../index';
+import Conditional from './conditional';
 
 export interface LocationFilter {
   assigned?: boolean;
@@ -27,7 +28,7 @@ export interface LocationResource extends Pageable {
   providing(services: number | number[] | string | string[]): this;
 }
 
-export default class Location implements LocationResource {
+export default class Location extends Conditional implements LocationResource {
   protected client: AxiosInstance;
   protected filters: LocationFilter;
   protected page: number | null;
@@ -35,6 +36,8 @@ export default class Location implements LocationResource {
   protected limit: number | null;
 
   constructor(client: AxiosInstance) {
+    super();
+
     this.client = client;
     this.filters = {};
     this.page = null;

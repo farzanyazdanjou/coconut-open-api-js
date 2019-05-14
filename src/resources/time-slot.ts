@@ -1,6 +1,7 @@
 import { AxiosInstance } from 'axios';
 
 import { Resource } from '../index';
+import Conditional from './conditional';
 
 export interface TimeSlotFilter {
   end?: string;
@@ -28,11 +29,13 @@ export interface TimeSlotResource extends Resource {
   for(services: number | number[]): this;
 }
 
-export default class TimeSlot implements TimeSlotResource {
+export default class TimeSlot extends Conditional implements TimeSlotResource {
   protected client: AxiosInstance;
   protected filters: TimeSlotFilter;
 
   constructor(client: AxiosInstance) {
+    super();
+
     this.client = client;
     this.filters = {};
   }

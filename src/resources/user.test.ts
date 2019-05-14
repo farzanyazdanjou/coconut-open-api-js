@@ -140,3 +140,25 @@ it('can get users with additional parameters', async () => {
     },
   });
 });
+
+it('can conditionally set a filter', async () => {
+  const resource = new User(mockAxios);
+
+  const expected = expect(
+    resource.when(true, (user: User) => user.assigned()),
+  );
+
+  expected.toHaveProperty('filters', {
+    assigned: true,
+  });
+});
+
+it('can conditionally not set a filter', async () => {
+  const resource = new User(mockAxios);
+
+  const expected = expect(
+    resource.when(false, (user: User) => user.assigned()),
+  );
+
+  expected.toHaveProperty('filters', {});
+});

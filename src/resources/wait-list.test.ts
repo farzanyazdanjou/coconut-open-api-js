@@ -4,6 +4,7 @@ import Days from '../constants/days';
 import Attendee from '../models/attendee';
 import Preference from '../models/preference';
 import WaitList from './wait-list';
+import Service from './service';
 
 it('will set location filter using a number', async () => {
   const resource = new WaitList(mockAxios);
@@ -336,4 +337,27 @@ it('can delete a clients wait list request', async () => {
 
   expect(mockAxios.delete).toHaveBeenCalledTimes(1);
   expect(mockAxios.delete).toHaveBeenCalledWith('clients/1/requests/2');
+});
+
+
+it('can conditionally set a filter', async () => {
+  const resource = new WaitList(mockAxios);
+
+  const expected = expect(
+    resource.when(true, (list: WaitList) => list.at(1)),
+  );
+
+  expected.toHaveProperty('relationships', {
+    location: 1,
+  });
+});
+
+it('can conditionally not set a filter', async () => {
+  const resource = new WaitList(mockAxios);
+
+  const expected = expect(
+    resource.when(false, (list: WaitList) => list.at(1)),
+  );
+
+  expected.toHaveProperty('relationships', {});
 });

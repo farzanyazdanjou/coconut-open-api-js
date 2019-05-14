@@ -156,3 +156,25 @@ it('can get services with additional parameters', async () => {
     },
   });
 });
+
+it('can conditionally set a filter', async () => {
+  const resource = new Service(mockAxios);
+
+  const expected = expect(
+    resource.when(true, (service: Service) => service.assigned()),
+  );
+
+  expected.toHaveProperty('filters', {
+    assigned: true,
+  });
+});
+
+it('can conditionally not set a filter', async () => {
+  const resource = new Service(mockAxios);
+
+  const expected = expect(
+    resource.when(false, (service: Service) => service.assigned()),
+  );
+
+  expected.toHaveProperty('filters', {});
+});

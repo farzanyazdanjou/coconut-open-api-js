@@ -2,6 +2,7 @@ import { AxiosInstance } from 'axios';
 
 import { combine } from '../helpers/filters';
 import { Filterable, Pageable } from '../index';
+import Conditional from './conditional';
 
 export interface ServiceFilter {
   assigned?: boolean;
@@ -31,7 +32,7 @@ export interface ServiceResource extends Pageable {
   invitable(): this;
 }
 
-export default class Service implements ServiceResource {
+export default class Service extends Conditional implements ServiceResource {
   protected client: AxiosInstance;
   protected filters: ServiceFilter;
   protected page: number | null;
@@ -39,6 +40,8 @@ export default class Service implements ServiceResource {
   protected limit: number | null;
 
   constructor(client: AxiosInstance) {
+    super();
+
     this.client = client;
     this.filters = {};
     this.page = null;

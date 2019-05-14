@@ -2,6 +2,7 @@ import { AxiosInstance } from 'axios';
 
 import { Resource } from '../index';
 import { AttendeeModel } from '../models/attendee';
+import Conditional from './conditional';
 
 export interface AppointmentFilter {
   location?: number;
@@ -70,12 +71,14 @@ export interface AppointmentRelationship {
   attendees?: AttendeeModel[] | [];
 }
 
-export default class Appointment implements AppointmentResource {
+export default class Appointment extends Conditional implements AppointmentResource {
   protected client: AxiosInstance;
   protected filters: AppointmentFilter;
   protected relationships: AppointmentRelationship;
 
   constructor(client: AxiosInstance) {
+    super();
+
     this.client = client;
     this.filters = {};
     this.relationships = {};

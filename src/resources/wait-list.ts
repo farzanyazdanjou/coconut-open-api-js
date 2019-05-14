@@ -3,6 +3,7 @@ import { AxiosInstance } from 'axios';
 import { IncludableParameters } from '../index';
 import { AttendeeModel } from '../models/attendee';
 import { PreferenceModel } from '../models/preference';
+import Conditional from './conditional';
 
 export interface WaitListAttributes {
   notes?: string;
@@ -82,13 +83,15 @@ export interface WaitListUrlParameters {
   include?: string;
 }
 
-export default class WaitList implements WaitListResource {
+export default class WaitList extends Conditional implements WaitListResource {
   protected attributes: WaitListAttributes;
   protected client: AxiosInstance;
   protected parameters: WaitListUrlParameters;
   protected relationships: WaitListRelationship;
 
   constructor(client: AxiosInstance) {
+    super();
+
     this.attributes = {};
     this.client = client;
     this.parameters = {};

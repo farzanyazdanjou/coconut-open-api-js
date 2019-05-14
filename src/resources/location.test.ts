@@ -152,3 +152,25 @@ it('can get locations with additional parameters', async () => {
     },
   });
 });
+
+it('can conditionally set a filter', async () => {
+  const resource = new Location(mockAxios);
+
+  const expected = expect(
+    resource.when(true, (location: Location) => location.assigned()),
+  );
+
+  expected.toHaveProperty('filters', {
+    assigned: true,
+  });
+});
+
+it('can conditionally not set a filter', async () => {
+  const resource = new Location(mockAxios);
+
+  const expected = expect(
+    resource.when(false, (location: Location) => location.assigned()),
+  );
+
+  expected.toHaveProperty('filters', {});
+});

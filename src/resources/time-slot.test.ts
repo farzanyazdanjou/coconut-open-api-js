@@ -104,3 +104,26 @@ it('can get time slots for a specified user', async () => {
     },
   });
 });
+
+
+it('can conditionally set a filter', async () => {
+  const resource = new TimeSlot(mockAxios);
+
+  const expected = expect(
+    resource.when(true, (slot: TimeSlot) => slot.at(1)),
+  );
+
+  expected.toHaveProperty('filters', {
+    location: 1,
+  });
+});
+
+it('can conditionally not set a filter', async () => {
+  const resource = new TimeSlot(mockAxios);
+
+  const expected = expect(
+    resource.when(false, (slot: TimeSlot) => slot.at(1)),
+  );
+
+  expected.toHaveProperty('filters', {});
+});

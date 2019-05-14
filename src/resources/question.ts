@@ -2,6 +2,7 @@ import { AxiosInstance } from 'axios';
 
 import { combine } from '../helpers/filters';
 import { Filterable, Pageable } from '../index';
+import Conditional from './conditional';
 
 export interface QuestionFilter {
   services?: number | number[] | string | string[];
@@ -15,7 +16,7 @@ export interface QuestionResource extends Pageable {
   for(services: number | number[] | string | string[]): this;
 }
 
-export default class Question implements QuestionResource {
+export default class Question extends Conditional implements QuestionResource {
   protected client: AxiosInstance;
   protected filters: QuestionFilter;
   protected page: number | null;
@@ -23,6 +24,8 @@ export default class Question implements QuestionResource {
   protected limit: number | null;
 
   constructor(client: AxiosInstance) {
+    super();
+
     this.client = client;
     this.filters = {};
     this.page = null;

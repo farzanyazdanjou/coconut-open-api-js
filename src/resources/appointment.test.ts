@@ -235,3 +235,25 @@ it('can cancel the given appointment for the given attendee', async () => {
   expect(mockAxios.delete).toHaveBeenCalledTimes(1);
   expect(mockAxios.delete).toHaveBeenCalledWith('appointments/1/2');
 });
+
+it('can conditionally set a filter', async () => {
+  const resource = new Appointment(mockAxios);
+
+  const expected = expect(
+    resource.when(true, (appointment: Appointment) => appointment.at(1)),
+  );
+
+  expected.toHaveProperty('filters', {
+    location: 1,
+  });
+});
+
+it('can conditionally not set a filter', async () => {
+  const resource = new Appointment(mockAxios);
+
+  const expected = expect(
+    resource.when(false, (appointment: Appointment) => appointment.at(1)),
+  );
+
+  expected.toHaveProperty('filters', {});
+});
