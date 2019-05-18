@@ -3,7 +3,7 @@ import { AxiosInstance } from 'axios';
 import { IncludableParameters } from '../index';
 import { AttendeeModel } from '../models/attendee';
 import { PreferenceModel } from '../models/preference';
-import Conditional from './conditional';
+import Conditional, { ConditionalResource } from './conditional';
 
 export interface WaitListAttributes {
   notes?: string;
@@ -52,7 +52,7 @@ export interface WaitListRelationship {
   user?: number | string;
 }
 
-export interface WaitListResource {
+export interface WaitListResource extends ConditionalResource {
   add(): Promise<any>;
 
   at(location: number | string): this;

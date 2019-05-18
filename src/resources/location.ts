@@ -2,7 +2,7 @@ import { AxiosInstance } from 'axios';
 
 import { combine } from '../helpers/filters';
 import { Filterable, Pageable } from '../index';
-import Conditional from './conditional';
+import Conditional, { ConditionalResource } from './conditional';
 
 export interface LocationFilter {
   assigned?: boolean;
@@ -18,7 +18,7 @@ export interface LocationParameters {
   user?: number | string;
 }
 
-export interface LocationResource extends Pageable {
+export interface LocationResource extends Pageable, ConditionalResource {
   assigned(assigned: boolean): this;
 
   containing(user: number | string): this;

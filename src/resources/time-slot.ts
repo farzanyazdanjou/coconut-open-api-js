@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios';
 
 import { Resource } from '../index';
-import Conditional from './conditional';
+import Conditional, { ConditionalResource } from './conditional';
 
 export interface TimeSlotFilter {
   end?: string;
@@ -19,7 +19,7 @@ export interface TimeSlotParameters {
   start?: string;
 }
 
-export interface TimeSlotResource extends Resource {
+export interface TimeSlotResource extends Resource, ConditionalResource {
   at(location: number): this;
 
   between(start: string, end: string): this;

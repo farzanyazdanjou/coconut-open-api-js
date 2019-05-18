@@ -2,7 +2,7 @@ import { AxiosInstance } from 'axios';
 
 import { combine } from '../helpers/filters';
 import { Filterable, Pageable } from '../index';
-import Conditional from './conditional';
+import Conditional, { ConditionalResource } from './conditional';
 
 export interface QuestionFilter {
   services?: number | number[] | string | string[];
@@ -12,7 +12,7 @@ export interface QuestionParameters {
   service?: number | number[] | string | string[];
 }
 
-export interface QuestionResource extends Pageable {
+export interface QuestionResource extends Pageable, ConditionalResource {
   for(services: number | number[] | string | string[]): this;
 }
 

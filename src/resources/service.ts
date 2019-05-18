@@ -2,7 +2,7 @@ import { AxiosInstance } from 'axios';
 
 import { combine } from '../helpers/filters';
 import { Filterable, Pageable } from '../index';
-import Conditional from './conditional';
+import Conditional, { ConditionalResource } from './conditional';
 
 export interface ServiceFilter {
   assigned?: boolean;
@@ -20,7 +20,7 @@ export interface ServiceParameters {
   user?: number | string;
 }
 
-export interface ServiceResource extends Pageable {
+export interface ServiceResource extends Pageable, ConditionalResource {
   assigned(assigned: boolean): this;
 
   at(location: number | string): this;

@@ -2,7 +2,7 @@ import { AxiosInstance } from 'axios';
 
 import { Resource } from '../index';
 import { AttendeeModel } from '../models/attendee';
-import Conditional from './conditional';
+import Conditional, { ConditionalResource } from './conditional';
 
 export interface AppointmentFilter {
   location?: number;
@@ -47,7 +47,7 @@ export interface AppointmentParameters {
   };
 }
 
-export interface AppointmentResource extends Resource {
+export interface AppointmentResource extends Resource, ConditionalResource {
   at(location: number): this;
 
   book(): Promise<any>;
