@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.3.4] - 2019-05-18
+
+- Updates typings to include the conditional resource [`d38fba9aa2`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d38fba9aa2)
+
 ## [0.3.3] - 2019-05-14
 
 - Adds conditional method to most resources [`5d293405b9`](https://github.com/coconutcalendar/coconut-open-api-js/commit/5d293405b9)
@@ -149,7 +153,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.3.3...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.3.4...HEAD
+[0.3.4]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.3.3...v0.3.4
 [0.3.3]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.3.0...v0.3.1
