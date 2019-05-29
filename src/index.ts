@@ -12,6 +12,7 @@ import Question, { QuestionResource } from './resources/question';
 import Service, { ServiceResource } from './resources/service';
 import Setting from './resources/setting';
 import TimeSlot, { TimeSlotResource } from './resources/time-slot';
+import Timezone from './resources/timezone';
 import User, { UserResource } from './resources/user';
 import WaitList, { WaitListResource } from './resources/wait-list';
 
@@ -56,6 +57,7 @@ export class OpenApi {
   protected service: ServiceResource;
   protected setting: Resource;
   protected slot: TimeSlotResource;
+  protected timezone: Resource;
   protected user: UserResource;
 
   constructor(domain?: string) {
@@ -68,6 +70,7 @@ export class OpenApi {
     this.service = new Service(this.client);
     this.setting = new Setting(this.client);
     this.slot = new TimeSlot(this.client);
+    this.timezone = new Timezone(this.client);
     this.user = new User(this.client);
   }
 
@@ -97,6 +100,10 @@ export class OpenApi {
 
   get slots(): TimeSlotResource {
     return this.slot;
+  }
+
+  get timezones(): Resource {
+    return this.timezone;
   }
 
   get users(): UserResource {

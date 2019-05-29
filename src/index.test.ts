@@ -5,6 +5,7 @@ import Question from './resources/question';
 import Service from './resources/service';
 import Setting from './resources/setting';
 import TimeSlot from './resources/time-slot';
+import Timezone from './resources/timezone';
 import User from './resources/user';
 import WaitList from './resources/wait-list';
 
@@ -69,4 +70,11 @@ it('can access the appointment resource', async () => {
 
   expect(instance).toHaveProperty('appointments');
   expect(instance.appointments).toBeInstanceOf(Appointment.prototype.constructor);
+});
+
+it('can access the timezone resource', async () => {
+  const instance = new OpenApi('admin');
+
+  expect(instance).toHaveProperty('timezones');
+  expect(instance.timezones).toBeInstanceOf(Timezone.prototype.constructor);
 });
