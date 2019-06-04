@@ -74,39 +74,39 @@ export class OpenApi {
     this.user = new User(this.client);
   }
 
-  get appointments(): AppointmentResource {
+  public appointments(): AppointmentResource {
     return this.appointment;
   }
 
-  get lists(): WaitListResource {
+  public lists(): WaitListResource {
     return this.list;
   }
 
-  get locations(): LocationResource {
+  public locations(): LocationResource {
     return this.location;
   }
 
-  get questions(): QuestionResource {
+  public questions(): QuestionResource {
     return this.question;
   }
 
-  get services(): ServiceResource {
+  public services(): ServiceResource {
     return this.service;
   }
 
-  get settings(): Resource {
+  public settings(): Resource {
     return this.setting;
   }
 
-  get slots(): TimeSlotResource {
+  public slots(): TimeSlotResource {
     return this.slot;
   }
 
-  get timezones(): Resource {
+  public timezones(): Resource {
     return this.timezone;
   }
 
-  get users(): UserResource {
+  public users(): UserResource {
     return this.user;
   }
 }
