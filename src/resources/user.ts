@@ -11,7 +11,7 @@ export interface UserFilter {
 }
 
 export interface UserParameters {
-  assigned?: boolean;
+  assignments?: boolean;
   service?: number | number[] | string | string[];
   location?: number | string;
 }
@@ -104,7 +104,7 @@ export default class User extends Conditional implements UserResource {
     const params: UserParameters = {};
 
     if (typeof this.filters.assigned !== 'undefined') {
-      params.assigned = this.filters.assigned;
+      params.assignments = this.filters.assigned;
     }
 
     if (typeof this.filters.services !== 'undefined') {
