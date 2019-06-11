@@ -18,6 +18,7 @@ export interface TimeSlotParameters {
   service_id?: number | number[];
   staff_id?: number;
   start?: string;
+  timezone?: string;
 }
 
 export interface TimeSlotResource extends Resource, ConditionalResource {
@@ -75,6 +76,10 @@ export default class TimeSlot extends Conditional implements TimeSlotResource {
       service_id: this.filters.services,
       start: this.filters.start,
     };
+
+    if (this.filters.timezone) {
+      params.timezone = this.filters.timezone;
+    }
 
     if (this.filters.user) {
       params.staff_id = this.filters.user;
