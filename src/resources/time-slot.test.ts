@@ -43,6 +43,17 @@ it('will set service filter using an array of numbers', async () => {
   });
 });
 
+it('will set timezone filter', async () => {
+  const resource = new TimeSlot(mockAxios);
+
+  const timezones = ['America/Chicago', 'America/Toronto', 'Europe/Amsterdam', 'Europe/Paris'];
+  const timezone = timezones[Math.floor(Math.random() * timezones.length)];
+
+  expect(resource.in(timezone)).toHaveProperty('filters', {
+    timezone,
+  });
+});
+
 it('can string all filterable options together', async () => {
   const resource = new TimeSlot(mockAxios);
 

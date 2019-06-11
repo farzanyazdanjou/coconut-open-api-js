@@ -8,6 +8,7 @@ export interface TimeSlotFilter {
   location?: number;
   services?: number | number[];
   start?: string;
+  timezone?: string;
   user?: number;
 }
 
@@ -27,6 +28,8 @@ export interface TimeSlotResource extends Resource, ConditionalResource {
   by(user: number): this;
 
   for(services: number | number[]): this;
+
+  in(timezone: string): this;
 }
 
 export default class TimeSlot extends Conditional implements TimeSlotResource {
@@ -78,5 +81,11 @@ export default class TimeSlot extends Conditional implements TimeSlotResource {
     }
 
     return await this.client.get('times', { params });
+  }
+
+  public in(timezone: string): this {
+    this.filters.timezone = timezone;
+
+    return this;
   }
 }
