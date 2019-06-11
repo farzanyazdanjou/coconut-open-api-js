@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+- Ensures timezone filter is sent with request when provided [`3456efe551`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3456efe551)
+- Adds timezone filter to time slot resource [`8ad5ea7cab`](https://github.com/coconutcalendar/coconut-open-api-js/commit/8ad5ea7cab)
+
 ## [0.5.0] - 2019-06-04
 
 - Changes all getters to public methods [`df87d3d429`](https://github.com/coconutcalendar/coconut-open-api-js/commit/df87d3d429)
