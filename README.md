@@ -230,6 +230,10 @@ Set a filter which will tell the API to return locations that are specifically i
 
 Set the page offset which you want to view.
 
+- `physical()`
+
+Set a filter which will tell the API to return only non-virtual locations.
+
 - `providing(services: number | number[] | string | string[])`
 
 Set a filter which will tell the API to return locations where the supplied service identifier(s) is / are assigned.
@@ -241,6 +245,10 @@ Set a sorting string to determine how the returned results are sorted.
 - `take(limit: number)`
 
 Set the limit which you want returned.
+
+- `virtual()`
+
+Set a filter which will tell the API to return only virtual locations.
 
 ##### Example
 
@@ -259,6 +267,7 @@ class Locations {
       .containing(user)
       .invitable()
       .providing(services)
+      .physical()
       .sortBy(sortable)
       .on(page)
       .take(limit)
@@ -455,6 +464,10 @@ Set a filter which will tell the API to return time slots that are specifically 
 
 Send the API request using the pre-set filters.
 
+- `in(timezone: string)`
+
+Set a filter which will tell the API to return time slots in the given timezone.
+
 ##### Example
 
 ```javascript
@@ -472,6 +485,7 @@ class TimeSlots {
       .by(user)
       .for(service)
       .between(start, end)
+      .in('America/Chicago')
       .get()
   }
 }
