@@ -9,6 +9,7 @@ export interface LocationFilter {
   invitable?: number;
   services?: number | number[] | string | string[];
   user?: number | string;
+  virtual?: number;
 }
 
 export interface LocationParameters {
@@ -25,7 +26,11 @@ export interface LocationResource extends Pageable, ConditionalResource {
 
   invitable(): this;
 
+  physical(): this;
+
   providing(services: number | number[] | string | string[]): this;
+
+  virtual(): this;
 }
 
 export default class Location extends Conditional implements LocationResource {
@@ -92,6 +97,12 @@ export default class Location extends Conditional implements LocationResource {
     return this;
   }
 
+  public physical(): this {
+    this.filters.virtual = 0;
+
+    return this;
+  }
+
   public providing(services: number | number[] | string | string[]): this {
     this.filters.services = services;
 
@@ -106,6 +117,12 @@ export default class Location extends Conditional implements LocationResource {
 
   public take(limit: number): this {
     this.limit = limit;
+
+    return this;
+  }
+
+  public virtual(): this {
+    this.filters.virtual = 1;
 
     return this;
   }

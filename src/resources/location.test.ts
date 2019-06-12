@@ -80,6 +80,22 @@ it('will set service filter using an array of strings', async () => {
   });
 });
 
+it('will set the physical locations only filter', async () => {
+  const resource = new Location(mockAxios);
+
+  expect(resource.physical()).toHaveProperty('filters', {
+    virtual: 0,
+  });
+});
+
+it('will set the virtual locations only filter', async () => {
+  const resource = new Location(mockAxios);
+
+  expect(resource.virtual()).toHaveProperty('filters', {
+    virtual: 1,
+  });
+});
+
 it('will set the limit given', async () => {
   const resource = new Location(mockAxios);
 
