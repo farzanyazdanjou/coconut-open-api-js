@@ -370,9 +370,17 @@ Set a filter which will tell the API to return services that are provided by the
 
 Send the API request using the pre-set filters.
 
+- `group()`
+
+Set a filter which will tell the API to return only group type services.
+
 - `in(category: number | string)`
 
 Set a filter which will tell the API to return services that match the given category identifier.
+
+- `individual()`
+
+Set a filter which will tell the API to return only individual type services.
 
 - `invitable()`
 
