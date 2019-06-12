@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Ensures group filters are sent with request when provided [`632ace302c`](https://github.com/coconutcalendar/coconut-open-api-js/commit/632ace302c)
+- Adds group and individual filters to service resource [`2151c0b9cc`](https://github.com/coconutcalendar/coconut-open-api-js/commit/2151c0b9cc)
 - Ensures virtual filters are sent with request when provided [`5536eea650`](https://github.com/coconutcalendar/coconut-open-api-js/commit/5536eea650)
 - Adds virtual and physical filters to location resource [`d0007e5bf5`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d0007e5bf5)
 - Ensures timezone filter is sent with request when provided [`3456efe551`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3456efe551)
