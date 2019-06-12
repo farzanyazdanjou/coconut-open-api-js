@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Ensures virtual filters are sent with request when provided [`5536eea650`](https://github.com/coconutcalendar/coconut-open-api-js/commit/5536eea650)
+- Adds virtual and physical filters to location resource [`d0007e5bf5`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d0007e5bf5)
 - Ensures timezone filter is sent with request when provided [`3456efe551`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3456efe551)
 - Adds timezone filter to time slot resource [`8ad5ea7cab`](https://github.com/coconutcalendar/coconut-open-api-js/commit/8ad5ea7cab)
 
