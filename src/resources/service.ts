@@ -7,6 +7,7 @@ import Conditional, { ConditionalResource } from './conditional';
 export interface ServiceFilter {
   assigned?: boolean;
   category?: number | string;
+  group?: number;
   invitable?: number;
   location?: number | string;
   user?: number | string;
@@ -27,7 +28,11 @@ export interface ServiceResource extends Pageable, ConditionalResource {
 
   by(user: number | string): this;
 
+  group(): this;
+
   in(category: number | string): this;
+
+  individual(): this;
 
   invitable(): this;
 }
@@ -90,8 +95,20 @@ export default class Service extends Conditional implements ServiceResource {
     return await this.client.get('services', { params });
   }
 
+  public group(): this {
+    this.filters.group = 1;
+
+    return this;
+  }
+
   public in(category: number | string): this {
     this.filters.category = category;
+
+    return this;
+  }
+
+  public individual(): this {
+    this.filters.group = 0;
 
     return this;
   }

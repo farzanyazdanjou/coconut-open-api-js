@@ -74,6 +74,22 @@ it('will set the invite only filter', async () => {
   });
 });
 
+it('will set the group filter', async () => {
+  const resource = new Service(mockAxios);
+
+  expect(resource.group()).toHaveProperty('filters', {
+    group: 1,
+  });
+});
+
+it('will set the individual filter', async () => {
+  const resource = new Service(mockAxios);
+
+  expect(resource.individual()).toHaveProperty('filters', {
+    group: 0,
+  });
+});
+
 it('will set the page we are on', async () => {
   const resource = new Service(mockAxios);
 
