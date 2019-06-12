@@ -118,6 +118,7 @@ it('can string all filterable options together', async () => {
       .containing(1)
       .invitable()
       .sortBy('created')
+      .physical()
       .take(5)
       .on(1),
   );
@@ -127,6 +128,7 @@ it('can string all filterable options together', async () => {
     invitable: 1,
     services: [1, 2],
     user: 1,
+    virtual: 0,
   });
   expected.toHaveProperty('sortable', 'created');
   expected.toHaveProperty('limit', 5);
@@ -150,6 +152,7 @@ it('can get locations with additional parameters', async () => {
     .providing([1, 2])
     .containing(1)
     .invitable()
+    .physical()
     .sortBy('created')
     .take(5)
     .on(1)
@@ -162,6 +165,7 @@ it('can get locations with additional parameters', async () => {
       'filter[invite_only]': 1,
       'filter[service]': [1, 2],
       'filter[user]': 1,
+      'filter[virtual]': 0,
       limit: 5,
       page: 1,
       sort: 'created',

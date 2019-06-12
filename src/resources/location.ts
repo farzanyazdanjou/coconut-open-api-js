@@ -17,6 +17,7 @@ export interface LocationParameters {
   invite_only?: number;
   service?: number | number[] | string | string[];
   user?: number | string;
+  virtual?: number;
 }
 
 export interface LocationResource extends Pageable, ConditionalResource {
@@ -144,6 +145,10 @@ export default class Location extends Conditional implements LocationResource {
 
     if (typeof this.filters.user !== 'undefined') {
       params.user = this.filters.user;
+    }
+
+    if (typeof this.filters.virtual !== 'undefined') {
+      params.virtual = this.filters.virtual;
     }
 
     return params;
