@@ -118,6 +118,7 @@ it('can string all filterable options together', async () => {
       .by(2)
       .in(3)
       .invitable()
+      .individual()
       .sortBy('created')
       .take(5)
       .on(1),
@@ -126,6 +127,7 @@ it('can string all filterable options together', async () => {
   expected.toHaveProperty('filters', {
     assigned: true,
     category: 3,
+    group: 0,
     invitable: 1,
     location: 1,
     user: 2,
@@ -153,6 +155,7 @@ it('can get services with additional parameters', async () => {
     .by(2)
     .in(3)
     .invitable()
+    .individual()
     .sortBy('created')
     .take(5)
     .on(1)
@@ -163,6 +166,7 @@ it('can get services with additional parameters', async () => {
     params: {
       'filter[assignments]': true,
       'filter[category]': 3,
+      'filter[group]': 0,
       'filter[invite_only]': 1,
       'filter[location]': 1,
       'filter[user]': 2,

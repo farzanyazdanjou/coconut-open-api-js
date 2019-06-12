@@ -16,6 +16,7 @@ export interface ServiceFilter {
 export interface ServiceParameters {
   assignments?: boolean;
   category?: number | string;
+  group?: number;
   invite_only?: number;
   location?: number | string;
   user?: number | string;
@@ -146,6 +147,10 @@ export default class Service extends Conditional implements ServiceResource {
 
     if (typeof this.filters.category !== 'undefined') {
       params.category = this.filters.category;
+    }
+
+    if (typeof this.filters.group !== 'undefined') {
+      params.group = this.filters.group;
     }
 
     if (typeof this.filters.invitable !== 'undefined') {
