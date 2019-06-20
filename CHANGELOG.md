@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.5.1] - 2019-06-20
+
 - Ensures group filters are sent with request when provided [`632ace302c`](https://github.com/coconutcalendar/coconut-open-api-js/commit/632ace302c)
 - Adds group and individual filters to service resource [`2151c0b9cc`](https://github.com/coconutcalendar/coconut-open-api-js/commit/2151c0b9cc)
 - Ensures virtual filters are sent with request when provided [`5536eea650`](https://github.com/coconutcalendar/coconut-open-api-js/commit/5536eea650)
@@ -172,7 +174,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.1...HEAD
+[0.5.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.3.5...v0.4.0
 [0.3.5]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.3.4...v0.3.5
