@@ -232,7 +232,7 @@ Set the page offset which you want to view.
 
 - `physical()`
 
-Set a filter which will tell the API to return only non-virtual locations.
+Set a filter which will tell the API to return only non-virtual locations. _(not publicly available yet)_
 
 - `providing(services: number | number[] | string | string[])`
 
@@ -248,7 +248,7 @@ Set the limit which you want returned.
 
 - `virtual()`
 
-Set a filter which will tell the API to return only virtual locations.
+Set a filter which will tell the API to return only virtual locations. _(not publicly available yet)_
 
 ##### Example
 
@@ -372,7 +372,7 @@ Send the API request using the pre-set filters.
 
 - `group()`
 
-Set a filter which will tell the API to return only group type services.
+Set a filter which will tell the API to return only group type services. _(not publicly available yet)_
 
 - `in(category: number | string)`
 
@@ -380,7 +380,7 @@ Set a filter which will tell the API to return services that match the given cat
 
 - `individual()`
 
-Set a filter which will tell the API to return only individual type services.
+Set a filter which will tell the API to return only individual type services. _(not publicly available yet)_
 
 - `invitable()`
 
@@ -474,7 +474,7 @@ Send the API request using the pre-set filters.
 
 - `in(timezone: string)`
 
-Set a filter which will tell the API to return time slots in the given timezone.
+Set a filter which will tell the API to return time slots in the given timezone. _(not publicly available yet)_
 
 ##### Example
 
