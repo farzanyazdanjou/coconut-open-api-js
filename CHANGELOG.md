@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.5.2] - 2019-06-24
+
+- Switches questions service filter to use new filter on backend which is more inline on what we are wanting to retrieve [`7f43f429d6`](https://github.com/coconutcalendar/coconut-open-api-js/commit/7f43f429d6)
+
 ## [0.5.1] - 2019-06-20
 
 - Ensures group filters are sent with request when provided [`632ace302c`](https://github.com/coconutcalendar/coconut-open-api-js/commit/632ace302c)
