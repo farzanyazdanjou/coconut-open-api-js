@@ -9,7 +9,7 @@ export interface QuestionFilter {
 }
 
 export interface QuestionParameters {
-  service?: number | number[] | string | string[];
+  matching?: number | number[] | string | string[];
 }
 
 export interface QuestionResource extends Pageable, ConditionalResource {
@@ -84,7 +84,7 @@ export default class Question extends Conditional implements QuestionResource {
     const params: QuestionParameters = {};
 
     if (typeof this.filters.services !== 'undefined') {
-      params.service = this.filters.services;
+      params.matching = this.filters.services;
     }
 
     return params;

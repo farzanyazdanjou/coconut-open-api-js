@@ -94,7 +94,7 @@ it('can get questions with additional parameters', async () => {
   expect(mockAxios.get).toHaveBeenCalledTimes(1);
   expect(mockAxios.get).toHaveBeenCalledWith('questions', {
     params: {
-      'filter[service]': 3,
+      'filter[matching]': 3,
       limit: 5,
       page: 1,
       sort: 'created',
