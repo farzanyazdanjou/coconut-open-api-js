@@ -511,6 +511,10 @@ Set a filter which will tell the API to return users that have public location a
 
 Set a filter which will tell the API to return users that are assigned at the location matching the provided identifier.
 
+- `find(user: number | string)`
+
+Set a filter which will tell the API to return a user matching the provided identifier.
+
 - `get()`
 
 Send the API request using the pre-set filters.

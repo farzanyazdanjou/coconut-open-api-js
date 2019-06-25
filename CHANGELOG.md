@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.5.3] - 2019-06-25
+
+- Adds new filter to user resource [`ed5490539d`](https://github.com/coconutcalendar/coconut-open-api-js/commit/ed5490539d)
+
 ## [0.5.2] - 2019-06-24
 
 - Switches questions service filter to use new filter on backend which is more inline on what we are wanting to retrieve [`7f43f429d6`](https://github.com/coconutcalendar/coconut-open-api-js/commit/7f43f429d6)
@@ -178,7 +182,9 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.1...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.3...HEAD
+[0.5.3]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.2...v0.5.3
+[0.5.2]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.3.5...v0.4.0
