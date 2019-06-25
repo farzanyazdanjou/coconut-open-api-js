@@ -8,18 +8,22 @@ export interface UserFilter {
   assigned?: boolean;
   services?: number | number[] | string | string[];
   location?: number | string;
+  user?: number | string;
 }
 
 export interface UserParameters {
   assignments?: boolean;
   service?: number | number[] | string | string[];
   location?: number | string;
+  user?: number | string;
 }
 
 export interface UserResource extends Pageable, ConditionalResource {
   assigned(assigned: boolean): this;
 
   at(location: number | string): this;
+
+  find(user: number | string): this;
 
   performing(services: number | number[] | string | string[]): this;
 }
@@ -49,6 +53,12 @@ export default class User extends Conditional implements UserResource {
 
   public at(location: number | string): this {
     this.filters.location = location;
+
+    return this;
+  }
+
+  public find(user: number | string): this {
+    this.filters.user = user;
 
     return this;
   }
@@ -113,6 +123,10 @@ export default class User extends Conditional implements UserResource {
 
     if (typeof this.filters.location !== 'undefined') {
       params.location = this.filters.location;
+    }
+
+    if (typeof this.filters.user !== 'undefined') {
+      params.user = this.filters.user;
     }
 
     return params;

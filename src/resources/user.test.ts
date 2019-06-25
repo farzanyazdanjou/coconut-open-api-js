@@ -34,6 +34,22 @@ it('will set location filter using a string', async () => {
   });
 });
 
+it('will set user filter using a string', async () => {
+  const resource = new User(mockAxios);
+
+  expect(resource.find('1')).toHaveProperty('filters', {
+    user: '1',
+  });
+});
+
+it('will set user filter using a number', async () => {
+  const resource = new User(mockAxios);
+
+  expect(resource.find(1)).toHaveProperty('filters', {
+    user: 1,
+  });
+});
+
 it('will set the page we are on', async () => {
   const resource = new User(mockAxios);
 
@@ -93,6 +109,7 @@ it('can string all filterable options together', async () => {
       .at(1)
       .performing([1, 2])
       .sortBy('created')
+      .find(1)
       .take(5)
       .on(1),
   );
@@ -101,6 +118,7 @@ it('can string all filterable options together', async () => {
     assigned: true,
     location: 1,
     services: [1, 2],
+    user: 1,
   });
   expected.toHaveProperty('sortable', 'created');
   expected.toHaveProperty('limit', 5);
@@ -123,6 +141,7 @@ it('can get users with additional parameters', async () => {
     .assigned()
     .at(1)
     .performing([1, 2])
+    .find(1)
     .sortBy('created')
     .take(5)
     .on(1)
@@ -134,6 +153,7 @@ it('can get users with additional parameters', async () => {
       'filter[assignments]': true,
       'filter[location]': 1,
       'filter[service]': [1, 2],
+      'filter[user]': 1,
       limit: 5,
       page: 1,
       sort: 'created',
