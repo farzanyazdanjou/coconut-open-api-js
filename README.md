@@ -125,7 +125,7 @@ class Appointments {
       .speaks(language);
 
     return this.api
-      .appointments
+      .appointments()
       .at(location)
       .by(user)
       .for(service)
@@ -139,11 +139,11 @@ class Appointments {
   }
 
   async cancel({ appointment, attendee }) {
-    return this.api.appointments.cancel(appointment, attendee);
-  }
+    return this.api.appointments().cancel(appointment, attendee);
+  }()
 
   async fetch({ code, email, id }) {
-    return this.api.appointments.matching({ code, email, id }).get();
+    return this.api.appointments().matching({ code, email, id }).get();
   }
 }
 ```
@@ -262,7 +262,7 @@ class Locations {
 
   async get({ page, limit, services, sortable, user }) {
     return await this.api
-      .locations
+      .locations()
       .assigned()
       .containing(user)
       .invitable()
@@ -340,7 +340,7 @@ class Questions {
 
   async get({ limit, page, services, sortable }) {
     return await this.api
-      .questions
+      .questions()
       .for(services)
       .on(page)
       .sortBy(sortable)
@@ -410,7 +410,7 @@ class Services {
 
   async get({ category, limit, location, page, sortable, user }) {
     return await this.api
-      .services
+      .services()
       .assigned()
       .at(location)
       .by(user)
@@ -443,7 +443,7 @@ class Settings {
   }
 
   async get() {
-    return await this.api.settings.get();
+    return await this.api.settings().get();
   }
 }
 ```
@@ -488,7 +488,7 @@ class TimeSlots {
 
   async get({ end, location, service, start, user }) {
     return await this.api
-      .slots
+      .slots()
       .at(location)
       .by(user)
       .for(service)
@@ -547,7 +547,7 @@ class Users {
 
   async get({ limit, location, page, services, sortable }) {
     return await this.api
-      .users
+      .users()
       .assigned()
       .at(location)
       .performing(services)
@@ -626,7 +626,7 @@ class WaitLists {
     const preference = (new Preference()).on(day).between(start, end);
 
     return this.api
-      .lists
+      .lists()
       .for(attendee)
       .at(location)
       .seeking(service)
@@ -638,21 +638,21 @@ class WaitLists {
 
   async find({ client, inclusions, list }) {
     return this.api
-      .lists
+      .lists()
       .belonging(client)
       .include(inclusions)
       .find(list);
   }
 
   async remove({ client, list }) {
-    return this.api.lists.belonging(client).remove(list);
+    return this.api.lists().belonging(client).remove(list);
   }
 
   async update({ client, list, notes, user }) {
     const preference = (new Preference()).next();
 
     return this.api
-      .lists
+      .lists()
       .belonging(client)
       .with(user)
       .prefers(preference)
