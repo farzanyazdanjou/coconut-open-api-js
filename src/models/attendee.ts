@@ -139,6 +139,7 @@ export default class Attendee extends Model implements AttendeeModel {
       first_name: this.attributes.first_name,
       lang: this.attributes.language,
       last_name: this.attributes.last_name,
+      notes: this.attributes.notes,
       phone: this.attributes.phone,
       prov_state: this.attributes.region,
       receive_sms: this.attributes.messagable,

@@ -175,6 +175,7 @@ it('can book an appointment with all available parameters', async () => {
                   first_name: 'Jane',
                   lang: 'es',
                   last_name: 'Doe',
+                  notes: 'notes',
                   phone: '5555555555',
                   prov_state: 'FR',
                   receive_sms: true,
