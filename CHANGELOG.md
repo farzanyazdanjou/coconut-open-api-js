@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.5.4] - 2019-07-05
+
+- Adds missing notes to attendee request parameters [`7c4e417e5f`](https://github.com/coconutcalendar/coconut-open-api-js/commit/7c4e417e5f)
+
 ## [0.5.3] - 2019-06-25
 
 - Adds new filter to user resource [`ed5490539d`](https://github.com/coconutcalendar/coconut-open-api-js/commit/ed5490539d)
@@ -182,7 +186,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.3...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.4...HEAD
+[0.5.4]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.3...v0.5.4
 [0.5.3]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.2...v0.5.3
 [0.5.2]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.0...v0.5.1
