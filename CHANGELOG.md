@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.6.0] - 2019-07-08
+
+- Ensures attendees messageable attribute can be set to false [`d7cbf0193c`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d7cbf0193c)
+
 ## [0.5.4] - 2019-07-05
 
 - Adds missing notes to attendee request parameters [`7c4e417e5f`](https://github.com/coconutcalendar/coconut-open-api-js/commit/7c4e417e5f)
