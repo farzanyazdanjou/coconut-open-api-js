@@ -7,7 +7,7 @@ export interface AttendeeModel extends ModelInterface {
 
   located(details: LocatableDetailParameters): this;
 
-  messagable(): this;
+  messagable(messageable: boolean): this;
 
   named(first: string, last: string): this;
 
@@ -80,8 +80,8 @@ export default class Attendee extends Model implements AttendeeModel {
     return this;
   }
 
-  public messagable(): this {
-    this.attributes.messagable = true;
+  public messagable(messageable: boolean = true): this {
+    this.attributes.messagable = messageable;
 
     return this;
   }

@@ -52,6 +52,16 @@ it('can set that an attendee is messagable', async () => {
   );
 });
 
+it('can set that an attendee is not messagable', async () => {
+  const attendee = new Attendee();
+
+  expect(attendee.messagable(false).getAttributes()).toEqual(
+    expect.objectContaining({
+      messagable: false,
+    }),
+  );
+});
+
 it('can set an attendees first and last name', async () => {
   const attendee = new Attendee();
 
