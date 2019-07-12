@@ -7,6 +7,7 @@ import Answer from './models/answer';
 import Attendee from './models/attendee';
 import Preference from './models/preference';
 import Appointment, { AppointmentResource } from './resources/appointment';
+import Form, { FormResource } from './resources/form';
 import Location, { LocationResource } from './resources/location';
 import Question, { QuestionResource } from './resources/question';
 import Service, { ServiceResource } from './resources/service';
@@ -49,6 +50,7 @@ export { Answer, Attendee, Days, Notifications, Preference };
 
 export class OpenApi {
   protected appointment: AppointmentResource;
+  protected form: FormResource;
   protected client: AxiosInstance;
   protected domain?: string;
   protected list: WaitListResource;
@@ -64,6 +66,7 @@ export class OpenApi {
     this.client = Client(domain);
     this.domain = domain;
     this.appointment = new Appointment(this.client);
+    this.form = new Form(this.client);
     this.list = new WaitList(this.client);
     this.location = new Location(this.client);
     this.question = new Question(this.client);
@@ -76,6 +79,10 @@ export class OpenApi {
 
   public appointments(): AppointmentResource {
     return this.appointment;
+  }
+
+  public forms(): FormResource {
+    return this.form;
   }
 
   public lists(): WaitListResource {

@@ -1,5 +1,6 @@
 import { OpenApi } from './index';
 import Appointment from './resources/appointment';
+import Form from './resources/form';
 import Location from './resources/location';
 import Question from './resources/question';
 import Service from './resources/service';
@@ -68,4 +69,10 @@ it('can access the timezone resource', async () => {
   const instance = new OpenApi('admin');
 
   expect(instance.timezones()).toBeInstanceOf(Timezone.prototype.constructor);
+});
+
+it('can access the forms resource', async () => {
+  const instance = new OpenApi('admin');
+
+  expect(instance.forms()).toBeInstanceOf(Form.prototype.constructor);
 });
