@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+- Implements necessary methods for form resource [`111923287b`](https://github.com/coconutcalendar/coconut-open-api-js/commit/111923287b)
+- Adds accessor for form resource [`e8f8fc5605`](https://github.com/coconutcalendar/coconut-open-api-js/commit/e8f8fc5605)
+
 ## [0.6.0] - 2019-07-08
 
 - Ensures attendees messageable attribute can be set to false [`d7cbf0193c`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d7cbf0193c)
