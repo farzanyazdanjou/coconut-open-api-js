@@ -6,6 +6,7 @@ import Notifications from './constants/notifications';
 import Answer from './models/answer';
 import Attendee from './models/attendee';
 import Preference from './models/preference';
+import Response from './models/response';
 import Appointment, { AppointmentResource } from './resources/appointment';
 import Form, { FormResource } from './resources/form';
 import Location, { LocationResource } from './resources/location';
@@ -46,7 +47,7 @@ export interface Sortable extends Resource {
   sortBy(sortable: string): this;
 }
 
-export { Answer, Attendee, Days, Notifications, Preference };
+export { Answer, Attendee, Days, Notifications, Preference, Response };
 
 export class OpenApi {
   protected appointment: AppointmentResource;

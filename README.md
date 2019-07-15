@@ -99,7 +99,7 @@ Set a relationship which will tell the API to use the given attendee model(s) wh
 ##### Example
 
 ```javascript
-import { OpenApi, Attendee, Answer } from 'coconut-open-api-js';
+import { OpenApi, Attendee, Answer, Response } from 'coconut-open-api-js';
 
 class Appointments {
   constructor() {
@@ -138,9 +138,22 @@ class Appointments {
       .book();
   }
 
-  async cancel({ appointment, attendee }) {
-    return this.api.appointments().cancel(appointment, attendee);
-  }()
+  async cancel(attributes) {
+    const { appointment, attendee } = attributes;
+
+    // We can optionally submit custom form responses when cancelling
+    // appointments by utilizing the Response and Attendee models.
+    const person = (new Attendee())
+      .as(attendee)
+      .responses([
+        (new Response()).for(1).is('an answer'),
+        (new Response()).for(2).selected(1),
+      ]);
+
+    return this.api.appointments()
+      .with(person)
+      .cancel(appointment, attendee);
+  }
 
   async fetch({ code, email, id }) {
     return this.api.appointments().matching({ code, email, id }).get();
@@ -155,6 +168,10 @@ class Appointments {
 - `answers(answers: AnswerModel | AnswerModel[])`
 
 Set a relationship which will tell the API to use the given answer model(s) for the attendee when booking an appointment.
+
+- `as(identifier: number)`
+
+Set the identifier for a given attendee.
 
 - `located(details: LocatableDetailParameters)`
 
@@ -175,6 +192,10 @@ Set any additional details the attendee has provided when booking an appointment
 - `reachable(details: ReachableDetailParameters)`
 
 Set certain attributes on the attendee related to contact details such as cell phone and email.
+
+- `responses(answers: ResponseModel | ResponseModel[])`
+
+Set a relationship which will tell the API to use the given response model(s) for the attendee when cancelling an appointment.
 
 - `speaks(language: string)`
 
@@ -392,6 +413,38 @@ class Questions {
       .sortBy(sortable)
       .take(limit)
       .get()
+  }
+}
+```
+
+### Responses
+
+##### Methods
+
+- `for(question: number)`
+
+Set an attribute to determine the identifier of the question being answer.
+
+- `is(value: string)`
+
+Set an attribute to determine the actual answer's value.
+
+##### Example
+
+```javascript
+import { Response } from 'coconut-open-api-js';
+
+class Responses {
+  static create({ question, value }) {
+    return (new Response())
+      .for(question)
+      .is(value);
+  }
+
+  static select({ question, option }) {
+    return (new Response())
+      .for(question)
+      .selected(option);
   }
 }
 ```
