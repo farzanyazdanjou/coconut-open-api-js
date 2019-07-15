@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.6.0] - 2019-07-15
+
 - Adds basic documentation for new forms resource [`fc4d2a4a58`](https://github.com/coconutcalendar/coconut-open-api-js/commit/fc4d2a4a58)
 - Implements necessary methods for form resource [`111923287b`](https://github.com/coconutcalendar/coconut-open-api-js/commit/111923287b)
 - Adds accessor for form resource [`e8f8fc5605`](https://github.com/coconutcalendar/coconut-open-api-js/commit/e8f8fc5605)
@@ -194,7 +196,9 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.4...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.1...HEAD
+[0.6.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.0...v0.6.1
+[0.6.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.4...v0.6.0
 [0.5.4]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.3...v0.5.4
 [0.5.3]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.2...v0.5.3
 [0.5.2]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.1...v0.5.2
