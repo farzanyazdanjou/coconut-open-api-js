@@ -1,6 +1,12 @@
 import { ModelInterface } from '../index';
 import Model from './model';
 
+export interface ResponseAttributes {
+  form_option_id?: number;
+  form_question_id: number | null;
+  value?: string;
+}
+
 export interface ResponseModel extends ModelInterface {
   for(question: number): this;
 
@@ -49,13 +55,21 @@ export default class Response extends Model implements ResponseModel {
   }
 
   public transform(): object {
-    return {
-      attributes: {
-        form_option_id: this.attributes.option,
-        form_question_id: this.attributes.question,
-        value: this.attributes.value,
-      },
-      type: 'responses',
+    const attributes: ResponseAttributes = {
+      form_question_id: this.attributes.question,
     };
+
+    if (this.attributes.option) {
+      attributes.form_option_id = this.attributes.option;
+    }
+
+    if (this.attributes.value) {
+      attributes.value = this.attributes.value;
+    }
+
+    return {
+      attributes,
+      type: 'responses',
+    }
   }
 }

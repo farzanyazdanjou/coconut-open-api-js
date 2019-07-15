@@ -1,5 +1,16 @@
 import Answer from './answer';
 import Attendee from './attendee';
+import Response from './response';
+
+it('can set an identifier for the attendee', async () => {
+  const attendee = new Attendee();
+
+  expect(attendee.as(1).getAttributes()).toEqual(
+    expect.objectContaining({
+      identifier: 1,
+    }),
+  );
+});
 
 it('can set answers when providing a single answer', async () => {
   const answer = new Answer();
@@ -19,6 +30,28 @@ it('can set answers when providing multiple answers', async () => {
   expect(attendee.answers([answer, answer]).getAttributes()).toEqual(
     expect.objectContaining({
       answers: [answer, answer],
+    }),
+  );
+});
+
+it('can set responses when providing a single response', async () => {
+  const response = new Response();
+  const attendee = new Attendee();
+
+  expect(attendee.responses(response).getAttributes()).toEqual(
+    expect.objectContaining({
+      responses: [response],
+    }),
+  );
+});
+
+it('can set responses when providing multiple responses', async () => {
+  const response = new Response();
+  const attendee = new Attendee();
+
+  expect(attendee.responses([response, response]).getAttributes()).toEqual(
+    expect.objectContaining({
+      responses: [response, response],
     }),
   );
 });

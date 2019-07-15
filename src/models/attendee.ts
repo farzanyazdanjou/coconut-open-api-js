@@ -1,9 +1,12 @@
 import { ModelInterface } from '../index';
 import { AnswerModel } from './answer';
 import Model from './model';
+import { ResponseModel } from './response';
 
 export interface AttendeeModel extends ModelInterface {
   answers(answers: AnswerModel | AnswerModel[]): this;
+
+  as(identifier: number): this;
 
   located(details: LocatableDetailParameters): this;
 
@@ -20,6 +23,12 @@ export interface AttendeeModel extends ModelInterface {
   transform(): object;
 }
 
+export interface AttendeeAttributes {
+  attributes?: object;
+  id?: number;
+  type: string;
+}
+
 export interface AttendeeParameters {
   address?: string;
   answers?: AnswerModel[] | [];
@@ -28,6 +37,7 @@ export interface AttendeeParameters {
   country?: string;
   email: string | null;
   first_name: string | null;
+  identifier: number | null;
   last_name: string | null;
   language?: string;
   messagable?: boolean;
@@ -35,6 +45,7 @@ export interface AttendeeParameters {
   phone?: string;
   postcode?: string;
   region?: string;
+  responses?: ResponseModel[] | [];
   timezone?: string;
   work_phone?: string;
 }
@@ -64,12 +75,19 @@ export default class Attendee extends Model implements AttendeeModel {
     this.attributes = {
       email: null,
       first_name: null,
+      identifier: null,
       last_name: null,
     };
   }
 
   public answers(answers: AnswerModel | AnswerModel[]): this {
     this.attributes.answers = Array.isArray(answers) ? answers : [answers];
+
+    return this;
+  }
+
+  public as(identifier: number): this {
+    this.attributes.identifier = identifier;
 
     return this;
   }
@@ -105,6 +123,12 @@ export default class Attendee extends Model implements AttendeeModel {
     return this;
   }
 
+  public responses(responses: ResponseModel | ResponseModel[]): this {
+    this.attributes.responses = Array.isArray(responses) ? responses : [responses];
+
+    return this;
+  }
+
   public speaks(language: string): this {
     this.attributes.language = language;
 
@@ -126,10 +150,23 @@ export default class Attendee extends Model implements AttendeeModel {
       };
     }
 
+    const responses = this.attributes.responses || [];
+
+    if (responses.length > 0) {
+      parameters = {
+        ...parameters,
+        relationships: {
+          responses: {
+            data: (responses as ResponseModel[]).map((response: ResponseModel) => response.transform()),
+          },
+        },
+      };
+    }
+
     return parameters;
   }
 
-  protected parameters(): object {
+  protected parameters(): AttendeeAttributes {
     const attributes: object = {
       address: this.attributes.address,
       cell_phone: this.attributes.cell_phone,
@@ -156,9 +193,18 @@ export default class Attendee extends Model implements AttendeeModel {
       }
     });
 
-    return {
-      attributes,
+    const parameters: AttendeeAttributes = {
       type: 'attendees',
     };
+
+    if (this.attributes.identifier) {
+      parameters.id = this.attributes.identifier;
+    }
+
+    if (Object.keys(attributes).length > 0) {
+      parameters.attributes = attributes;
+    }
+
+    return parameters;
   }
 }

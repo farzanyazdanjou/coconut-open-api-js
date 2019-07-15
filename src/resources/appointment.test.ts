@@ -3,6 +3,7 @@ import mockAxios from 'axios';
 import Notifications from '../constants/notifications';
 import Answer from '../models/answer';
 import Attendee from '../models/attendee';
+import Response from '../models/response';
 import Appointment, { AppointmentMatcherParameters, AppointmentNotificationParameters } from './appointment';
 
 it('can set the location property', async () => {
@@ -234,7 +235,58 @@ it('can cancel the given appointment for the given attendee', async () => {
   await resource.cancel(1, 2);
 
   expect(mockAxios.delete).toHaveBeenCalledTimes(1);
-  expect(mockAxios.delete).toHaveBeenCalledWith('appointments/1/2');
+  expect(mockAxios.delete).toHaveBeenCalledWith('appointments/1/2', {});
+});
+
+it('can cancel the given appointment for the given attendee while provided responses', async () => {
+  const resource = new Appointment(mockAxios);
+  const attendee = new Attendee();
+  const responses = [
+    (new Response()).for(1).is('the response'),
+    (new Response()).for(2).selected(1),
+  ];
+
+  await resource
+    .with(
+      attendee.as(2).responses(responses)
+    )
+    .cancel(1, 2);
+
+  expect(mockAxios.delete).toHaveBeenCalledWith('appointments/1/2', {
+    data: {
+      relationships: {
+        attendees: {
+          data: [
+            {
+              id: 2,
+              relationships: {
+                responses: {
+                  data: [
+                    {
+                      attributes: {
+                        form_question_id: 1,
+                        value: 'the response',
+                      },
+                      type: 'responses',
+                    },
+                    {
+                      attributes: {
+                        form_option_id: 1,
+                        form_question_id: 2,
+                      },
+                      type: 'responses',
+                    },
+                  ]
+                }
+              },
+              type: 'attendees',
+            }
+          ]
+        }
+      },
+      type: 'appointments',
+    },
+  });
 });
 
 it('can conditionally set a filter', async () => {

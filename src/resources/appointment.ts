@@ -26,7 +26,7 @@ export interface AppointmentNotificationParameters {
 
 export interface AppointmentParameters {
   data: {
-    attributes: {
+    attributes?: {
       location_id: number | undefined;
       service_id: number | number[] | undefined;
       staff_id: number | null;
@@ -68,7 +68,7 @@ export interface AppointmentResource extends Resource, ConditionalResource {
 }
 
 export interface AppointmentRelationship {
-  attendees?: AttendeeModel[] | [];
+  attendees: AttendeeModel[] | [];
 }
 
 export default class Appointment extends Conditional implements AppointmentResource {
@@ -81,7 +81,9 @@ export default class Appointment extends Conditional implements AppointmentResou
 
     this.client = client;
     this.filters = {};
-    this.relationships = {};
+    this.relationships = {
+      attendees: [],
+    };
   }
 
   public at(location: number): this {
@@ -101,7 +103,7 @@ export default class Appointment extends Conditional implements AppointmentResou
   }
 
   public async cancel(appointment: number, attendee: number): Promise<any> {
-    return await this.client.delete(`appointments/${appointment}/${attendee}`);
+    return await this.client.delete(`appointments/${appointment}/${attendee}`, this.params());
   }
 
   public for(services: number | number[]): this {
@@ -140,7 +142,11 @@ export default class Appointment extends Conditional implements AppointmentResou
     return this;
   }
 
-  protected params(): AppointmentParameters {
+  protected params(): AppointmentParameters | object {
+    if (this.relationships.attendees.length === 0) {
+      return {};
+    }
+
     const attendees = (this.relationships.attendees as AttendeeModel[]).map(
       (attendee: AttendeeModel): object => {
         return attendee.transform();
@@ -149,12 +155,6 @@ export default class Appointment extends Conditional implements AppointmentResou
 
     let params: AppointmentParameters = {
       data: {
-        attributes: {
-          location_id: this.filters.location,
-          service_id: this.filters.services,
-          staff_id: null,
-          start: this.filters.start,
-        },
         relationships: {
           attendees: {
             data: attendees,
@@ -164,8 +164,17 @@ export default class Appointment extends Conditional implements AppointmentResou
       },
     };
 
-    if (this.filters.user) {
-      params.data.attributes.staff_id = this.filters.user;
+    if (this.filters.location || this.filters.services || this.filters.start) {
+      params.data.attributes = {
+        location_id: this.filters.location,
+        service_id: this.filters.services,
+        staff_id: null,
+        start: this.filters.start,
+      };
+
+      if (this.filters.user) {
+        params.data.attributes.staff_id = this.filters.user;
+      }
     }
 
     if (this.filters.notifications) {
