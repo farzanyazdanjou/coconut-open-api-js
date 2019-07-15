@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- Adds basic documentation for new forms resource [`fc4d2a4a58`](https://github.com/coconutcalendar/coconut-open-api-js/commit/fc4d2a4a58)
 - Implements necessary methods for form resource [`111923287b`](https://github.com/coconutcalendar/coconut-open-api-js/commit/111923287b)
 - Adds accessor for form resource [`e8f8fc5605`](https://github.com/coconutcalendar/coconut-open-api-js/commit/e8f8fc5605)
 
