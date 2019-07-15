@@ -206,6 +206,52 @@ class Attendees {
 }
 ```
 
+### Forms
+
+##### Methods
+
+- `cancellations()`
+
+Set a filter which will tell the API to return only cancellation forms.
+
+- `get()`
+
+Send the API request using the pre-set filters.
+
+- `on(page: number)`
+
+Set the page offset which you want to view.
+
+- `sortBy(sortable: string)`
+
+Set a sorting string to determine how the returned results are sorted.
+
+- `take(limit: number)`
+
+Set the limit which you want returned.
+
+##### Example
+
+```javascript
+import { OpenApi } from 'coconut-open-api-js';
+
+class Forms {
+  constructor() {
+    this.api = new OpenApi();
+  }
+
+  async get({ limit, page, sortable }) {
+    return await this.api
+      .forms()
+      .cancellations()
+      .on(page)
+      .sortBy(sortable)
+      .take(limit)
+      .get()
+  }
+}
+```
+
 ### Locations
 
 ##### Methods
