@@ -2,7 +2,13 @@
 
 ## [Unreleased]
 
-## [0.6.0] - 2019-07-15
+## [0.6.2] - 2019-07-15
+
+- Updates documentation for responses in regards to cancelling an appointment. Ensures response model is exportable [`1a5f451c74`](https://github.com/coconutcalendar/coconut-open-api-js/commit/1a5f451c74)
+- Adds ability to submit responses along with cancelling an appointment [`4cc792009a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/4cc792009a)
+- Adds response model with appropriate tests [`891f793edc`](https://github.com/coconutcalendar/coconut-open-api-js/commit/891f793edc)
+
+## [0.6.1] - 2019-07-15
 
 - Adds basic documentation for new forms resource [`fc4d2a4a58`](https://github.com/coconutcalendar/coconut-open-api-js/commit/fc4d2a4a58)
 - Implements necessary methods for form resource [`111923287b`](https://github.com/coconutcalendar/coconut-open-api-js/commit/111923287b)
@@ -196,7 +202,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.1...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.2...HEAD
+[0.6.2]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.1...v0.6.2
 [0.6.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.0...v0.6.1
 [0.6.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.4...v0.6.0
 [0.5.4]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.3...v0.5.4
