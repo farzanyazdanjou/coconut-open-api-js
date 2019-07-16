@@ -171,7 +171,7 @@ Set a relationship which will tell the API to use the given answer model(s) for 
 
 - `as(identifier: number)`
 
-Set the identifier for a given attendee.
+Set the identifier for a given attendee. _(not publicly available yet)_
 
 - `located(details: LocatableDetailParameters)`
 
@@ -195,7 +195,7 @@ Set certain attributes on the attendee related to contact details such as cell p
 
 - `responses(answers: ResponseModel | ResponseModel[])`
 
-Set a relationship which will tell the API to use the given response model(s) for the attendee when cancelling an appointment.
+Set a relationship which will tell the API to use the given response model(s) for the attendee when cancelling an appointment. _(not publicly available yet)_
 
 - `speaks(language: string)`
 
@@ -233,23 +233,23 @@ class Attendees {
 
 - `cancellations()`
 
-Set a filter which will tell the API to return only cancellation forms.
+Set a filter which will tell the API to return only cancellation forms. _(not publicly available yet)_
 
 - `get()`
 
-Send the API request using the pre-set filters.
+Send the API request using the pre-set filters. _(not publicly available yet)_
 
 - `on(page: number)`
 
-Set the page offset which you want to view.
+Set the page offset which you want to view. _(not publicly available yet)_
 
 - `sortBy(sortable: string)`
 
-Set a sorting string to determine how the returned results are sorted.
+Set a sorting string to determine how the returned results are sorted. _(not publicly available yet)_
 
 - `take(limit: number)`
 
-Set the limit which you want returned.
+Set the limit which you want returned. _(not publicly available yet)_
 
 ##### Example
 
@@ -423,11 +423,11 @@ class Questions {
 
 - `for(question: number)`
 
-Set an attribute to determine the identifier of the question being answer.
+Set an attribute to determine the identifier of the question being answer. _(not publicly available yet)_
 
 - `is(value: string)`
 
-Set an attribute to determine the actual answer's value.
+Set an attribute to determine the actual answer's value. _(not publicly available yet)_
 
 ##### Example
 
