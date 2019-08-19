@@ -4,7 +4,17 @@ import { combine } from '../helpers/filters';
 import { Filterable, Pageable } from '../index';
 import Conditional, { ConditionalResource } from './conditional';
 
+type LocatableLocationDetail = 'city' | 'country' | 'region';
+
+export interface LocatableLocationParameters {
+  [key: string]: any;
+  city?: string;
+  country?: string;
+  region?: string;
+}
+
 export interface LocationFilter {
+  [key: string]: any;
   assigned?: boolean;
   invitable?: number;
   services?: number | number[] | string | string[];
@@ -14,7 +24,10 @@ export interface LocationFilter {
 
 export interface LocationParameters {
   assignments?: boolean;
+  city?: string;
+  country?: string;
   invite_only?: number;
+  province?: string;
   service?: number | number[] | string | string[];
   user?: number | string;
   virtual?: number;
@@ -92,6 +105,16 @@ export default class Location extends Conditional implements LocationResource {
     return this;
   }
 
+  public located(details: LocatableLocationParameters): this {
+    const keys = Object.keys(details) as LocatableLocationDetail[];
+
+    keys.map(key => {
+      this.filters[key] = details[key];
+    });
+
+    return this;
+  }
+
   public on(page: number): this {
     this.page = page;
 
@@ -135,8 +158,20 @@ export default class Location extends Conditional implements LocationResource {
       params.assignments = this.filters.assigned;
     }
 
+    if (typeof this.filters.city !== 'undefined') {
+      params.city = this.filters.city;
+    }
+
+    if (typeof this.filters.country !== 'undefined') {
+      params.country = this.filters.country;
+    }
+
     if (typeof this.filters.invitable !== 'undefined') {
       params.invite_only = this.filters.invitable;
+    }
+
+    if (typeof this.filters.region !== 'undefined') {
+      params.province = this.filters.region;
     }
 
     if (typeof this.filters.services !== 'undefined') {
