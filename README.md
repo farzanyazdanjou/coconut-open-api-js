@@ -293,6 +293,10 @@ Send the API request using the pre-set filters.
 
 Set a filter which will tell the API to return locations that are specifically invite only.
 
+- `located(details: LocatableLocationParameters)`
+
+Set certain filters which will tell the API to return locations that match the locatable details you provide.
+
 - `on(page: number)`
 
 Set the page offset which you want to view.

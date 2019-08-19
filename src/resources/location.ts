@@ -40,6 +40,8 @@ export interface LocationResource extends Pageable, ConditionalResource {
 
   invitable(): this;
 
+  located(details: LocatableLocationParameters): this;
+
   physical(): this;
 
   providing(services: number | number[] | string | string[]): this;
