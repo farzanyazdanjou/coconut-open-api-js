@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.6.4] - 2019-08-19
+
+- Documents new location resource method. Adds forgotten reference to method on interface [`cd2b0f1c59`](https://github.com/coconutcalendar/coconut-open-api-js/commit/cd2b0f1c59)
+
 ## [0.6.3] - 2019-08-19
 
 - Implements locatable filters for location resource [`3a6d37c910`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3a6d37c910)
