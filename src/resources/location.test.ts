@@ -108,6 +108,19 @@ it('will set the sortable filter', async () => {
   expect(resource.sortBy('first_name,-created')).toHaveProperty('sortable', 'first_name,-created');
 });
 
+it('will set the locatable filters as supplied', async () => {
+  const resource = new Location(mockAxios);
+  const city = 'Fake City';
+  const country = 'FC';
+  const region = 'FR';
+
+  expect(resource.located({ city, country, region })).toHaveProperty('filters', {
+    city,
+    country,
+    region,
+  })
+});
+
 it('can string all filterable options together', async () => {
   const resource = new Location(mockAxios);
 
@@ -119,13 +132,17 @@ it('can string all filterable options together', async () => {
       .invitable()
       .sortBy('created')
       .physical()
+      .located({ city: 'Fake City', country: 'FC', region: 'FR' })
       .take(5)
       .on(1),
   );
 
   expected.toHaveProperty('filters', {
     assigned: true,
+    city: 'Fake City',
+    country: 'FC',
     invitable: 1,
+    region: 'FR',
     services: [1, 2],
     user: 1,
     virtual: 0,
@@ -153,6 +170,7 @@ it('can get locations with additional parameters', async () => {
     .containing(1)
     .invitable()
     .physical()
+    .located({ city: 'Fake City', country: 'FC', region: 'FR' })
     .sortBy('created')
     .take(5)
     .on(1)
@@ -162,7 +180,10 @@ it('can get locations with additional parameters', async () => {
   expect(mockAxios.get).toHaveBeenCalledWith('locations', {
     params: {
       'filter[assignments]': true,
+      'filter[city]': 'Fake City',
+      'filter[country]': 'FC',
       'filter[invite_only]': 1,
+      'filter[province]': 'FR',
       'filter[service]': [1, 2],
       'filter[user]': 1,
       'filter[virtual]': 0,
