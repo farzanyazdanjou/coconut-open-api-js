@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.6.3] - 2019-08-19
+
+- Implements locatable filters for location resource [`3a6d37c910`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3a6d37c910)
+- Adds tests for supplying locatable information for the location resource [`e19141dc1c`](https://github.com/coconutcalendar/coconut-open-api-js/commit/e19141dc1c)
+
 ## [0.6.2] - 2019-07-15
 
 - Updates documentation for responses in regards to cancelling an appointment. Ensures response model is exportable [`1a5f451c74`](https://github.com/coconutcalendar/coconut-open-api-js/commit/1a5f451c74)
@@ -202,7 +207,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.2...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.3...HEAD
+[0.6.3]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.2...v0.6.3
 [0.6.2]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.1...v0.6.2
 [0.6.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.0...v0.6.1
 [0.6.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.5.4...v0.6.0
