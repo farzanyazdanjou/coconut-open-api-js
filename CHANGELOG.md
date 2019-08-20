@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.6.5] - 2019-08-20
+
+- Adds documentation for suggestion endpoint [`5add582207`](https://github.com/coconutcalendar/coconut-open-api-js/commit/5add582207)
+- Adds location suggestions handling [`27185eb752`](https://github.com/coconutcalendar/coconut-open-api-js/commit/27185eb752)
+
 ## [0.6.4] - 2019-08-19
 
 - Documents new location resource method. Adds forgotten reference to method on interface [`cd2b0f1c59`](https://github.com/coconutcalendar/coconut-open-api-js/commit/cd2b0f1c59)
@@ -211,7 +216,9 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.3...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.5...HEAD
+[0.6.5]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.4...v0.6.5
+[0.6.4]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.3...v0.6.4
 [0.6.3]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.2...v0.6.3
 [0.6.2]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.1...v0.6.2
 [0.6.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.0...v0.6.1
