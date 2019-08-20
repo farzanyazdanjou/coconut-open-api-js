@@ -46,6 +46,8 @@ export interface LocationResource extends Pageable, ConditionalResource {
 
   providing(services: number | number[] | string | string[]): this;
 
+  suggest(query: string): Promise<any>;
+
   virtual(): this;
 }
 
@@ -139,6 +141,12 @@ export default class Location extends Conditional implements LocationResource {
     this.sortable = sortable;
 
     return this;
+  }
+
+  public async suggest(query: string): Promise<any> {
+    const params: Filterable<LocationFilter> = combine({}, { query });
+
+    return await this.client.get('location-suggestions', { params });
   }
 
   public take(limit: number): this {

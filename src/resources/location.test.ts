@@ -215,3 +215,16 @@ it('can conditionally not set a filter', async () => {
 
   expected.toHaveProperty('filters', {});
 });
+
+it('can supply suggestions based on the provided query', async () => {
+  const resource = new Location(mockAxios);
+
+  await resource.suggest('Fake City');
+
+  expect(mockAxios.get).toHaveBeenCalledTimes(1);
+  expect(mockAxios.get).toHaveBeenCalledWith('location-suggestions', {
+    params: {
+      'filter[query]': 'Fake City',
+    },
+  });
+});
