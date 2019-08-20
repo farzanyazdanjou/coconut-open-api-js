@@ -313,6 +313,10 @@ Set a filter which will tell the API to return locations where the supplied serv
 
 Set a sorting string to determine how the returned results are sorted.
 
+- `suggest(query: string)`
+
+Retrieve a set of location suggestions based on the given query. _(not publicly available yet)_
+
 - `take(limit: number)`
 
 Set the limit which you want returned.
@@ -343,6 +347,10 @@ class Locations {
       .on(page)
       .take(limit)
       .get();
+  }
+  
+  async suggestions(query) {
+    return await this.api.suggest(query);
   }
 }
 ```
