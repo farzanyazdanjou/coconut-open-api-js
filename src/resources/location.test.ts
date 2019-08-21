@@ -228,3 +228,12 @@ it('can supply suggestions based on the provided query', async () => {
     },
   });
 });
+
+it('can fetch details for a given location identifier received from a suggestion', async () => {
+  const resource = new Location(mockAxios);
+
+  await resource.details('random_string_of_characters');
+
+  expect(mockAxios.get).toHaveBeenCalledTimes(1);
+  expect(mockAxios.get).toHaveBeenCalledWith('location-details/random_string_of_characters');
+});

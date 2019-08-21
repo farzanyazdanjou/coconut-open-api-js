@@ -38,6 +38,8 @@ export interface LocationResource extends Pageable, ConditionalResource {
 
   containing(user: number | string): this;
 
+  details(identifier: string): Promise<any>;
+
   invitable(): this;
 
   located(details: LocatableLocationParameters): this;
@@ -78,6 +80,10 @@ export default class Location extends Conditional implements LocationResource {
     this.filters.user = user;
 
     return this;
+  }
+
+  public async details(identifier: string): Promise<any> {
+    return await this.client.get(`location-details/${identifier}`);
   }
 
   public async get(): Promise<any> {
