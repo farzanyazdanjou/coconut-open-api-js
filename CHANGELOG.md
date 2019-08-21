@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.6.6] - 2019-08-21
+
+- Adds documentation for location details endpoint [`db73fdc974`](https://github.com/coconutcalendar/coconut-open-api-js/commit/db73fdc974)
+- Adds ability to fetch location details [`a9173c13e3`](https://github.com/coconutcalendar/coconut-open-api-js/commit/a9173c13e3)
+
 ## [0.6.5] - 2019-08-20
 
 - Adds documentation for suggestion endpoint [`5add582207`](https://github.com/coconutcalendar/coconut-open-api-js/commit/5add582207)
