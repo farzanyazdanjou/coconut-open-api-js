@@ -285,6 +285,10 @@ Set a filter which will tell the API to return locations that have public user a
 
 Set a filter which will tell the API to return locations where the supplied user identifier is assigned.
 
+- `details(identifier: string)`
+
+Retrieve a given location's details based on the given identifier. _(not publicly available yet)_
+
 - `get()`
 
 Send the API request using the pre-set filters.
@@ -333,6 +337,10 @@ import { OpenApi } from 'coconut-open-api-js';
 class Locations {
   constructor() {
     this.api = new OpenApi();
+  }
+
+  async details(identifier) {
+    return await this.api.details(identifier);
   }
 
   async get({ page, limit, services, sortable, user }) {
