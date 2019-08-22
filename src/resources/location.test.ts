@@ -1,6 +1,7 @@
 import mockAxios from 'axios';
 
 import Location from './location';
+import { STORAGE_KEY } from '../helpers/token';
 
 it('will set assigned filter', async () => {
   const resource = new Location(mockAxios);
@@ -223,6 +224,27 @@ it('can supply suggestions based on the provided query', async () => {
 
   expect(mockAxios.get).toHaveBeenCalledTimes(1);
   expect(mockAxios.get).toHaveBeenCalledWith('location-suggestions', {
+    headers: {
+      'x-location-details-token': sessionStorage.getItem('location-details-token'),
+    },
+    params: {
+      'filter[query]': 'Fake City',
+    },
+  });
+});
+
+it('will reuse a token if it is already in session storage when fetching suggestions', async () => {
+  sessionStorage.setItem(STORAGE_KEY, 'value');
+
+  const resource = new Location(mockAxios);
+
+  await resource.suggest('Fake City');
+
+  expect(mockAxios.get).toHaveBeenCalledTimes(1);
+  expect(mockAxios.get).toHaveBeenCalledWith('location-suggestions', {
+    headers: {
+      'x-location-details-token': 'value',
+    },
     params: {
       'filter[query]': 'Fake City',
     },
@@ -230,10 +252,13 @@ it('can supply suggestions based on the provided query', async () => {
 });
 
 it('can fetch details for a given location identifier received from a suggestion', async () => {
+  sessionStorage.setItem(STORAGE_KEY, 'value');
+
   const resource = new Location(mockAxios);
 
   await resource.details('random_string_of_characters');
 
   expect(mockAxios.get).toHaveBeenCalledTimes(1);
   expect(mockAxios.get).toHaveBeenCalledWith('location-details/random_string_of_characters');
+  expect(sessionStorage.getItem(STORAGE_KEY)).toBeNull();
 });

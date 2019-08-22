@@ -1,6 +1,7 @@
 import { AxiosInstance } from 'axios';
 
 import { combine } from '../helpers/filters';
+import { remove, retrieve } from '../helpers/token';
 import { Filterable, Pageable } from '../index';
 import Conditional, { ConditionalResource } from './conditional';
 
@@ -83,6 +84,8 @@ export default class Location extends Conditional implements LocationResource {
   }
 
   public async details(identifier: string): Promise<any> {
+    remove();
+
     return await this.client.get(`location-details/${identifier}`);
   }
 
@@ -150,9 +153,13 @@ export default class Location extends Conditional implements LocationResource {
   }
 
   public async suggest(query: string): Promise<any> {
+    const headers = {
+      'x-location-details-token': retrieve(),
+    };
+
     const params: Filterable<LocationFilter> = combine({}, { query });
 
-    return await this.client.get('location-suggestions', { params });
+    return await this.client.get('location-suggestions', { headers, params });
   }
 
   public take(limit: number): this {

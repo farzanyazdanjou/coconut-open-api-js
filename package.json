@@ -3,7 +3,9 @@
   "version": "0.6.6",
   "description": "Coconut Calendar JS Open API SDK",
   "main": "dist/index.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest --config jestconfig.json",
@@ -48,6 +50,8 @@
     "typescript": "^3.1.6"
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "@types/uuid": "^3.4.5",
+    "axios": "^0.18.0",
+    "uuid": "^3.3.3"
   }
 }
