@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.6.7] - 2019-08-22
+
+- Adds token generation and handling for grouping autocomplete and details calls [`72a25ce8cb`](https://github.com/coconutcalendar/coconut-open-api-js/commit/72a25ce8cb)
+
 ## [0.6.6] - 2019-08-21
 
 - Adds documentation for location details endpoint [`db73fdc974`](https://github.com/coconutcalendar/coconut-open-api-js/commit/db73fdc974)
