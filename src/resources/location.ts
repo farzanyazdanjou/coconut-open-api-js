@@ -84,9 +84,13 @@ export default class Location extends Conditional implements LocationResource {
   }
 
   public async details(identifier: string): Promise<any> {
+    const headers = {
+      'x-location-details-token': retrieve(),
+    };
+
     remove();
 
-    return await this.client.get(`location-details/${identifier}`);
+    return await this.client.get(`location-details/${identifier}`, { headers });
   }
 
   public async get(): Promise<any> {
