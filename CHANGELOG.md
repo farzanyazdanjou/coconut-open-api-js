@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.6.8] - 2019-08-22
+
+- Sends token during details call instead of just removing it [`22732538e0`](https://github.com/coconutcalendar/coconut-open-api-js/commit/22732538e0)
+
 ## [0.6.7] - 2019-08-22
 
 - Adds token generation and handling for grouping autocomplete and details calls [`72a25ce8cb`](https://github.com/coconutcalendar/coconut-open-api-js/commit/72a25ce8cb)
@@ -225,7 +229,10 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.5...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.8...HEAD
+[0.6.8]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.7...v0.6.8
+[0.6.7]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.6...v0.6.7
+[0.6.6]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.5...v0.6.6
 [0.6.5]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.4...v0.6.5
 [0.6.4]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.3...v0.6.4
 [0.6.3]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.2...v0.6.3
