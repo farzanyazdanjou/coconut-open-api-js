@@ -1,15 +1,23 @@
 import { AxiosInstance } from 'axios';
 
-import { Resource } from '../index';
+export interface TimezoneResource {
+  get(country?: string): Promise<any>;
+}
 
-export default class Timezone implements Resource {
+export default class Timezone implements TimezoneResource {
   protected client: AxiosInstance;
 
   constructor(client: AxiosInstance) {
     this.client = client;
   }
 
-  public async get(): Promise<any> {
-    return await this.client.get('timezones');
+  public async get(country?: string): Promise<any> {
+    let url = 'timezones';
+
+    if (country) {
+      url += `/${country}`;
+    }
+
+    return await this.client.get(url);
   }
 }
