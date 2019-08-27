@@ -86,6 +86,12 @@ export class OpenApi {
     return this.form;
   }
 
+  public locale(locale: string): this {
+    this.client.defaults.headers.common['Accept-Language'] = locale;
+
+    return this;
+  }
+
   public lists(): WaitListResource {
     return this.list;
   }
