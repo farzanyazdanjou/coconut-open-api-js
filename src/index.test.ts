@@ -76,3 +76,15 @@ it('can access the forms resource', async () => {
 
   expect(instance.forms()).toBeInstanceOf(Form.prototype.constructor);
 });
+
+it('can set an accepted language header', async () => {
+  const instance = new OpenApi('admin');
+
+  instance.locale('es');
+
+  const object = JSON.parse(JSON.stringify(instance));
+
+  expect(object.client.defaults.headers.common).toMatchObject({
+    'Accept-Language': 'es',
+  });
+});
