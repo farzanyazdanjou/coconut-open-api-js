@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.6.10] - 2019-08-27
+
+- Adds method for setting an accept language header [`ea90179251`](https://github.com/coconutcalendar/coconut-open-api-js/commit/ea90179251)
+- Adds test for setting an accept-language header [`1150869049`](https://github.com/coconutcalendar/coconut-open-api-js/commit/1150869049)
+
 ## [0.6.9] - 2019-08-24
 
 - Adds ability to supply a country to narrow down timezones [`692ff3d1f7`](https://github.com/coconutcalendar/coconut-open-api-js/commit/692ff3d1f7)
@@ -233,7 +238,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.9...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.10...HEAD
+[0.6.10]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.9...v0.6.10
 [0.6.9]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.8...v0.6.9
 [0.6.8]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.7...v0.6.8
 [0.6.7]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.6...v0.6.7
