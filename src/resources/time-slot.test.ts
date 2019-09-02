@@ -54,6 +54,16 @@ it('will set timezone filter', async () => {
   });
 });
 
+it('will set supported locales filter', async () => {
+  const resource = new TimeSlot(mockAxios);
+
+  const locales = ['en', 'es'];
+
+  expect(resource.supporting(locales)).toHaveProperty('filters', {
+    locales,
+  });
+});
+
 it('can string all filterable options together', async () => {
   const resource = new TimeSlot(mockAxios);
 
