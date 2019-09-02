@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.6.11] - 2019-09-02
+
+- Adds documentation for supported locales on time slots [`2c3843ecbe`](https://github.com/coconutcalendar/coconut-open-api-js/commit/2c3843ecbe)
+- Ensures supplied supported locales are sent along with the api request appropriately [`a336c6cf65`](https://github.com/coconutcalendar/coconut-open-api-js/commit/a336c6cf65)
+- Adds ability to set a supported locale filter [`93169589cd`](https://github.com/coconutcalendar/coconut-open-api-js/commit/93169589cd)
+
 ## [0.6.10] - 2019-08-27
 
 - Adds method for setting an accept language header [`ea90179251`](https://github.com/coconutcalendar/coconut-open-api-js/commit/ea90179251)
@@ -238,7 +244,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.10...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.11...HEAD
+[0.6.11]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.10...v0.6.11
 [0.6.10]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.9...v0.6.10
 [0.6.9]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.8...v0.6.9
 [0.6.8]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.7...v0.6.8
