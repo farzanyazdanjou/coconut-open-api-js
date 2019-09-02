@@ -595,6 +595,10 @@ Send the API request using the pre-set filters.
 
 Set a filter which will tell the API to return time slots in the given timezone. _(not publicly available yet)_
 
+- `supporting(locales: string[])`
+
+Set a filter which will tell the API to return time slots for users that support the given locales. _(not publically available yet)_
+
 ##### Example
 
 ```javascript
@@ -613,6 +617,7 @@ class TimeSlots {
       .for(service)
       .between(start, end)
       .in('America/Chicago')
+      .supporting(['en', 'fr', 'es'])
       .get()
   }
 }
