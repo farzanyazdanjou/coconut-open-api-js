@@ -5,6 +5,7 @@ import { AttendeeModel } from '../models/attendee';
 import Conditional, { ConditionalResource } from './conditional';
 
 export interface AppointmentFilter {
+  invitation?: number;
   location?: number;
   matchers?: AppointmentMatcherParameters;
   notifications?: AppointmentNotificationParameters;
@@ -27,6 +28,7 @@ export interface AppointmentNotificationParameters {
 export interface AppointmentParameters {
   data: {
     attributes?: {
+      invitation_id: number | null;
       location_id: number | undefined;
       service_id: number | number[] | undefined;
       staff_id: number | null;
@@ -63,6 +65,8 @@ export interface AppointmentResource extends Resource, ConditionalResource {
   notify(notifications: AppointmentNotificationParameters): this;
 
   starting(start: string): this;
+
+  via(invitation: number): this;
 
   with(attendees: AttendeeModel | AttendeeModel[]): this;
 }
@@ -136,6 +140,12 @@ export default class Appointment extends Conditional implements AppointmentResou
     return this;
   }
 
+  public via(invitation: number): this {
+    this.filters.invitation = invitation;
+
+    return this;
+  }
+
   public with(attendees: AttendeeModel | AttendeeModel[]): this {
     this.relationships.attendees = Array.isArray(attendees) ? attendees : [attendees];
 
@@ -148,9 +158,9 @@ export default class Appointment extends Conditional implements AppointmentResou
     }
 
     const attendees = (this.relationships.attendees as AttendeeModel[]).map(
-      (attendee: AttendeeModel): object => {
-        return attendee.transform();
-      },
+        (attendee: AttendeeModel): object => {
+          return attendee.transform();
+        },
     );
 
     let params: AppointmentParameters = {
@@ -166,6 +176,7 @@ export default class Appointment extends Conditional implements AppointmentResou
 
     if (this.filters.location || this.filters.services || this.filters.start) {
       params.data.attributes = {
+        invitation_id: null,
         location_id: this.filters.location,
         service_id: this.filters.services,
         staff_id: null,
@@ -174,6 +185,10 @@ export default class Appointment extends Conditional implements AppointmentResou
 
       if (this.filters.user) {
         params.data.attributes.staff_id = this.filters.user;
+      }
+
+      if (this.filters.invitation) {
+        params.data.attributes.invitation_id = this.filters.invitation;
       }
     }
 
