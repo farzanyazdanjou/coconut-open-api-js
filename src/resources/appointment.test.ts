@@ -91,11 +91,11 @@ it('can book an appointment with the minimum required parameters', async () => {
   const attendee = new Attendee();
 
   await resource
-      .at(1)
-      .for(2)
-      .starting(start)
-      .with(attendee.named('Jane', 'Doe').reachable({ email: 'jane@doe.com' }))
-      .book();
+    .at(1)
+    .for(2)
+    .starting(start)
+    .with(attendee.named('Jane', 'Doe').reachable({ email: 'jane@doe.com' }))
+    .book();
 
   expect(mockAxios.post).toHaveBeenCalledTimes(1);
   expect(mockAxios.post).toHaveBeenCalledWith('appointments', {
@@ -134,35 +134,35 @@ it('can book an appointment with all available parameters', async () => {
 
   notifications.forEach(async (notification: object) => {
     await resource
-        .at(1)
-        .for([2, 3])
-        .by(4)
-        .via(5)
-        .starting(start)
-        .with(
-            attendee
-                .named('Jane', 'Doe')
-                .reachable({
-                  cell_phone: '5555555555',
-                  email: 'jane@doe.com',
-                  phone: '5555555555',
-                  work_phone: '5555555555',
-                })
-                .located({
-                  address: '123 Fake St',
-                  city: 'Fake City',
-                  country: 'FC',
-                  postcode: 'X0X 0X0',
-                  region: 'FR',
-                  timezone: 'UTC',
-                })
-                .messagable()
-                .provided('notes')
-                .speaks('es')
-                .answers(answer.for(1).is('this answer')),
-        )
-        .notify(notification)
-        .book();
+      .at(1)
+      .for([2, 3])
+      .by(4)
+      .via(5)
+      .starting(start)
+      .with(
+        attendee
+          .named('Jane', 'Doe')
+          .reachable({
+            cell_phone: '5555555555',
+            email: 'jane@doe.com',
+            phone: '5555555555',
+            work_phone: '5555555555',
+          })
+          .located({
+            address: '123 Fake St',
+            city: 'Fake City',
+            country: 'FC',
+            postcode: 'X0X 0X0',
+            region: 'FR',
+            timezone: 'UTC',
+          })
+          .messagable()
+          .provided('notes')
+          .speaks('es')
+          .answers(answer.for(1).is('this answer')),
+      )
+    .notify(notification)
+    .book();
 
     expect(mockAxios.post).toHaveBeenCalledWith('appointments', {
       data: {
@@ -257,10 +257,10 @@ it('can cancel the given appointment for the given attendee while provided respo
   ];
 
   await resource
-      .with(
-          attendee.as(2).responses(responses)
-      )
-      .cancel(1, 2);
+    .with(
+      attendee.as(2).responses(responses)
+    )
+    .cancel(1, 2);
 
   expect(mockAxios.delete).toHaveBeenCalledWith('appointments/1/2', {
     data: {
@@ -303,7 +303,7 @@ it('can conditionally set a filter', async () => {
   const resource = new Appointment(mockAxios);
 
   const expected = expect(
-      resource.when(true, (appointment: Appointment) => appointment.at(1)),
+    resource.when(true, (appointment: Appointment) => appointment.at(1)),
   );
 
   expected.toHaveProperty('filters', {
@@ -315,7 +315,7 @@ it('can conditionally not set a filter', async () => {
   const resource = new Appointment(mockAxios);
 
   const expected = expect(
-      resource.when(false, (appointment: Appointment) => appointment.at(1)),
+    resource.when(false, (appointment: Appointment) => appointment.at(1)),
   );
 
   expected.toHaveProperty('filters', {});

@@ -158,9 +158,9 @@ export default class Appointment extends Conditional implements AppointmentResou
     }
 
     const attendees = (this.relationships.attendees as AttendeeModel[]).map(
-        (attendee: AttendeeModel): object => {
-          return attendee.transform();
-        },
+      (attendee: AttendeeModel): object => {
+        return attendee.transform();
+      },
     );
 
     let params: AppointmentParameters = {
