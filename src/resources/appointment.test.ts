@@ -6,6 +6,14 @@ import Attendee from '../models/attendee';
 import Response from '../models/response';
 import Appointment, { AppointmentMatcherParameters, AppointmentNotificationParameters } from './appointment';
 
+it('can set the invitation property', async () => {
+  const resource = new Appointment(mockAxios);
+
+  expect(resource.via(1)).toHaveProperty('filters', {
+    invitation: 1,
+  });
+});
+
 it('can set the location property', async () => {
   const resource = new Appointment(mockAxios);
 
@@ -93,6 +101,7 @@ it('can book an appointment with the minimum required parameters', async () => {
   expect(mockAxios.post).toHaveBeenCalledWith('appointments', {
     data: {
       attributes: {
+        invitation_id: null,
         location_id: 1,
         service_id: 2,
         staff_id: null,
@@ -129,6 +138,7 @@ it('can book an appointment with all available parameters', async () => {
       .at(1)
       .for([2, 3])
       .by(4)
+      .via(5)
       .starting(start)
       .with(
         attendee
@@ -152,12 +162,13 @@ it('can book an appointment with all available parameters', async () => {
           .speaks('es')
           .answers(answer.for(1).is('this answer')),
       )
-      .notify(notification)
-      .book();
+    .notify(notification)
+    .book();
 
     expect(mockAxios.post).toHaveBeenCalledWith('appointments', {
       data: {
         attributes: {
+          invitation_id: 5,
           location_id: 1,
           service_id: [2, 3],
           staff_id: 4,
