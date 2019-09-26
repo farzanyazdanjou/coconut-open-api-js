@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.6.12] - 2019-09-26
+
+- Adds ability to set invitation property to appointment resource, and appropriate test. [`5e3e6eef09`](https://github.com/coconutcalendar/coconut-open-api-js/commit/5e3e6eef09)
+
 ## [0.6.11] - 2019-09-02
 
 - Adds documentation for supported locales on time slots [`2c3843ecbe`](https://github.com/coconutcalendar/coconut-open-api-js/commit/2c3843ecbe)
