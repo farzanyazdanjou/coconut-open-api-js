@@ -101,6 +101,7 @@ it('can book an appointment with the minimum required parameters', async () => {
   expect(mockAxios.post).toHaveBeenCalledWith('appointments', {
     data: {
       attributes: {
+        invitation_id: null,
         location_id: 1,
         service_id: 2,
         staff_id: null,
