@@ -24,7 +24,7 @@ We accept contributions via Pull Requests on [Github](https://github.com/coconut
 ## Running Tests
 
 ``` bash
-$ composer test
+$ yarn run test
 ```
 
 
