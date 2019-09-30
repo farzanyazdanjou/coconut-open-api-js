@@ -148,6 +148,7 @@ it('can book an appointment with all available parameters', async () => {
       .by(4)
       .via(5)
       .starting(start)
+      .source('test source')
       .with(
         attendee
           .named('Jane', 'Doe')
@@ -225,6 +226,7 @@ it('can book an appointment with all available parameters', async () => {
       },
       meta: {
         notify: notification,
+        source: 'test source',
       },
     });
 
