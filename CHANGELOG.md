@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+## [0.6.13] - 2019-09-30
+
+- Fixes spacing on if condition [`3edc9e9a9d`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3edc9e9a9d)
+- Updates documentation to describe the new functionality for setting the source of an appointment [`a16cadadcf`](https://github.com/coconutcalendar/coconut-open-api-js/commit/a16cadadcf)
+- Allows the source of the appointment to be set (ie. the UTM source) [`70b42b70c9`](https://github.com/coconutcalendar/coconut-open-api-js/commit/70b42b70c9)
+- Updates test to also use and check for the new source parameter [`dc0ba2d62e`](https://github.com/coconutcalendar/coconut-open-api-js/commit/dc0ba2d62e)
+- Adds test for setting the source property [`511510e65c`](https://github.com/coconutcalendar/coconut-open-api-js/commit/511510e65c)
+
 ## [0.6.12] - 2019-09-26
 
 - Adds ability to set invitation property to appointment resource, and appropriate test. [`5e3e6eef09`](https://github.com/coconutcalendar/coconut-open-api-js/commit/5e3e6eef09)
@@ -248,7 +256,9 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.11...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.13...HEAD
+[0.6.13]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.12...v0.6.13
+[0.6.12]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.11...v0.6.12
 [0.6.11]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.10...v0.6.11
 [0.6.10]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.9...v0.6.10
 [0.6.9]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.8...v0.6.9
