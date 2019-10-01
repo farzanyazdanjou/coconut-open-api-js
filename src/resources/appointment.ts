@@ -211,7 +211,7 @@ export default class Appointment extends Conditional implements AppointmentResou
       };
     }
 
-    if(this.filters.source) {
+    if (this.filters.source) {
       params = {
         ...params,
         meta: {
