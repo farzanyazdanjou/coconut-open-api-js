@@ -10,6 +10,7 @@ export interface AppointmentFilter {
   matchers?: AppointmentMatcherParameters;
   notifications?: AppointmentNotificationParameters;
   services?: number | number[];
+  source?: string;
   start?: string;
   user?: number;
 }
@@ -46,6 +47,7 @@ export interface AppointmentParameters {
       client?: boolean;
       user?: boolean;
     };
+    source?: string;
   };
 }
 
@@ -65,6 +67,8 @@ export interface AppointmentResource extends Resource, ConditionalResource {
   notify(notifications: AppointmentNotificationParameters): this;
 
   starting(start: string): this;
+
+  source(source: string): this;
 
   via(invitation: number): this;
 
@@ -140,6 +144,12 @@ export default class Appointment extends Conditional implements AppointmentResou
     return this;
   }
 
+  public source(source: string): this {
+    this.filters.source = source;
+
+    return this;
+  }
+
   public via(invitation: number): this {
     this.filters.invitation = invitation;
 
@@ -199,6 +209,16 @@ export default class Appointment extends Conditional implements AppointmentResou
           notify: this.filters.notifications,
         },
       };
+    }
+
+    if (this.filters.source) {
+      params = {
+        ...params,
+        meta: {
+          ...params.meta,
+          source: this.filters.source,
+        },
+      }
     }
 
     return params;

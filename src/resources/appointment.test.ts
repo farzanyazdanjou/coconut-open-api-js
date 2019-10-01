@@ -46,6 +46,14 @@ it('can set the service property using a multiple numbers', async () => {
   });
 });
 
+it('can set the source property', async () => {
+  const resource = new Appointment(mockAxios);
+
+  expect(resource.source('test source')).toHaveProperty('filters', {
+      source: 'test source',
+  });
+});
+
 it('can set the notifications property', async () => {
   const resource = new Appointment(mockAxios);
   const notifications: AppointmentNotificationParameters = {
@@ -140,6 +148,7 @@ it('can book an appointment with all available parameters', async () => {
       .by(4)
       .via(5)
       .starting(start)
+      .source('test source')
       .with(
         attendee
           .named('Jane', 'Doe')
@@ -217,6 +226,7 @@ it('can book an appointment with all available parameters', async () => {
       },
       meta: {
         notify: notification,
+        source: 'test source',
       },
     });
 

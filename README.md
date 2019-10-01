@@ -92,6 +92,10 @@ Set a filter to determine who should be notified when booking an appointment.
 
 Set an attribute which will tell the API to use the given start date time string as the start time of the new appointment.
 
+- `source(source: string)`
+
+Set an attribute which will tell the API to use the given source string as the source when creating an appointment (ie. the UTM source)
+
 - `via(invitation: number)`
 
 Set an attribute which will tell the API to use the given invitation identifier when creating an appointment.
@@ -113,7 +117,7 @@ class Appointments {
   async book(attributes) {
     const {
       address, city, country, email, firstName, invitation, language, lastName,
-      location, notes, phone, question, service, start, user, value,
+      location, notes, phone, question, service, source, start, user, value,
     } = attributes;
 
     const answer = (new Answer())
@@ -134,6 +138,7 @@ class Appointments {
       .by(user)
       .for(service)
       .starting(start)
+      .source(source)
       .via(invitation)
       .with(attendee)
       .notify({
