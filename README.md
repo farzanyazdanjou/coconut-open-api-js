@@ -88,6 +88,10 @@ Set a filter to use in order to find an existing appointment.
 
 Set a filter to determine who should be notified when booking an appointment.
 
+- `reschedule(appointment: number)`
+
+Reschedule an appointment matching the given appointment identifier using the pre-set start parameter.
+
 - `starting(start: string)`
 
 Set an attribute which will tell the API to use the given start date time string as the start time of the new appointment.
@@ -168,7 +172,18 @@ class Appointments {
   async fetch({ code, email, id }) {
     return this.api.appointments().matching({ code, email, id }).get();
   }
-}
+  
+  async reschedule({ appointment, start }) {
+      return this.api
+        .appointments()
+        .starting(start)
+        .notify({
+          user: true,
+          client: true,
+        })
+        .reschedule(appointment);
+    }
+  }
 ```
 
 ### Attendees
