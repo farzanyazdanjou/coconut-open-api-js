@@ -51,6 +51,21 @@ export interface AppointmentParameters {
   };
 }
 
+export interface RescheduleParameters {
+  data: {
+    attributes: {
+      start: string | undefined;
+    };
+    type: string;
+  };
+  meta?: {
+    notify?: {
+      client?: boolean;
+      user?: boolean;
+    };
+  };
+}
+
 export interface AppointmentResource extends Resource, ConditionalResource {
   at(location: number): this;
 
@@ -65,6 +80,8 @@ export interface AppointmentResource extends Resource, ConditionalResource {
   matching(matchers: AppointmentMatcherParameters): this;
 
   notify(notifications: AppointmentNotificationParameters): this;
+
+  reschedule(appointment: number): Promise<any>;
 
   starting(start: string): this;
 
@@ -136,6 +153,10 @@ export default class Appointment extends Conditional implements AppointmentResou
     this.filters.notifications = notifications;
 
     return this;
+  }
+
+  public async reschedule(appointment: number): Promise<any> {
+    return await this.client.patch(`appointments/${appointment}`, this.rescheduleParams());
   }
 
   public starting(start: string): this {
@@ -219,6 +240,28 @@ export default class Appointment extends Conditional implements AppointmentResou
           source: this.filters.source,
         },
       }
+    }
+
+    return params;
+  }
+
+  protected rescheduleParams(): RescheduleParameters | object {
+    let params: RescheduleParameters = {
+      data: {
+        attributes: {
+          start: this.filters.start,
+        },
+        type: 'appointments',
+      },
+    };
+
+    if (this.filters.notifications) {
+      params = {
+        ...params,
+        meta: {
+          notify: this.filters.notifications,
+        },
+      };
     }
 
     return params;
