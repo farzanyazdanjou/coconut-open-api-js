@@ -331,3 +331,48 @@ it('can conditionally not set a filter', async () => {
 
   expected.toHaveProperty('filters', {});
 });
+
+it('can reschedule an appointment with the minimum required parameters', async () => {
+  const resource = new Appointment(mockAxios);
+  const start = '2018-01-01 12:00:00';
+
+  await resource
+      .starting(start)
+      .reschedule(1);
+
+  expect(mockAxios.patch).toHaveBeenCalledTimes(1);
+  expect(mockAxios.patch).toHaveBeenCalledWith('appointments/1', {
+    data: {
+      attributes: {
+        start,
+      },
+      type: 'appointments',
+    },
+  });
+});
+
+it('can reschedule an appointment with all available parameters', async () => {
+  const resource = new Appointment(mockAxios);
+  const start = '2018-01-01 12:00:00';
+  const notifications = [Notifications.CLIENT, Notifications.USER, Notifications.ALL];
+
+  notifications.forEach(async (notification: object) => {
+    await resource
+        .starting(start)
+        .notify(notification)
+        .reschedule(1);
+
+    expect(mockAxios.patch).toHaveBeenCalledTimes(1);
+    expect(mockAxios.patch).toHaveBeenCalledWith('appointments/1', {
+      data: {
+        attributes: {
+          start,
+        },
+        type: 'appointments',
+      },
+      meta: {
+        notify: notification,
+      },
+    });
+  });
+});
