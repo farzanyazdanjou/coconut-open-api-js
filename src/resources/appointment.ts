@@ -10,9 +10,12 @@ export interface AppointmentFilter {
   matchers?: AppointmentMatcherParameters;
   notifications?: AppointmentNotificationParameters;
   services?: number | number[];
-  source?: string;
   start?: string;
   user?: number;
+}
+
+export interface Utm {
+  source?: string;
 }
 
 export interface AppointmentMatcherParameters {
@@ -102,6 +105,7 @@ export default class Appointment extends Conditional implements AppointmentResou
   protected client: AxiosInstance;
   protected filters: AppointmentFilter;
   protected relationships: AppointmentRelationship;
+  protected utm: Utm;
 
   constructor(client: AxiosInstance) {
     super();
@@ -111,6 +115,7 @@ export default class Appointment extends Conditional implements AppointmentResou
     this.relationships = {
       attendees: [],
     };
+    this.utm = {};
   }
 
   public at(location: number): this {
@@ -168,7 +173,7 @@ export default class Appointment extends Conditional implements AppointmentResou
   }
 
   public source(source: string): this {
-    this.filters.source = source;
+    this.utm.source = source;
 
     return this;
   }
@@ -234,13 +239,13 @@ export default class Appointment extends Conditional implements AppointmentResou
       };
     }
 
-    if (this.filters.source) {
+    if (this.utm.source) {
       params = {
         ...params,
         meta: {
           ...params.meta,
           utm: {
-            source: this.filters.source,
+            source: this.utm.source,
           },
         },
       };
