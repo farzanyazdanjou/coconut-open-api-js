@@ -46,11 +46,43 @@ it('can set the service property using a multiple numbers', async () => {
   });
 });
 
+it('can set the campaign property', async () => {
+  const resource = new Appointment(mockAxios);
+
+  expect(resource.campaign('test campaign')).toHaveProperty('utm', {
+    campaign: 'test campaign',
+  });
+});
+
+it('can set the content property', async () => {
+  const resource = new Appointment(mockAxios);
+
+  expect(resource.content('test content')).toHaveProperty('utm', {
+    content: 'test content',
+  });
+});
+
+it('can set the medium property', async () => {
+  const resource = new Appointment(mockAxios);
+
+  expect(resource.medium('test medium')).toHaveProperty('utm', {
+    medium: 'test medium',
+  });
+});
+
 it('can set the source property', async () => {
   const resource = new Appointment(mockAxios);
 
   expect(resource.source('test source')).toHaveProperty('utm', {
-      source: 'test source',
+    source: 'test source',
+  });
+});
+
+it('can set the term property', async () => {
+  const resource = new Appointment(mockAxios);
+
+  expect(resource.term('test term')).toHaveProperty('utm', {
+    term: 'test term',
   });
 });
 
