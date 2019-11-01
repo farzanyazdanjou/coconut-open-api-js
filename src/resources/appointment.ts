@@ -239,19 +239,23 @@ export default class Appointment extends Conditional implements AppointmentResou
       };
     }
 
-    if (this.utm.source) {
+    if (this.hasUtm()) {
       params = {
         ...params,
         meta: {
           ...params.meta,
           utm: {
-            source: this.utm.source,
+            ...this.utm.source && {source: this.utm.source},
           },
         },
       };
     }
 
     return params;
+  }
+
+  protected hasUtm(): boolean {
+    return !!(this.utm.source)
   }
 
   protected rescheduleParams(): RescheduleParameters | object {
