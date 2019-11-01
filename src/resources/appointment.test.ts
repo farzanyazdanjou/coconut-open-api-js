@@ -49,7 +49,7 @@ it('can set the service property using a multiple numbers', async () => {
 it('can set the source property', async () => {
   const resource = new Appointment(mockAxios);
 
-  expect(resource.source('test source')).toHaveProperty('filters', {
+  expect(resource.source('test source')).toHaveProperty('utm', {
       source: 'test source',
   });
 });
@@ -226,7 +226,9 @@ it('can book an appointment with all available parameters', async () => {
       },
       meta: {
         notify: notification,
-        source: 'test source',
+        utm: {
+            source: 'test source',
+        },
       },
     });
 
