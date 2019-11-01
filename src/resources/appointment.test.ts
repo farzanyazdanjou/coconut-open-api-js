@@ -180,7 +180,11 @@ it('can book an appointment with all available parameters', async () => {
       .by(4)
       .via(5)
       .starting(start)
+      .campaign('test campaign')
+      .content('test content')
+      .medium('test medium')
       .source('test source')
+      .term('test term')
       .with(
         attendee
           .named('Jane', 'Doe')
@@ -259,7 +263,11 @@ it('can book an appointment with all available parameters', async () => {
       meta: {
         notify: notification,
         utm: {
-            source: 'test source',
+          campaign: 'test campaign',
+          content: 'test content',
+          medium: 'test medium',
+          source: 'test source',
+          term: 'test term',
         },
       },
     });
