@@ -86,17 +86,11 @@ export interface AppointmentResource extends Resource, ConditionalResource {
 
   by(user: number): this;
 
-  campaign(campaign: string): this;
-
   cancel(appointment: number, attendee: number): Promise<any>;
-
-  content(content: string): this;
 
   for(services: number | number[]): this;
 
   matching(matchers: AppointmentMatcherParameters): this;
-
-  medium(medium: string): this;
 
   notify(notifications: AppointmentNotificationParameters): this;
 
@@ -104,20 +98,28 @@ export interface AppointmentResource extends Resource, ConditionalResource {
 
   starting(start: string): this;
 
-  source(source: string): this;
-
-  term(term: string): this;
-
   via(invitation: number): this;
 
   with(attendees: AttendeeModel | AttendeeModel[]): this;
+}
+
+export interface Utm {
+  campaign(campaign: string): this;
+
+  content(content: string): this;
+
+  medium(medium: string): this;
+
+  source(source: string): this;
+
+  term(term: string): this;
 }
 
 export interface AppointmentRelationship {
   attendees: AttendeeModel[] | [];
 }
 
-export default class Appointment extends Conditional implements AppointmentResource {
+export default class Appointment extends Conditional implements AppointmentResource, Utm {
   protected client: AxiosInstance;
   protected filters: AppointmentFilter;
   protected relationships: AppointmentRelationship;
