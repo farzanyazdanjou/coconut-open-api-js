@@ -15,7 +15,11 @@ export interface AppointmentFilter {
 }
 
 export interface Utm {
+  campaign?: string;
+  content?: string;
+  medium?: string;
   source?: string;
+  term?: string;
 }
 
 export interface AppointmentMatcherParameters {
@@ -78,11 +82,17 @@ export interface AppointmentResource extends Resource, ConditionalResource {
 
   by(user: number): this;
 
+  campaign(campaign: string): this;
+
   cancel(appointment: number, attendee: number): Promise<any>;
+
+  content(content: string): this;
 
   for(services: number | number[]): this;
 
   matching(matchers: AppointmentMatcherParameters): this;
+
+  medium(medium: string): this;
 
   notify(notifications: AppointmentNotificationParameters): this;
 
@@ -91,6 +101,8 @@ export interface AppointmentResource extends Resource, ConditionalResource {
   starting(start: string): this;
 
   source(source: string): this;
+
+  term(term: string): this;
 
   via(invitation: number): this;
 
@@ -134,8 +146,20 @@ export default class Appointment extends Conditional implements AppointmentResou
     return this;
   }
 
+  public campaign(campaign: string): this {
+    this.utm.campaign = campaign;
+
+    return this;
+  }
+
   public async cancel(appointment: number, attendee: number): Promise<any> {
     return await this.client.delete(`appointments/${appointment}/${attendee}`, this.params());
+  }
+
+  public content(content: string): this {
+    this.utm.content = content;
+
+    return this;
   }
 
   public for(services: number | number[]): this {
@@ -152,6 +176,12 @@ export default class Appointment extends Conditional implements AppointmentResou
 
   public matching(matchers: AppointmentMatcherParameters): this {
     this.filters.matchers = matchers;
+
+    return this;
+  }
+
+  public medium(medium: string): this {
+    this.utm.medium = medium;
 
     return this;
   }
@@ -174,6 +204,12 @@ export default class Appointment extends Conditional implements AppointmentResou
 
   public source(source: string): this {
     this.utm.source = source;
+
+    return this;
+  }
+
+  public term(term: string): this {
+    this.utm.term = term;
 
     return this;
   }
