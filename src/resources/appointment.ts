@@ -14,7 +14,7 @@ export interface AppointmentFilter {
   user?: number;
 }
 
-export interface Utm {
+export interface UtmParameters {
   campaign?: string;
   content?: string;
   medium?: string;
@@ -121,7 +121,7 @@ export default class Appointment extends Conditional implements AppointmentResou
   protected client: AxiosInstance;
   protected filters: AppointmentFilter;
   protected relationships: AppointmentRelationship;
-  protected utm: Utm;
+  protected utm: UtmParameters;
 
   constructor(client: AxiosInstance) {
     super();
