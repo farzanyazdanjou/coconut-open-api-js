@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+## [0.6.14] - 2019-10-01
+
+- Adds test to verify appointment can be rescheduled with notification parameters set [`490771bb5d`](https://github.com/coconutcalendar/coconut-open-api-js/commit/490771bb5d)
+- Updates documentation to describe the new functionality for rescheduling an appointment [`7217391933`](https://github.com/coconutcalendar/coconut-open-api-js/commit/7217391933)
+- Allows an appointment to be rescheduled [`de18020baa`](https://github.com/coconutcalendar/coconut-open-api-js/commit/de18020baa)
+- Adds test for rescheduling an appointment [`88642e928f`](https://github.com/coconutcalendar/coconut-open-api-js/commit/88642e928f)
+
 ## [0.6.13] - 2019-09-30
 
 - Fixes spacing on if condition [`3edc9e9a9d`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3edc9e9a9d)
@@ -256,7 +263,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.13...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.14...HEAD
+[0.6.14]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.13...v0.6.14
 [0.6.13]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.12...v0.6.13
 [0.6.12]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.11...v0.6.12
 [0.6.11]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.10...v0.6.11
