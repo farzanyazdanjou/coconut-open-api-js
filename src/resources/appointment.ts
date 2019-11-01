@@ -47,7 +47,9 @@ export interface AppointmentParameters {
       client?: boolean;
       user?: boolean;
     };
-    source?: string;
+    utm?: {
+      source?: string;
+    };
   };
 }
 
@@ -237,9 +239,11 @@ export default class Appointment extends Conditional implements AppointmentResou
         ...params,
         meta: {
           ...params.meta,
-          source: this.filters.source,
+          utm: {
+            source: this.filters.source,
+          },
         },
-      }
+      };
     }
 
     return params;
