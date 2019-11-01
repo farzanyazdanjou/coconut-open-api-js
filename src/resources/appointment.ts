@@ -55,7 +55,11 @@ export interface AppointmentParameters {
       user?: boolean;
     };
     utm?: {
+      campaign?: string;
+      content?: string;
       source?: string;
+      medium?: string;
+      term?: string;
     };
   };
 }
@@ -281,7 +285,11 @@ export default class Appointment extends Conditional implements AppointmentResou
         meta: {
           ...params.meta,
           utm: {
+            ...this.utm.campaign && {campaign: this.utm.campaign},
+            ...this.utm.content && {content: this.utm.content},
+            ...this.utm.medium && {medium: this.utm.medium},
             ...this.utm.source && {source: this.utm.source},
+            ...this.utm.term && {term: this.utm.term},
           },
         },
       };
@@ -291,7 +299,11 @@ export default class Appointment extends Conditional implements AppointmentResou
   }
 
   protected hasUtm(): boolean {
-    return !!(this.utm.source)
+    return !!(this.utm.campaign)
+      || !!(this.utm.content)
+      || !!(this.utm.medium)
+      || !!(this.utm.source)
+      || !!(this.utm.term);
   }
 
   protected rescheduleParams(): RescheduleParameters | object {
