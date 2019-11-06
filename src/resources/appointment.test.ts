@@ -346,6 +346,7 @@ it('can reschedule an appointment with the minimum required parameters', async (
       attributes: {
         start,
       },
+      id: 1,
       type: 'appointments',
     },
   });
@@ -368,6 +369,7 @@ it('can reschedule an appointment with all available parameters', async () => {
         attributes: {
           start,
         },
+        id: 1,
         type: 'appointments',
       },
       meta: {
