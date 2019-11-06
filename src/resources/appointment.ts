@@ -56,6 +56,7 @@ export interface RescheduleParameters {
     attributes: {
       start: string | undefined;
     };
+    id: number;
     type: string;
   };
   meta?: {
@@ -156,7 +157,7 @@ export default class Appointment extends Conditional implements AppointmentResou
   }
 
   public async reschedule(appointment: number): Promise<any> {
-    return await this.client.patch(`appointments/${appointment}`, this.rescheduleParams());
+    return await this.client.patch(`appointments/${appointment}`, this.rescheduleParams(appointment));
   }
 
   public starting(start: string): this {
@@ -245,12 +246,13 @@ export default class Appointment extends Conditional implements AppointmentResou
     return params;
   }
 
-  protected rescheduleParams(): RescheduleParameters | object {
+  protected rescheduleParams(appointment: number): RescheduleParameters | object {
     let params: RescheduleParameters = {
       data: {
         attributes: {
           start: this.filters.start,
         },
+        id: appointment,
         type: 'appointments',
       },
     };
