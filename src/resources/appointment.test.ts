@@ -405,7 +405,6 @@ it('can reschedule an appointment with all available parameters', async () => {
         .notify(notification)
         .reschedule(1);
 
-    expect(mockAxios.patch).toHaveBeenCalledTimes(1);
     expect(mockAxios.patch).toHaveBeenCalledWith('appointments/1', {
       data: {
         attributes: {
@@ -419,4 +418,6 @@ it('can reschedule an appointment with all available parameters', async () => {
       },
     });
   });
+
+  expect(mockAxios.patch).toHaveBeenCalledTimes(3);
 });
