@@ -72,6 +72,14 @@ Set a relationship which will tell the API to use the given user identifier when
 
 Cancel an appointment for a specific attendee matching the given appointment and attendee identifiers.
 
+- `campaign(campaign: string)`
+
+Set an attribute which will tell the API to use the given string as the campaign UTM parameter when creating an appointment.
+
+- `content(content: string)`
+
+Set an attribute which will tell the API to use the given string as the content UTM parameter when creating an appointment.
+
 - `for(services: number | numbers[])`
 
 Set a relationship which will tell the API to use the given service identifier when creating an appointment.
@@ -83,6 +91,10 @@ Find an appointment matching the pre-set matching parameters.
 - `matching(matchers: AppointmentMatcherParameters)`
 
 Set a filter to use in order to find an existing appointment.
+
+- `medium(medium: string)`
+
+Set an attribute which will tell the API to use the given string as the medium UTM parameter when creating an appointment.
 
 - `notify(notifications: AppointmentNotificationParameters)`
 
@@ -98,7 +110,11 @@ Set an attribute which will tell the API to use the given start date time string
 
 - `source(source: string)`
 
-Set an attribute which will tell the API to use the given source string as the source when creating an appointment (ie. the UTM source)
+Set an attribute which will tell the API to use the given string as the source UTM parameter when creating an appointment.
+
+- `term(term: string)`
+
+Set an attribute which will tell the API to use the given string as the term UTM parameter when creating an appointment.
 
 - `via(invitation: number)`
 
@@ -120,8 +136,8 @@ class Appointments {
 
   async book(attributes) {
     const {
-      address, city, country, email, firstName, invitation, language, lastName,
-      location, notes, phone, question, service, source, start, user, value,
+      address, campaign, city, content, country, email, firstName, invitation, language, lastName,
+      location, medium, notes, phone, question, service, source, start, term, user, value,
     } = attributes;
 
     const answer = (new Answer())
@@ -142,7 +158,11 @@ class Appointments {
       .by(user)
       .for(service)
       .starting(start)
+      .campaign(campaign)
+      .content(content)
+      .medium(medium)
       .source(source)
+      .term(term)
       .via(invitation)
       .with(attendee)
       .notify({

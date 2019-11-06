@@ -10,9 +10,16 @@ export interface AppointmentFilter {
   matchers?: AppointmentMatcherParameters;
   notifications?: AppointmentNotificationParameters;
   services?: number | number[];
-  source?: string;
   start?: string;
   user?: number;
+}
+
+export interface UtmParameters {
+  campaign?: string;
+  content?: string;
+  medium?: string;
+  source?: string;
+  term?: string;
 }
 
 export interface AppointmentMatcherParameters {
@@ -47,7 +54,13 @@ export interface AppointmentParameters {
       client?: boolean;
       user?: boolean;
     };
-    source?: string;
+    utm?: {
+      campaign?: string;
+      content?: string;
+      source?: string;
+      medium?: string;
+      term?: string;
+    };
   };
 }
 
@@ -86,21 +99,32 @@ export interface AppointmentResource extends Resource, ConditionalResource {
 
   starting(start: string): this;
 
-  source(source: string): this;
-
   via(invitation: number): this;
 
   with(attendees: AttendeeModel | AttendeeModel[]): this;
+}
+
+export interface Utm {
+  campaign(campaign: string): this;
+
+  content(content: string): this;
+
+  medium(medium: string): this;
+
+  source(source: string): this;
+
+  term(term: string): this;
 }
 
 export interface AppointmentRelationship {
   attendees: AttendeeModel[] | [];
 }
 
-export default class Appointment extends Conditional implements AppointmentResource {
+export default class Appointment extends Conditional implements AppointmentResource, Utm {
   protected client: AxiosInstance;
   protected filters: AppointmentFilter;
   protected relationships: AppointmentRelationship;
+  protected utm: UtmParameters;
 
   constructor(client: AxiosInstance) {
     super();
@@ -110,6 +134,7 @@ export default class Appointment extends Conditional implements AppointmentResou
     this.relationships = {
       attendees: [],
     };
+    this.utm = {};
   }
 
   public at(location: number): this {
@@ -128,8 +153,20 @@ export default class Appointment extends Conditional implements AppointmentResou
     return this;
   }
 
+  public campaign(campaign: string): this {
+    this.utm.campaign = campaign;
+
+    return this;
+  }
+
   public async cancel(appointment: number, attendee: number): Promise<any> {
     return await this.client.delete(`appointments/${appointment}/${attendee}`, this.params());
+  }
+
+  public content(content: string): this {
+    this.utm.content = content;
+
+    return this;
   }
 
   public for(services: number | number[]): this {
@@ -146,6 +183,12 @@ export default class Appointment extends Conditional implements AppointmentResou
 
   public matching(matchers: AppointmentMatcherParameters): this {
     this.filters.matchers = matchers;
+
+    return this;
+  }
+
+  public medium(medium: string): this {
+    this.utm.medium = medium;
 
     return this;
   }
@@ -167,7 +210,13 @@ export default class Appointment extends Conditional implements AppointmentResou
   }
 
   public source(source: string): this {
-    this.filters.source = source;
+    this.utm.source = source;
+
+    return this;
+  }
+
+  public term(term: string): this {
+    this.utm.term = term;
 
     return this;
   }
@@ -233,17 +282,31 @@ export default class Appointment extends Conditional implements AppointmentResou
       };
     }
 
-    if (this.filters.source) {
+    if (this.hasUtm()) {
       params = {
         ...params,
         meta: {
           ...params.meta,
-          source: this.filters.source,
+          utm: {
+            ...this.utm.campaign && {campaign: this.utm.campaign},
+            ...this.utm.content && {content: this.utm.content},
+            ...this.utm.medium && {medium: this.utm.medium},
+            ...this.utm.source && {source: this.utm.source},
+            ...this.utm.term && {term: this.utm.term},
+          },
         },
-      }
+      };
     }
 
     return params;
+  }
+
+  protected hasUtm(): boolean {
+    return !!(this.utm.campaign)
+      || !!(this.utm.content)
+      || !!(this.utm.medium)
+      || !!(this.utm.source)
+      || !!(this.utm.term);
   }
 
   protected rescheduleParams(appointment: number): RescheduleParameters | object {
