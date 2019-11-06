@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.6.16] - 2019-11-06
+
+- Adds appointment ID to the payload of the request to reschedule an appointment [`56b7815355`](https://github.com/coconutcalendar/coconut-open-api-js/commit/56b7815355)
+- Adjusts tests to check for the appointment ID in the request payload [`f3ae4236e4`](https://github.com/coconutcalendar/coconut-open-api-js/commit/f3ae4236e4)
+
 ## [0.6.15] - 2019-11-05
 
 - Allows setting remaining UTM parameters on request to book appointment [`#10`](https://github.com/coconutcalendar/coconut-open-api-js/pull/10)
@@ -267,7 +272,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.15...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.16...HEAD
+[0.6.16]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.15...v0.6.16
 [0.6.15]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.14...v0.6.15
 [0.6.14]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.13...v0.6.14
 [0.6.13]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.12...v0.6.13
