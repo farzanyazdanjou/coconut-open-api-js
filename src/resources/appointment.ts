@@ -160,7 +160,7 @@ export default class Appointment extends Conditional implements AppointmentResou
   }
 
   public async cancel(appointment: number, attendee: number): Promise<any> {
-    return await this.client.delete(`appointments/${appointment}/${attendee}`, this.params());
+    return await this.client.delete(`appointments/${appointment}/${attendee}`, { data: this.params() });
   }
 
   public content(content: string): this {

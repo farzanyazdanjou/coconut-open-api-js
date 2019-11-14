@@ -298,7 +298,7 @@ it('can cancel the given appointment for the given attendee', async () => {
   await resource.cancel(1, 2);
 
   expect(mockAxios.delete).toHaveBeenCalledTimes(1);
-  expect(mockAxios.delete).toHaveBeenCalledWith('appointments/1/2', {});
+  expect(mockAxios.delete).toHaveBeenCalledWith('appointments/1/2', { data: {} });
 });
 
 it('can cancel the given appointment for the given attendee while provided responses', async () => {
@@ -317,37 +317,39 @@ it('can cancel the given appointment for the given attendee while provided respo
 
   expect(mockAxios.delete).toHaveBeenCalledWith('appointments/1/2', {
     data: {
-      relationships: {
-        attendees: {
-          data: [
-            {
-              id: 2,
-              relationships: {
-                responses: {
-                  data: [
-                    {
-                      attributes: {
-                        form_question_id: 1,
-                        value: 'the response',
+      data: {
+        relationships: {
+          attendees: {
+            data: [
+              {
+                id: 2,
+                relationships: {
+                  responses: {
+                    data: [
+                      {
+                        attributes: {
+                          form_question_id: 1,
+                          value: 'the response',
+                        },
+                        type: 'responses',
                       },
-                      type: 'responses',
-                    },
-                    {
-                      attributes: {
-                        form_option_id: 1,
-                        form_question_id: 2,
+                      {
+                        attributes: {
+                          form_option_id: 1,
+                          form_question_id: 2,
+                        },
+                        type: 'responses',
                       },
-                      type: 'responses',
-                    },
-                  ]
-                }
-              },
-              type: 'attendees',
-            }
-          ]
-        }
+                    ]
+                  }
+                },
+                type: 'attendees',
+              }
+            ]
+          }
+        },
+        type: 'appointments',
       },
-      type: 'appointments',
     },
   });
 });
