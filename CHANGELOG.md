@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.7.0] - 2019-11-14
+
+- Fixes incorrect usage of delete axios request body data [`695bf35ee3`](https://github.com/coconutcalendar/coconut-open-api-js/commit/695bf35ee3)
+
 ## [0.6.16] - 2019-11-06
 
 - Adds appointment ID to the payload of the request to reschedule an appointment [`56b7815355`](https://github.com/coconutcalendar/coconut-open-api-js/commit/56b7815355)
@@ -272,7 +276,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.16...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.0...HEAD
+[0.7.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.16...v0.7.0
 [0.6.16]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.15...v0.6.16
 [0.6.15]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.14...v0.6.15
 [0.6.14]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.13...v0.6.14
