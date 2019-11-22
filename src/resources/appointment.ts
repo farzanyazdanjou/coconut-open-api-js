@@ -80,7 +80,22 @@ export interface RescheduleParameters {
   };
 }
 
+interface AddSingleAttendeeParameter {
+  attributes: {
+    email: string,
+    first_name: string,
+    last_name: string,
+  },
+  type: string,
+}
+
+export interface AddAttendeeParameters {
+  data: AddSingleAttendeeParameter[],
+}
+
 export interface AppointmentResource extends Resource, ConditionalResource {
+  add(appointment: number): Promise<any>;
+
   at(location: number): this;
 
   book(): Promise<any>;
@@ -135,6 +150,14 @@ export default class Appointment extends Conditional implements AppointmentResou
       attendees: [],
     };
     this.utm = {};
+  }
+
+  public async add(appointment: number): Promise<any> {
+    return await this.client.put(`appointments/${appointment}/attendees`, this.addParams(), {
+      headers: {
+        'Content-Type': 'application/json; ext=bulk',
+      },
+    });
   }
 
   public at(location: number): this {
@@ -233,6 +256,26 @@ export default class Appointment extends Conditional implements AppointmentResou
     return this;
   }
 
+  protected addParams(): AddAttendeeParameters | object {
+    const attendees = (this.relationships.attendees as AttendeeModel[]).map(
+        (attendee: AttendeeModel): object => {
+          return attendee.transform();
+        }
+    );
+
+    return {
+      data: attendees,
+    }
+  }
+
+  protected hasUtm(): boolean {
+    return !!(this.utm.campaign)
+        || !!(this.utm.content)
+        || !!(this.utm.medium)
+        || !!(this.utm.source)
+        || !!(this.utm.term);
+  }
+
   protected params(): AppointmentParameters | object {
     if (this.relationships.attendees.length === 0) {
       return {};
@@ -299,14 +342,6 @@ export default class Appointment extends Conditional implements AppointmentResou
     }
 
     return params;
-  }
-
-  protected hasUtm(): boolean {
-    return !!(this.utm.campaign)
-      || !!(this.utm.content)
-      || !!(this.utm.medium)
-      || !!(this.utm.source)
-      || !!(this.utm.term);
   }
 
   protected rescheduleParams(appointment: number): RescheduleParameters | object {
