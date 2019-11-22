@@ -1,5 +1,7 @@
 import mockAxios from 'axios';
 
+import Visibilities from "../constants/visibilities";
+
 import TimeSlot from './time-slot';
 
 it('will set location filter using a number', async () => {
@@ -61,6 +63,14 @@ it('will set supported locales filter', async () => {
 
   expect(resource.supporting(locales)).toHaveProperty('filters', {
     locales,
+  });
+});
+
+it('will set a visibility filter', async () => {
+  const resource = new TimeSlot(mockAxios);
+
+  expect(resource.visibility(Visibilities.ALL)).toHaveProperty('filters', {
+    visibility: Visibilities.ALL,
   });
 });
 

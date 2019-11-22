@@ -11,6 +11,7 @@ export interface TimeSlotFilter {
   timezone?: string;
   locales?: string[];
   user?: number;
+  visibility?: number;
 }
 
 export interface TimeSlotParameters {
@@ -35,6 +36,8 @@ export interface TimeSlotResource extends Resource, ConditionalResource {
   in(timezone: string): this;
 
   supporting(locales: string[]): this;
+
+  visibility(visibility: number): this;
 }
 
 export default class TimeSlot extends Conditional implements TimeSlotResource {
@@ -104,6 +107,12 @@ export default class TimeSlot extends Conditional implements TimeSlotResource {
 
   public supporting(locales: string[]): this {
     this.filters.locales = locales;
+
+    return this;
+  }
+
+  public visibility(visibility: number): this {
+    this.filters.visibility = visibility;
 
     return this;
   }
