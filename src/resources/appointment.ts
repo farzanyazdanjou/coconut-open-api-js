@@ -257,14 +257,8 @@ export default class Appointment extends Conditional implements AppointmentResou
   }
 
   protected addParams(): AddAttendeeParameters | object {
-    const attendees = (this.relationships.attendees as AttendeeModel[]).map(
-        (attendee: AttendeeModel): object => {
-          return attendee.transform();
-        }
-    );
-
     return {
-      data: attendees,
+      data: this.transformAttendees(),
     }
   }
 
@@ -281,17 +275,11 @@ export default class Appointment extends Conditional implements AppointmentResou
       return {};
     }
 
-    const attendees = (this.relationships.attendees as AttendeeModel[]).map(
-      (attendee: AttendeeModel): object => {
-        return attendee.transform();
-      },
-    );
-
     let params: AppointmentParameters = {
       data: {
         relationships: {
           attendees: {
-            data: attendees,
+            data: this.transformAttendees(),
           },
         },
         type: 'appointments',
@@ -365,5 +353,13 @@ export default class Appointment extends Conditional implements AppointmentResou
     }
 
     return params;
+  }
+
+  protected transformAttendees() {
+    return (this.relationships.attendees as AttendeeModel[]).map(
+        (attendee: AttendeeModel): object => {
+          return attendee.transform();
+        }
+    );
   }
 }
