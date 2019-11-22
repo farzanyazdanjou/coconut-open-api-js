@@ -22,6 +22,7 @@ export interface TimeSlotParameters {
   start?: string;
   supported_locales?: string[];
   timezone?: string;
+  visibility?: number;
 }
 
 export interface TimeSlotResource extends Resource, ConditionalResource {
@@ -94,6 +95,10 @@ export default class TimeSlot extends Conditional implements TimeSlotResource {
 
     if (this.filters.user) {
       params.staff_id = this.filters.user;
+    }
+
+    if (this.filters.visibility) {
+      params.visibility = this.filters.visibility;
     }
 
     return await this.client.get('times', { params });

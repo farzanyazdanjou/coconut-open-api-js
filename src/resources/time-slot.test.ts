@@ -83,7 +83,8 @@ it('can string all filterable options together', async () => {
       .at(1)
       .for([1, 2])
       .by(1)
-      .supporting(['en']),
+      .supporting(['en'])
+      .visibility(Visibilities.ALL),
   );
 
   expected.toHaveProperty('filters', {
@@ -93,6 +94,7 @@ it('can string all filterable options together', async () => {
     services: [1, 2],
     start: '2018-01-01',
     user: 1,
+    visibility: Visibilities.ALL,
   });
 });
 
@@ -108,6 +110,7 @@ it('can get time slots for no particular user', async () => {
     .supporting(['fr', 'es'])
     .for([1, 2])
     .in(timezone)
+    .visibility(Visibilities.ALL)
     .get();
 
   expect(mockAxios.get).toHaveBeenCalledTimes(1);
@@ -119,6 +122,7 @@ it('can get time slots for no particular user', async () => {
       start: '2018-01-01',
       supported_locales: ['fr', 'es'],
       timezone,
+      visibility: Visibilities.ALL,
     },
   });
 });
@@ -136,6 +140,7 @@ it('can get time slots for a specified user', async () => {
     .supporting(['en', 'es'])
     .by(1)
     .in(timezone)
+    .visibility(Visibilities.ALL)
     .get();
 
   expect(mockAxios.get).toHaveBeenCalledTimes(1);
@@ -148,6 +153,7 @@ it('can get time slots for a specified user', async () => {
       start: '2018-01-01',
       supported_locales: ['en', 'es'],
       timezone,
+      visibility: Visibilities.ALL,
     },
   });
 });
