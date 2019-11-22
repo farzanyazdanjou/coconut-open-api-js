@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+## [0.7.1] - 2019-11-22
+
+- Documents new visibility method with example usage [`a123ee9703`](https://github.com/coconutcalendar/coconut-open-api-js/commit/a123ee9703)
+- Exports visibility constants [`aa2647f02b`](https://github.com/coconutcalendar/coconut-open-api-js/commit/aa2647f02b)
+- Ensures visibility filter will be sent along with request [`70ad475851`](https://github.com/coconutcalendar/coconut-open-api-js/commit/70ad475851)
+- Adds visibility flag to time slot resource [`16a7377a4c`](https://github.com/coconutcalendar/coconut-open-api-js/commit/16a7377a4c)
+
 ## [0.7.0] - 2019-11-14
 
 - Fixes incorrect usage of delete axios request body data [`695bf35ee3`](https://github.com/coconutcalendar/coconut-open-api-js/commit/695bf35ee3)
@@ -276,7 +283,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.0...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.1...HEAD
+[0.7.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.0...v0.7.1
 [0.7.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.16...v0.7.0
 [0.6.16]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.15...v0.6.16
 [0.6.15]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.14...v0.6.15
