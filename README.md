@@ -56,6 +56,10 @@ class Answers {
 
 ##### Methods
 
+- `add(appointment: number)`
+
+Add the currently supplied attendees to the given appointment. _(not publicly available yet)_
+
 - `at(location: number)`
 
 Set a relationship which will tell the API to use the given location identifier when creating an appointment.
@@ -127,11 +131,41 @@ Set a relationship which will tell the API to use the given attendee model(s) wh
 ##### Example
 
 ```javascript
-import { OpenApi, Attendee, Answer, Response } from 'coconut-open-api-js';
+import { OpenApi, Attendee, Answer, Notifications, Response } from 'coconut-open-api-js';
 
 class Appointments {
   constructor() {
     this.api = new OpenApi();
+  }
+
+  async add(attributes) {
+    const {
+      address, appointment, campaign, city, content, country, email, firstName, 
+      language, lastName, medium, notes, phone, question, source, term, value,
+    } = attributes;
+
+    const answer = (new Answer())
+      .for(question)
+      .is(value);
+    const attendee = (new Attendee())
+      .answers(answer)
+      .located({ address, city, country })
+      .messagable()
+      .named(firstName, lastName)
+      .provided(notes)
+      .reachable({ phone, email })
+      .speaks(language);
+
+    return this.api
+      .appointments()
+      .campaign(campaign)
+      .content(content)
+      .medium(medium)
+      .source(source)
+      .term(term)
+      .with(attendee)
+      .notify(Notifications.ALL)
+      .add(appointment);
   }
 
   async book(attributes) {
@@ -165,10 +199,7 @@ class Appointments {
       .term(term)
       .via(invitation)
       .with(attendee)
-      .notify({
-        user: true,
-        client: true,
-      })
+      .notify(Notifications.ALL)
       .book();
   }
 
@@ -197,10 +228,7 @@ class Appointments {
       return this.api
         .appointments()
         .starting(start)
-        .notify({
-          user: true,
-          client: true,
-        })
+        .notify(Notifications.ALL)
         .reschedule(appointment);
     }
   }
