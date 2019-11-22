@@ -276,6 +276,31 @@ it('can book an appointment with all available parameters', async () => {
   });
 });
 
+it('can add the given attendee to the given appointment', async () => {
+  const resource = new Appointment(mockAxios);
+  const attendee = (new Attendee()).named('Jane', 'Doe').reachable({ email: 'jane@doe.com' });
+
+  await resource.with(attendee).add(1);
+
+  expect(mockAxios.put).toHaveBeenCalledTimes(1);
+  expect(mockAxios.put).toHaveBeenCalledWith('appointments/1/attendees', {
+    data: [
+      {
+        attributes: {
+          email: 'jane@doe.com',
+          first_name: 'Jane',
+          last_name: 'Doe',
+        },
+        type: 'attendees',
+      }
+    ],
+  }, {
+    headers: {
+      'Content-Type': 'application/json; ext=bulk',
+    },
+  });
+});
+
 it('can retrieve matching appointments using a given set of matchers', async () => {
   const resource = new Appointment(mockAxios);
   const matchers: AppointmentMatcherParameters = {
