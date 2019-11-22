@@ -642,12 +642,16 @@ Set a filter which will tell the API to return time slots in the given timezone.
 
 - `supporting(locales: string[])`
 
-Set a filter which will tell the API to return time slots for users that support the given locales. _(not publically available yet)_
+Set a filter which will tell the API to return time slots for users that support the given locales. _(not publicly available yet)_
+
+- `visibility(visibility: number)`
+
+Set a filter which will tell the API whether to return time slots belonging to all resources or just public resources. _(not publicly available yet)_
 
 ##### Example
 
 ```javascript
-import { OpenApi } from 'coconut-open-api-js';
+import { OpenApi, Visibilities } from 'coconut-open-api-js';
 
 class TimeSlots {
   constructor() {
@@ -663,6 +667,7 @@ class TimeSlots {
       .between(start, end)
       .in('America/Chicago')
       .supporting(['en', 'fr', 'es'])
+      .visibility(Visibilities.ALL)
       .get()
   }
 }
