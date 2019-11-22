@@ -2,6 +2,15 @@
 
 ## [Unreleased]
 
+## [0.7.2] - 2019-11-22
+
+- Documents new add method for adding attendees to existing appointments [`8e5bd68550`](https://github.com/coconutcalendar/coconut-open-api-js/commit/8e5bd68550)
+- Adds test to ensure answers are also sent properly when supplied [`9f513e1f7c`](https://github.com/coconutcalendar/coconut-open-api-js/commit/9f513e1f7c)
+- Extracts duplicated code to class method [`198022e5df`](https://github.com/coconutcalendar/coconut-open-api-js/commit/198022e5df)
+- Adds call to add one or more attendees to an existing appointment [`43e250a869`](https://github.com/coconutcalendar/coconut-open-api-js/commit/43e250a869)
+- Adds put method to axios mock [`f2c48e67a4`](https://github.com/coconutcalendar/coconut-open-api-js/commit/f2c48e67a4)
+- Adds test for ensuring a given attendee would be sent when adding to the appointment [`91b3e2d94d`](https://github.com/coconutcalendar/coconut-open-api-js/commit/91b3e2d94d)
+
 ## [0.7.1] - 2019-11-22
 
 - Documents new visibility method with example usage [`a123ee9703`](https://github.com/coconutcalendar/coconut-open-api-js/commit/a123ee9703)
@@ -283,7 +292,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.1...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.2...HEAD
+[0.7.2]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.1...v0.7.2
 [0.7.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.0...v0.7.1
 [0.7.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.16...v0.7.0
 [0.6.16]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.15...v0.6.16
