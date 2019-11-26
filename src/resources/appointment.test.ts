@@ -125,6 +125,14 @@ it('can set multiple attendees for the appointment', async () => {
   });
 });
 
+it('can set an identifier for who we are acting as when booking the appointment', async () => {
+  const resource = new Appointment(mockAxios);
+
+  expect(resource.actingAs(10)).toHaveProperty('meta', {
+    booker: 10,
+  });
+});
+
 it('can book an appointment with the minimum required parameters', async () => {
   const resource = new Appointment(mockAxios);
   const start = '2018-01-01 12:00:00';

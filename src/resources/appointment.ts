@@ -94,6 +94,8 @@ export interface AddAttendeeParameters {
 }
 
 export interface AppointmentResource extends Resource, ConditionalResource {
+  actingAs(identifier: number): this;
+
   add(appointment: number): Promise<any>;
 
   at(location: number): this;
@@ -135,9 +137,14 @@ export interface AppointmentRelationship {
   attendees: AttendeeModel[] | [];
 }
 
+export interface AppointmentMeta {
+  booker?: number;
+}
+
 export default class Appointment extends Conditional implements AppointmentResource, Utm {
   protected client: AxiosInstance;
   protected filters: AppointmentFilter;
+  protected meta: AppointmentMeta;
   protected relationships: AppointmentRelationship;
   protected utm: UtmParameters;
 
@@ -146,10 +153,17 @@ export default class Appointment extends Conditional implements AppointmentResou
 
     this.client = client;
     this.filters = {};
+    this.meta = {};
     this.relationships = {
       attendees: [],
     };
     this.utm = {};
+  }
+
+  public actingAs(identifier: number): this {
+    this.meta.booker = identifier;
+
+    return this;
   }
 
   public async add(appointment: number): Promise<any> {
