@@ -290,7 +290,7 @@ it('can add the given attendee to the given appointment', async () => {
   const resource = new Appointment(mockAxios);
   const attendee = (new Attendee()).named('Jane', 'Doe').reachable({ email: 'jane@doe.com' });
 
-  await resource.with(attendee).add(1);
+  await resource.with(attendee).actingAs(10).add(1);
 
   expect(mockAxios.put).toHaveBeenCalledTimes(1);
   expect(mockAxios.put).toHaveBeenCalledWith('appointments/1/attendees', {
@@ -304,6 +304,9 @@ it('can add the given attendee to the given appointment', async () => {
         type: 'attendees',
       }
     ],
+    meta: {
+      booker: 10,
+    },
   }, {
     headers: {
       'Content-Type': 'application/json; ext=bulk',

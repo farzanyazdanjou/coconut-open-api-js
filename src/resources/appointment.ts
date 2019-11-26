@@ -92,6 +92,9 @@ interface AddSingleAttendeeParameter {
 
 export interface AddAttendeeParameters {
   data: AddSingleAttendeeParameter[],
+  meta?: {
+    booker?: number;
+  }
 }
 
 export interface AppointmentResource extends Resource, ConditionalResource {
@@ -271,10 +274,18 @@ export default class Appointment extends Conditional implements AppointmentResou
     return this;
   }
 
-  protected addParams(): AddAttendeeParameters | object {
-    return {
+  protected addParams(): AddAttendeeParameters {
+    const params: AddAttendeeParameters = {
       data: this.transformAttendees(),
+    };
+
+    if (this.meta.booker) {
+      params.meta = {
+        booker: this.meta.booker,
+      };
     }
+
+    return params;
   }
 
   protected hasUtm(): boolean {
@@ -380,10 +391,10 @@ export default class Appointment extends Conditional implements AppointmentResou
     return params;
   }
 
-  protected transformAttendees() {
+  protected transformAttendees(): AddSingleAttendeeParameter[] {
     return (this.relationships.attendees as AttendeeModel[]).map(
-        (attendee: AttendeeModel): object => {
-          return attendee.transform();
+        (attendee: AttendeeModel): AddSingleAttendeeParameter => {
+          return (attendee.transform() as AddSingleAttendeeParameter);
         }
     );
   }
