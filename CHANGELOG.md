@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.7.3] - 2019-11-26
+
+- Ensures a booker identifier can be sent when adding attendees to existing appointments [`44c92db1e5`](https://github.com/coconutcalendar/coconut-open-api-js/commit/44c92db1e5)
+- Ensures booker will be sent when making a booking [`5b96f211a5`](https://github.com/coconutcalendar/coconut-open-api-js/commit/5b96f211a5)
+- Adds ability to provide an actingAs identifier which will later be used to identify the booker [`ff40f1f693`](https://github.com/coconutcalendar/coconut-open-api-js/commit/ff40f1f693)
+
 ## [0.7.2] - 2019-11-22
 
 - Documents new add method for adding attendees to existing appointments [`8e5bd68550`](https://github.com/coconutcalendar/coconut-open-api-js/commit/8e5bd68550)
