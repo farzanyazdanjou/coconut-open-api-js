@@ -50,6 +50,7 @@ export interface AppointmentParameters {
     type: string;
   };
   meta?: {
+    booker?: number;
     notify?: {
       client?: boolean;
       user?: boolean;
@@ -341,6 +342,16 @@ export default class Appointment extends Conditional implements AppointmentResou
           },
         },
       };
+    }
+
+    if (this.meta.booker) {
+      params = {
+        ...params,
+        meta: {
+          ...params.meta,
+          booker: this.meta.booker,
+        }
+      }
     }
 
     return params;

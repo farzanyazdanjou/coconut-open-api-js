@@ -193,6 +193,7 @@ it('can book an appointment with all available parameters', async () => {
       .medium('test medium')
       .source('test source')
       .term('test term')
+      .actingAs(10)
       .with(
         attendee
           .named('Jane', 'Doe')
@@ -269,6 +270,7 @@ it('can book an appointment with all available parameters', async () => {
         type: 'appointments',
       },
       meta: {
+        booker: 10,
         notify: notification,
         utm: {
           campaign: 'test campaign',
