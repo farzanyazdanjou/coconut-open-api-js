@@ -25,7 +25,7 @@ export interface LocationFilter {
 }
 
 export interface LocationParameters {
-  assignments?: boolean;
+  assignments?: number;
   city?: string;
   country?: string;
   invite_only?: number;
@@ -192,7 +192,7 @@ export default class Location extends Conditional implements LocationResource {
     const params: LocationParameters = {};
 
     if (typeof this.filters.assigned !== 'undefined') {
-      params.assignments = this.filters.assigned;
+      params.assignments = Number(this.filters.assigned);
     }
 
     if (typeof this.filters.city !== 'undefined') {

@@ -191,7 +191,7 @@ it('can get locations with additional parameters', async () => {
   expect(mockAxios.get).toHaveBeenCalledTimes(1);
   expect(mockAxios.get).toHaveBeenCalledWith('locations', {
     params: {
-      'filter[assignments]': true,
+      'filter[assignments]': 1,
       'filter[city]': 'Fake City',
       'filter[country]': 'FC',
       'filter[invite_only]': 1,

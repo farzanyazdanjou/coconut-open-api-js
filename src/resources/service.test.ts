@@ -164,7 +164,7 @@ it('can get services with additional parameters', async () => {
   expect(mockAxios.get).toHaveBeenCalledTimes(1);
   expect(mockAxios.get).toHaveBeenCalledWith('services', {
     params: {
-      'filter[assignments]': true,
+      'filter[assignments]': 1,
       'filter[category]': 3,
       'filter[group]': 0,
       'filter[invite_only]': 1,
