@@ -10,6 +10,7 @@ export interface ServiceFilter {
   group?: number;
   invitable?: number;
   location?: number | string;
+  preferred?: number;
   user?: number | string;
 }
 
@@ -19,6 +20,7 @@ export interface ServiceParameters {
   group?: number;
   invite_only?: number;
   location?: number | string;
+  preferred?: number;
   user?: number | string;
 }
 
@@ -36,6 +38,8 @@ export interface ServiceResource extends Pageable, ConditionalResource {
   individual(): this;
 
   invitable(): this;
+
+  preferred(): this;
 }
 
 export default class Service extends Conditional implements ServiceResource {
@@ -120,6 +124,12 @@ export default class Service extends Conditional implements ServiceResource {
     return this;
   }
 
+  public preferred(): this {
+    this.filters.preferred = 1;
+
+    return this;
+  }
+
   public on(page: number): this {
     this.page = page;
 
@@ -159,6 +169,10 @@ export default class Service extends Conditional implements ServiceResource {
 
     if (typeof this.filters.location !== 'undefined') {
       params.location = this.filters.location;
+    }
+
+    if (typeof this.filters.preferred !== 'undefined') {
+      params.preferred = this.filters.preferred;
     }
 
     if (typeof this.filters.user !== 'undefined') {

@@ -108,6 +108,14 @@ it('will set the sortable filter', async () => {
   expect(resource.sortBy('name,-created')).toHaveProperty('sortable', 'name,-created');
 });
 
+it('will set the preferred filter', async () => {
+  const resource = new Service(mockAxios);
+
+  expect(resource.preferred()).toHaveProperty('filters', {
+    preferred: 1,
+  })
+});
+
 it('can string all filterable options together', async () => {
   const resource = new Service(mockAxios);
 
@@ -119,6 +127,7 @@ it('can string all filterable options together', async () => {
       .in(3)
       .invitable()
       .individual()
+      .preferred()
       .sortBy('created')
       .take(5)
       .on(1),
@@ -130,6 +139,7 @@ it('can string all filterable options together', async () => {
     group: 0,
     invitable: 1,
     location: 1,
+    preferred: 1,
     user: 2,
   });
   expected.toHaveProperty('sortable', 'created');
@@ -156,6 +166,7 @@ it('can get services with additional parameters', async () => {
     .in(3)
     .invitable()
     .individual()
+    .preferred()
     .sortBy('created')
     .take(5)
     .on(1)
@@ -169,6 +180,7 @@ it('can get services with additional parameters', async () => {
       'filter[group]': 0,
       'filter[invite_only]': 1,
       'filter[location]': 1,
+      'filter[preferred]': 1,
       'filter[user]': 2,
       limit: 5,
       page: 1,
