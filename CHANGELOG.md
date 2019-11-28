@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.7.4] - 2019-11-28
+
+- Adds ability to set preferred filter on service resource [`ad5eb5be8b`](https://github.com/coconutcalendar/coconut-open-api-js/commit/ad5eb5be8b)
+- Changes assignments filter to return a number to be more boolean safe over an http endpoint [`459f6028ab`](https://github.com/coconutcalendar/coconut-open-api-js/commit/459f6028ab)
+- Adds ability to set preferred filter on location resource [`d75b667d8e`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d75b667d8e)
+
 ## [0.7.3] - 2019-11-26
 
 - Ensures a booker identifier can be sent when adding attendees to existing appointments [`44c92db1e5`](https://github.com/coconutcalendar/coconut-open-api-js/commit/44c92db1e5)
@@ -298,7 +304,9 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.2...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.4...HEAD
+[0.7.4]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.3...v0.7.4
+[0.7.3]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.2...v0.7.3
 [0.7.2]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.1...v0.7.2
 [0.7.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.0...v0.7.1
 [0.7.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.6.16...v0.7.0
