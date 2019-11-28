@@ -109,6 +109,14 @@ it('will set the sortable filter', async () => {
   expect(resource.sortBy('first_name,-created')).toHaveProperty('sortable', 'first_name,-created');
 });
 
+it('will set the preferred filter', async () => {
+  const resource = new Location(mockAxios);
+
+  expect(resource.preferred()).toHaveProperty('filters', {
+    preferred: 1,
+  })
+});
+
 it('will set the locatable filters as supplied', async () => {
   const resource = new Location(mockAxios);
   const city = 'Fake City';
@@ -133,6 +141,7 @@ it('can string all filterable options together', async () => {
       .invitable()
       .sortBy('created')
       .physical()
+      .preferred()
       .located({ city: 'Fake City', country: 'FC', region: 'FR' })
       .take(5)
       .on(1),
@@ -143,6 +152,7 @@ it('can string all filterable options together', async () => {
     city: 'Fake City',
     country: 'FC',
     invitable: 1,
+    preferred: 1,
     region: 'FR',
     services: [1, 2],
     user: 1,
@@ -171,6 +181,7 @@ it('can get locations with additional parameters', async () => {
     .containing(1)
     .invitable()
     .physical()
+    .preferred()
     .located({ city: 'Fake City', country: 'FC', region: 'FR' })
     .sortBy('created')
     .take(5)
@@ -184,6 +195,7 @@ it('can get locations with additional parameters', async () => {
       'filter[city]': 'Fake City',
       'filter[country]': 'FC',
       'filter[invite_only]': 1,
+      'filter[preferred]': 1,
       'filter[province]': 'FR',
       'filter[service]': [1, 2],
       'filter[user]': 1,

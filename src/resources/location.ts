@@ -18,6 +18,7 @@ export interface LocationFilter {
   [key: string]: any;
   assigned?: boolean;
   invitable?: number;
+  preferred?: number;
   services?: number | number[] | string | string[];
   user?: number | string;
   virtual?: number;
@@ -28,6 +29,7 @@ export interface LocationParameters {
   city?: string;
   country?: string;
   invite_only?: number;
+  preferred?: number;
   province?: string;
   service?: number | number[] | string | string[];
   user?: number | string;
@@ -44,6 +46,8 @@ export interface LocationResource extends Pageable, ConditionalResource {
   invitable(): this;
 
   located(details: LocatableLocationParameters): this;
+
+  preferred(): this;
 
   physical(): this;
 
@@ -138,6 +142,12 @@ export default class Location extends Conditional implements LocationResource {
     return this;
   }
 
+  public preferred(): this {
+    this.filters.preferred = 1;
+
+    return this;
+  }
+
   public physical(): this {
     this.filters.virtual = 0;
 
@@ -195,6 +205,10 @@ export default class Location extends Conditional implements LocationResource {
 
     if (typeof this.filters.invitable !== 'undefined') {
       params.invite_only = this.filters.invitable;
+    }
+
+    if (typeof this.filters.preferred !== 'undefined') {
+      params.preferred = this.filters.preferred;
     }
 
     if (typeof this.filters.region !== 'undefined') {
