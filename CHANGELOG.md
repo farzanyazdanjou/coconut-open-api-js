@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.7.5] - 2019-12-06
+
+- Adds notifications to add attendee parameters when they are set [`901f9481f9`](https://github.com/coconutcalendar/coconut-open-api-js/commit/901f9481f9)
+
 ## [0.7.4] - 2019-11-28
 
 - Adds ability to set preferred filter on service resource [`ad5eb5be8b`](https://github.com/coconutcalendar/coconut-open-api-js/commit/ad5eb5be8b)
@@ -304,7 +308,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.4...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.5...HEAD
+[0.7.5]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.4...v0.7.5
 [0.7.4]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.3...v0.7.4
 [0.7.3]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.2...v0.7.3
 [0.7.2]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.1...v0.7.2
