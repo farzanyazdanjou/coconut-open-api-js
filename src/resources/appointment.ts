@@ -83,17 +83,21 @@ export interface RescheduleParameters {
 
 interface AddSingleAttendeeParameter {
   attributes: {
-    email: string,
-    first_name: string,
-    last_name: string,
-  },
-  type: string,
+    email: string;
+    first_name: string;
+    last_name: string;
+  };
+  type: string;
 }
 
 export interface AddAttendeeParameters {
-  data: AddSingleAttendeeParameter[],
+  data: AddSingleAttendeeParameter[];
   meta?: {
     booker?: number;
+    notify?: {
+      client?: boolean;
+      user?: boolean;
+    };
   }
 }
 
@@ -282,6 +286,13 @@ export default class Appointment extends Conditional implements AppointmentResou
     if (this.meta.booker) {
       params.meta = {
         booker: this.meta.booker,
+      };
+    }
+
+    if (this.filters.notifications) {
+      params.meta = {
+        ...params.meta,
+        notify: this.filters.notifications,
       };
     }
 
