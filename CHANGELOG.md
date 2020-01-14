@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.7.6] - 2020-01-14
+
+- Documents new meeting method setter and usage [`9141969677`](https://github.com/coconutcalendar/coconut-open-api-js/commit/9141969677)
+- Adds meeting method to appointment resource with appropriate constant declarations [`34661021cf`](https://github.com/coconutcalendar/coconut-open-api-js/commit/34661021cf)
+
 ## [0.7.5] - 2019-12-06
 
 - Adds notifications to add attendee parameters when they are set [`901f9481f9`](https://github.com/coconutcalendar/coconut-open-api-js/commit/901f9481f9)
@@ -308,7 +313,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.5...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.6...HEAD
+[0.7.6]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.5...v0.7.6
 [0.7.5]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.4...v0.7.5
 [0.7.4]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.3...v0.7.4
 [0.7.3]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.2...v0.7.3
