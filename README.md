@@ -96,6 +96,10 @@ Find an appointment matching the pre-set matching parameters.
 
 Set a filter to use in order to find an existing appointment.
 
+- `method(method: number)` _(not publicly available yet)_
+
+Set a filter which will tell the API to use the given meeting method when creating an appointment.
+
 - `medium(medium: string)`
 
 Set an attribute which will tell the API to use the given string as the medium UTM parameter when creating an appointment.
@@ -131,7 +135,7 @@ Set a relationship which will tell the API to use the given attendee model(s) wh
 ##### Example
 
 ```javascript
-import { OpenApi, Attendee, Answer, Notifications, Response } from 'coconut-open-api-js';
+import { OpenApi, Attendee, Answer, MeetingMethods, Notifications, Response } from 'coconut-open-api-js';
 
 class Appointments {
   constructor() {
@@ -161,6 +165,7 @@ class Appointments {
       .campaign(campaign)
       .content(content)
       .medium(medium)
+      .method(MeetingMethods.AT_LOCATION)
       .source(source)
       .term(term)
       .with(attendee)
