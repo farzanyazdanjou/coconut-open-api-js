@@ -1,10 +1,11 @@
 import mockAxios from 'axios';
 
+import MeetingMethods from "../constants/meeting-methods";
 import Notifications from '../constants/notifications';
 import Answer from '../models/answer';
 import Attendee from '../models/attendee';
 import Response from '../models/response';
-import Appointment, { AppointmentMatcherParameters, AppointmentNotificationParameters } from './appointment';
+import Appointment, {AppointmentMatcherParameters, AppointmentNotificationParameters} from './appointment';
 
 it('can set the invitation property', async () => {
   const resource = new Appointment(mockAxios);
@@ -27,6 +28,15 @@ it('can set the user property', async () => {
 
   expect(resource.by(1)).toHaveProperty('filters', {
     user: 1,
+  });
+});
+
+it('can set the meeting method property', async () => {
+  const resource = new Appointment(mockAxios);
+  const { PHONE_CALL } = MeetingMethods;
+
+  expect(resource.method(PHONE_CALL)).toHaveProperty('filters', {
+    method: PHONE_CALL,
   });
 });
 
@@ -179,15 +189,17 @@ it('can book an appointment with all available parameters', async () => {
   const start = '2018-01-01 12:00:00';
   const attendee = new Attendee();
   const answer = new Answer();
+  const { PHONE_CALL } = MeetingMethods;
   const notifications = [Notifications.CLIENT, Notifications.USER, Notifications.ALL];
 
-  notifications.forEach(async (notification: object) => {
+  for (const notification of notifications) {
     await resource
       .at(1)
       .for([2, 3])
       .by(4)
       .via(5)
       .starting(start)
+      .method(PHONE_CALL)
       .campaign('test campaign')
       .content('test content')
       .medium('test medium')
@@ -224,6 +236,7 @@ it('can book an appointment with all available parameters', async () => {
         attributes: {
           invitation_id: 5,
           location_id: 1,
+          meeting_method: PHONE_CALL,
           service_id: [2, 3],
           staff_id: 4,
           start,
@@ -281,9 +294,9 @@ it('can book an appointment with all available parameters', async () => {
         },
       },
     });
+  }
 
-    expect(mockAxios.post).toHaveBeenCalledTimes(3);
-  });
+  expect(mockAxios.post).toHaveBeenCalledTimes(3);
 });
 
 it('can add the given attendee to the given appointment', async () => {
@@ -492,8 +505,8 @@ it('can reschedule an appointment with the minimum required parameters', async (
   const start = '2018-01-01 12:00:00';
 
   await resource
-      .starting(start)
-      .reschedule(1);
+    .starting(start)
+    .reschedule(1);
 
   expect(mockAxios.patch).toHaveBeenCalledTimes(1);
   expect(mockAxios.patch).toHaveBeenCalledWith('appointments/1', {
@@ -512,11 +525,11 @@ it('can reschedule an appointment with all available parameters', async () => {
   const start = '2018-01-01 12:00:00';
   const notifications = [Notifications.CLIENT, Notifications.USER, Notifications.ALL];
 
-  notifications.forEach(async (notification: object) => {
+  for (const notification of notifications) {
     await resource
-        .starting(start)
-        .notify(notification)
-        .reschedule(1);
+      .starting(start)
+      .notify(notification)
+      .reschedule(1);
 
     expect(mockAxios.patch).toHaveBeenCalledWith('appointments/1', {
       data: {
@@ -530,7 +543,7 @@ it('can reschedule an appointment with all available parameters', async () => {
         notify: notification,
       },
     });
-  });
+  }
 
   expect(mockAxios.patch).toHaveBeenCalledTimes(3);
 });

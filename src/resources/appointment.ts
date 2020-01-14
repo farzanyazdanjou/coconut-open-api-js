@@ -8,6 +8,7 @@ export interface AppointmentFilter {
   invitation?: number;
   location?: number;
   matchers?: AppointmentMatcherParameters;
+  method?: number;
   notifications?: AppointmentNotificationParameters;
   services?: number | number[];
   start?: string;
@@ -38,6 +39,7 @@ export interface AppointmentParameters {
     attributes?: {
       invitation_id: number | null;
       location_id: number | undefined;
+      meeting_method?: number;
       service_id: number | number[] | undefined;
       staff_id: number | null;
       start: string | undefined;
@@ -117,6 +119,8 @@ export interface AppointmentResource extends Resource, ConditionalResource {
   for(services: number | number[]): this;
 
   matching(matchers: AppointmentMatcherParameters): this;
+
+  method(method: number): this;
 
   notify(notifications: AppointmentNotificationParameters): this;
 
@@ -238,6 +242,12 @@ export default class Appointment extends Conditional implements AppointmentResou
     return this;
   }
 
+  public method(method: number): this {
+    this.filters.method = method;
+
+    return this;
+  }
+
   public notify(notifications: AppointmentNotificationParameters): this {
     this.filters.notifications = notifications;
 
@@ -338,6 +348,10 @@ export default class Appointment extends Conditional implements AppointmentResou
 
       if (this.filters.invitation) {
         params.data.attributes.invitation_id = this.filters.invitation;
+      }
+
+      if (this.filters.method) {
+        params.data.attributes.meeting_method = this.filters.method;
       }
     }
 
