@@ -1,4 +1,5 @@
 import mockAxios from 'axios';
+import MeetingMethods from "../constants/meeting-methods";
 
 import Visibilities from "../constants/visibilities";
 
@@ -45,6 +46,14 @@ it('will set service filter using an array of numbers', async () => {
   });
 });
 
+it('will set a meeting method filter using a number', async () => {
+  const resource = new TimeSlot(mockAxios);
+
+  expect(resource.method(MeetingMethods.PHONE_CALL)).toHaveProperty('filters', {
+    method: MeetingMethods.PHONE_CALL,
+  });
+});
+
 it('will set timezone filter', async () => {
   const resource = new TimeSlot(mockAxios);
 
@@ -83,6 +92,7 @@ it('can string all filterable options together', async () => {
       .at(1)
       .for([1, 2])
       .by(1)
+      .method(MeetingMethods.AT_LOCATION)
       .supporting(['en'])
       .visibility(Visibilities.ALL),
   );
@@ -91,6 +101,7 @@ it('can string all filterable options together', async () => {
     end: '2018-01-31',
     locales: ['en'],
     location: 1,
+    method: MeetingMethods.AT_LOCATION,
     services: [1, 2],
     start: '2018-01-01',
     user: 1,

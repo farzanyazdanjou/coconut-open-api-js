@@ -6,6 +6,7 @@ import Conditional, { ConditionalResource } from './conditional';
 export interface TimeSlotFilter {
   end?: string;
   location?: number;
+  method?: number;
   services?: number | number[];
   start?: string;
   timezone?: string;
@@ -17,6 +18,7 @@ export interface TimeSlotFilter {
 export interface TimeSlotParameters {
   end?: string;
   location_id?: number;
+  meeting_method?: number;
   service_id?: number | number[];
   staff_id?: number;
   start?: string;
@@ -35,6 +37,8 @@ export interface TimeSlotResource extends Resource, ConditionalResource {
   for(services: number | number[]): this;
 
   in(timezone: string): this;
+
+  method(method: number): this;
 
   supporting(locales: string[]): this;
 
@@ -89,6 +93,10 @@ export default class TimeSlot extends Conditional implements TimeSlotResource {
       params.supported_locales = this.filters.locales;
     }
 
+    if (this.filters.method) {
+      params.meeting_method = this.filters.method;
+    }
+
     if (this.filters.timezone) {
       params.timezone = this.filters.timezone;
     }
@@ -106,6 +114,12 @@ export default class TimeSlot extends Conditional implements TimeSlotResource {
 
   public in(timezone: string): this {
     this.filters.timezone = timezone;
+
+    return this;
+  }
+
+  public method(method: number): this {
+    this.filters.method = method;
 
     return this;
   }
