@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.8.1] - 2020-01-17
+
+- Adds support for sending the meeting method when fetching time slots [`c4b7af5d57`](https://github.com/coconutcalendar/coconut-open-api-js/commit/c4b7af5d57)
+
 ## [0.8.0] - 2020-01-17
 
 - Adds default query param when setting locale on request to help with weird caching issues in some browsers [`6f97bfeb66`](https://github.com/coconutcalendar/coconut-open-api-js/commit/6f97bfeb66)
@@ -317,7 +321,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.8.0...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.8.1...HEAD
+[0.8.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.8.0...v0.8.1
 [0.8.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.6...v0.8.0
 [0.7.6]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.5...v0.7.6
 [0.7.5]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.4...v0.7.5
