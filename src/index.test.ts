@@ -84,6 +84,9 @@ it('can set an accepted language header', async () => {
 
   const object = JSON.parse(JSON.stringify(instance));
 
+  expect(object.client.defaults.params).toMatchObject({
+    lang: 'es',
+  });
   expect(object.client.defaults.headers.common).toMatchObject({
     'Accept-Language': 'es',
   });

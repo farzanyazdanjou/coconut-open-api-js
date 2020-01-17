@@ -89,6 +89,7 @@ export class OpenApi {
   }
 
   public locale(locale: string): this {
+    this.client.defaults.params = { lang: locale };
     this.client.defaults.headers.common['Accept-Language'] = locale;
 
     return this;
