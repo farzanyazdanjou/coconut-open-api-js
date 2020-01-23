@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.8.2] - 2020-01-17
+
+- Documents exclusion ability when generating availability [`2a55872965`](https://github.com/coconutcalendar/coconut-open-api-js/commit/2a55872965)
+- Adds support for excluding an appointment identifier from time slot generation [`12c0735f50`](https://github.com/coconutcalendar/coconut-open-api-js/commit/12c0735f50)
+
 ## [0.8.1] - 2020-01-17
 
 - Adds support for sending the meeting method when fetching time slots [`c4b7af5d57`](https://github.com/coconutcalendar/coconut-open-api-js/commit/c4b7af5d57)
@@ -321,7 +326,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.8.1...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.8.2...HEAD
+[0.8.2]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.8.1...v0.8.2
 [0.8.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.8.0...v0.8.1
 [0.8.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.6...v0.8.0
 [0.7.6]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.7.5...v0.7.6
