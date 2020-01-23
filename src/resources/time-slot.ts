@@ -5,6 +5,7 @@ import Conditional, { ConditionalResource } from './conditional';
 
 export interface TimeSlotFilter {
   end?: string;
+  exclusion?: number;
   location?: number;
   method?: number;
   services?: number | number[];
@@ -17,6 +18,7 @@ export interface TimeSlotFilter {
 
 export interface TimeSlotParameters {
   end?: string;
+  exclusion?: number;
   location_id?: number;
   meeting_method?: number;
   service_id?: number | number[];
@@ -33,6 +35,8 @@ export interface TimeSlotResource extends Resource, ConditionalResource {
   between(start: string, end: string): this;
 
   by(user: number): this;
+
+  excluding(exclusion: number): this;
 
   for(services: number | number[]): this;
 
@@ -75,6 +79,12 @@ export default class TimeSlot extends Conditional implements TimeSlotResource {
     return this;
   }
 
+  public excluding(exclusion: number): this {
+    this.filters.exclusion = exclusion;
+
+    return this;
+  }
+
   public for(services: number | number[]): this {
     this.filters.services = services;
 
@@ -88,6 +98,10 @@ export default class TimeSlot extends Conditional implements TimeSlotResource {
       service_id: this.filters.services,
       start: this.filters.start,
     };
+
+    if (this.filters.exclusion) {
+      params.exclusion = this.filters.exclusion;
+    }
 
     if (this.filters.locales) {
       params.supported_locales = this.filters.locales;

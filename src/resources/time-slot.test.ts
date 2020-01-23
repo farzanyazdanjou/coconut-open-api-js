@@ -30,6 +30,14 @@ it('will set user filter using a number', async () => {
   });
 });
 
+it('will set an appointment exclusion filter using a number', async () => {
+  const resource = new TimeSlot(mockAxios);
+
+  expect(resource.excluding(1)).toHaveProperty('filters', {
+    exclusion: 1,
+  });
+});
+
 it('will set service filter using a number', async () => {
   const resource = new TimeSlot(mockAxios);
 
@@ -93,12 +101,14 @@ it('can string all filterable options together', async () => {
       .for([1, 2])
       .by(1)
       .method(MeetingMethods.AT_LOCATION)
+      .excluding(1)
       .supporting(['en'])
       .visibility(Visibilities.ALL),
   );
 
   expected.toHaveProperty('filters', {
     end: '2018-01-31',
+    exclusion: 1,
     locales: ['en'],
     location: 1,
     method: MeetingMethods.AT_LOCATION,
@@ -121,6 +131,7 @@ it('can get time slots for no particular user', async () => {
     .supporting(['fr', 'es'])
     .for([1, 2])
     .in(timezone)
+    .excluding(1)
     .visibility(Visibilities.ALL)
     .get();
 
@@ -128,6 +139,7 @@ it('can get time slots for no particular user', async () => {
   expect(mockAxios.get).toHaveBeenCalledWith('times', {
     params: {
       end: '2018-01-31',
+      exclusion: 1,
       location_id: 1,
       service_id: [1, 2],
       start: '2018-01-01',
