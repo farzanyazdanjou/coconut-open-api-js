@@ -661,6 +661,10 @@ Set a filter which will tell the API to return time slots between a given start 
 
 Set a filter which will tell the API to return time slots that are specifically for the user matching the provided identifier.
 
+- `excluding(exclusion: number)`
+
+Set a filter which will tell the API to exclude a particular appointment identifier when generating availability. _(not publicly available yet)_
+
 - `for(services: number | number[])`
 
 Set a filter which will tell the API to return time slots that are specifically for the service(s) matching the provided identifier(s).
@@ -691,13 +695,14 @@ class TimeSlots {
     this.api = new OpenApi();
   }
 
-  async get({ end, location, service, start, user }) {
+  async get({ appointment, end, location, service, start, user }) {
     return await this.api
       .slots()
       .at(location)
       .by(user)
       .for(service)
       .between(start, end)
+      .excluding(appointment)
       .in('America/Chicago')
       .supporting(['en', 'fr', 'es'])
       .visibility(Visibilities.ALL)
