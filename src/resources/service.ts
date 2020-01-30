@@ -10,6 +10,7 @@ export interface ServiceFilter {
   group?: number;
   invitable?: number;
   location?: number | string;
+  method?: number;
   preferred?: number;
   user?: number | string;
 }
@@ -20,6 +21,7 @@ export interface ServiceParameters {
   group?: number;
   invite_only?: number;
   location?: number | string;
+  meeting_method?: number;
   preferred?: number;
   user?: number | string;
 }
@@ -40,6 +42,8 @@ export interface ServiceResource extends Pageable, ConditionalResource {
   invitable(): this;
 
   preferred(): this;
+
+  supporting(method: number): this;
 }
 
 export default class Service extends Conditional implements ServiceResource {
@@ -142,6 +146,12 @@ export default class Service extends Conditional implements ServiceResource {
     return this;
   }
 
+  public supporting(method: number): this {
+    this.filters.method = method;
+
+    return this;
+  }
+
   public take(limit: number): this {
     this.limit = limit;
 
@@ -169,6 +179,10 @@ export default class Service extends Conditional implements ServiceResource {
 
     if (typeof this.filters.location !== 'undefined') {
       params.location = this.filters.location;
+    }
+
+    if (typeof this.filters.method !== 'undefined') {
+      params.meeting_method = this.filters.method;
     }
 
     if (typeof this.filters.preferred !== 'undefined') {
