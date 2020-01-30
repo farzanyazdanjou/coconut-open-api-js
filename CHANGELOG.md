@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.8.3] - 2020-01-30
+
+- Ensures meeting method is properly sent when fetching services [`c680536b24`](https://github.com/coconutcalendar/coconut-open-api-js/commit/c680536b24)
+- Adds tests to support filtering services by a given meeting method [`610b89c0f6`](https://github.com/coconutcalendar/coconut-open-api-js/commit/610b89c0f6)
+
 ## [0.8.2] - 2020-01-17
 
 - Documents exclusion ability when generating availability [`2a55872965`](https://github.com/coconutcalendar/coconut-open-api-js/commit/2a55872965)
