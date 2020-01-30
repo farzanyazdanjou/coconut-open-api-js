@@ -591,6 +591,10 @@ Set the page offset which you want to view.
 
 Set a sorting string to determine how the returned results are sorted.
 
+- `supporting(method: number)`
+
+Set a filter which will tell the API to return services that are supported by the given meeting method.
+
 - `take(limit: number)`
 
 Set the limit which you want returned.
@@ -605,7 +609,7 @@ class Services {
     this.api = new OpenApi();
   }
 
-  async get({ category, limit, location, page, sortable, user }) {
+  async get({ category, limit, location, method, page, sortable, user }) {
     return await this.api
       .services()
       .assigned()
@@ -613,6 +617,7 @@ class Services {
       .by(user)
       .in(category)
       .invitable()
+      .supporting(method)
       .on(page)
       .sortBy(sortable)
       .take(limit)
