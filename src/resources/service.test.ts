@@ -1,5 +1,6 @@
 import mockAxios from 'axios';
 
+import MeetingMethods from "../constants/meeting-methods";
 import Service from './service';
 
 it('will set assigned filter', async () => {
@@ -31,6 +32,14 @@ it('will set location filter using a string', async () => {
 
   expect(resource.at('identifier')).toHaveProperty('filters', {
     location: 'identifier',
+  });
+});
+
+it('will set meeting method filter using a number', async () => {
+  const resource = new Service(mockAxios);
+
+  expect(resource.supporting(MeetingMethods.PHONE_CALL)).toHaveProperty('filters', {
+    method: MeetingMethods.PHONE_CALL,
   });
 });
 
@@ -128,6 +137,7 @@ it('can string all filterable options together', async () => {
       .invitable()
       .individual()
       .preferred()
+      .supporting(MeetingMethods.PHONE_CALL)
       .sortBy('created')
       .take(5)
       .on(1),
@@ -139,6 +149,7 @@ it('can string all filterable options together', async () => {
     group: 0,
     invitable: 1,
     location: 1,
+    method: MeetingMethods.PHONE_CALL,
     preferred: 1,
     user: 2,
   });
@@ -167,6 +178,7 @@ it('can get services with additional parameters', async () => {
     .invitable()
     .individual()
     .preferred()
+    .supporting(MeetingMethods.PHONE_CALL)
     .sortBy('created')
     .take(5)
     .on(1)
@@ -180,6 +192,7 @@ it('can get services with additional parameters', async () => {
       'filter[group]': 0,
       'filter[invite_only]': 1,
       'filter[location]': 1,
+      'filter[meeting_method]': MeetingMethods.PHONE_CALL,
       'filter[preferred]': 1,
       'filter[user]': 2,
       limit: 5,
