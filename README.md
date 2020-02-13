@@ -225,8 +225,8 @@ class Appointments {
       .cancel(appointment, attendee);
   }
 
-  async fetch({ code, email, id }) {
-    return this.api.appointments().matching({ code, email, id }).get();
+  async fetch({ code, id }) {
+    return this.api.appointments().matching({ code, id }).get();
   }
   
   async reschedule({ appointment, start }) {
