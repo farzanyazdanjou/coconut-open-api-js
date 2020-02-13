@@ -404,7 +404,6 @@ it('can retrieve matching appointments using a given set of matchers', async () 
   const resource = new Appointment(mockAxios);
   const matchers: AppointmentMatcherParameters = {
     code: 'A9B8C7D6E5F4G3H2',
-    email: 'jane@doe.com',
     id: 1,
   };
 

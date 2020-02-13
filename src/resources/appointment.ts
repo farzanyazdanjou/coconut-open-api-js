@@ -25,7 +25,6 @@ export interface UtmParameters {
 
 export interface AppointmentMatcherParameters {
   code: string;
-  email: string;
   id: string | number;
 }
 
