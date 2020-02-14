@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 
-## [0.8.4] - 2020-02-13
+## [0.9.0] - 2020-02-14
 
 - Removes references to email in documentation for matching appointment lookup [`91755a34c2`](https://github.com/coconutcalendar/coconut-open-api-js/commit/91755a34c2)
 - Removes necessity for sending email with appointment matchers when looking up an appointment [`a3f859d253`](https://github.com/coconutcalendar/coconut-open-api-js/commit/a3f859d253)
@@ -336,8 +336,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.8.4...HEAD
-[0.8.4]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.8.3...v0.8.4
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.9.0...HEAD
+[0.9.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.8.3...v0.9.0
 [0.8.3]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.8.2...v0.8.3
 [0.8.2]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.8.1...v0.8.2
 [0.8.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.8.0...v0.8.1
