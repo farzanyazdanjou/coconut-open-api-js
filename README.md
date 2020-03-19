@@ -748,6 +748,10 @@ Set a filter which will tell the API to return users that are assigned to the se
 
 Set a sorting string to determine how the returned results are sorted.
 
+- `supporting(method: number)`
+
+Set a filter which will tell the API to return users that support the given meeting method.
+
 - `take(limit: number)`
 
 Set the limit which you want returned.
@@ -762,12 +766,13 @@ class Users {
     this.api = new OpenApi();
   }
 
-  async get({ limit, location, page, services, sortable }) {
+  async get({ limit, location, method, page, services, sortable }) {
     return await this.api
       .users()
       .assigned()
       .at(location)
       .performing(services)
+      .supporting(method)
       .on(page)
       .sortBy(sortable)
       .take(limit)
