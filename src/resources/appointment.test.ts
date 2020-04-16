@@ -108,6 +108,15 @@ it('can set the notifications property', async () => {
   });
 });
 
+it('can set a supported locale property', async () => {
+  const resource = new Appointment(mockAxios);
+  const locale = 'fr';
+
+  expect(resource.supporting(locale)).toHaveProperty('filters', {
+    locale,
+  });
+});
+
 it('can set the starting time property', async () => {
   const resource = new Appointment(mockAxios);
   const start = '2018-01-01 12:00:00';
@@ -164,6 +173,7 @@ it('can book an appointment with the minimum required parameters', async () => {
         service_id: 2,
         staff_id: null,
         start,
+        supported_locale: null,
       },
       relationships: {
         attendees: {
@@ -200,6 +210,7 @@ it('can book an appointment with all available parameters', async () => {
       .via(5)
       .starting(start)
       .method(PHONE_CALL)
+      .supporting('fr')
       .campaign('test campaign')
       .content('test content')
       .medium('test medium')
@@ -240,6 +251,7 @@ it('can book an appointment with all available parameters', async () => {
           service_id: [2, 3],
           staff_id: 4,
           start,
+          supported_locale: 'fr',
         },
         relationships: {
           attendees: {

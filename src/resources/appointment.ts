@@ -6,6 +6,7 @@ import Conditional, { ConditionalResource } from './conditional';
 
 export interface AppointmentFilter {
   invitation?: number;
+  locale?: string | null;
   location?: number;
   matchers?: AppointmentMatcherParameters;
   method?: number;
@@ -42,6 +43,7 @@ export interface AppointmentParameters {
       service_id: number | number[] | undefined;
       staff_id: number | null;
       start: string | undefined;
+      supported_locale: string | null;
     };
     relationships: {
       attendees: {
@@ -126,6 +128,8 @@ export interface AppointmentResource extends Resource, ConditionalResource {
   reschedule(appointment: number): Promise<any>;
 
   starting(start: string): this;
+
+  supporting(locale: string | null): this;
 
   via(invitation: number): this;
 
@@ -269,6 +273,12 @@ export default class Appointment extends Conditional implements AppointmentResou
     return this;
   }
 
+  public supporting(locale: string | null): this {
+    this.filters.locale = locale;
+
+    return this;
+  }
+
   public term(term: string): this {
     this.utm.term = term;
 
@@ -339,6 +349,7 @@ export default class Appointment extends Conditional implements AppointmentResou
         service_id: this.filters.services,
         staff_id: null,
         start: this.filters.start,
+        supported_locale: this.filters.locale || null,
       };
 
       if (this.filters.user) {
