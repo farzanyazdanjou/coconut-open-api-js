@@ -117,6 +117,15 @@ it('can set a supported locale property', async () => {
   });
 });
 
+it('can set a timezone property', async () => {
+  const resource = new Appointment(mockAxios);
+  const timezone = 'America/Toronto';
+
+  expect(resource.in(timezone)).toHaveProperty('filters', {
+    timezone,
+  });
+});
+
 it('can set the starting time property', async () => {
   const resource = new Appointment(mockAxios);
   const start = '2018-01-01 12:00:00';
@@ -210,6 +219,7 @@ it('can book an appointment with all available parameters', async () => {
       .via(5)
       .starting(start)
       .method(PHONE_CALL)
+      .in('America/Toronto')
       .supporting('fr')
       .campaign('test campaign')
       .content('test content')
@@ -252,6 +262,7 @@ it('can book an appointment with all available parameters', async () => {
           staff_id: 4,
           start,
           supported_locale: 'fr',
+          timezone: 'America/Toronto',
         },
         relationships: {
           attendees: {
@@ -539,6 +550,7 @@ it('can reschedule an appointment with all available parameters', async () => {
   for (const notification of notifications) {
     await resource
       .starting(start)
+      .in('America/Toronto')
       .notify(notification)
       .reschedule(1);
 
@@ -546,6 +558,7 @@ it('can reschedule an appointment with all available parameters', async () => {
       data: {
         attributes: {
           start,
+          timezone: 'America/Toronto',
         },
         id: 1,
         type: 'appointments',

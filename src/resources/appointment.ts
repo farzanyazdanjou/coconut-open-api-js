@@ -13,6 +13,7 @@ export interface AppointmentFilter {
   notifications?: AppointmentNotificationParameters;
   services?: number | number[];
   start?: string;
+  timezone?: string;
   user?: number;
 }
 
@@ -44,6 +45,7 @@ export interface AppointmentParameters {
       staff_id: number | null;
       start: string | undefined;
       supported_locale: string | null;
+      timezone?: string;
     };
     relationships: {
       attendees: {
@@ -72,6 +74,7 @@ export interface RescheduleParameters {
   data: {
     attributes: {
       start: string | undefined;
+      timezone?: string;
     };
     id: number;
     type: string;
@@ -118,6 +121,8 @@ export interface AppointmentResource extends Resource, ConditionalResource {
   cancel(appointment: number, attendee: number): Promise<any>;
 
   for(services: number | number[]): this;
+
+  in(timezone: string): this;
 
   matching(matchers: AppointmentMatcherParameters): this;
 
@@ -231,6 +236,12 @@ export default class Appointment extends Conditional implements AppointmentResou
     return await this.client.get('appointments', {
       params: this.filters.matchers,
     });
+  }
+
+  public in(timezone: string): this {
+    this.filters.timezone = timezone;
+
+    return this;
   }
 
   public matching(matchers: AppointmentMatcherParameters): this {
@@ -363,6 +374,10 @@ export default class Appointment extends Conditional implements AppointmentResou
       if (this.filters.method) {
         params.data.attributes.meeting_method = this.filters.method;
       }
+
+      if (this.filters.timezone) {
+        params.data.attributes.timezone = this.filters.timezone;
+      }
     }
 
     if (this.filters.notifications) {
@@ -413,6 +428,10 @@ export default class Appointment extends Conditional implements AppointmentResou
         type: 'appointments',
       },
     };
+
+    if (this.filters.timezone) {
+      params.data.attributes.timezone = this.filters.timezone;
+    }
 
     if (this.filters.notifications) {
       params = {
