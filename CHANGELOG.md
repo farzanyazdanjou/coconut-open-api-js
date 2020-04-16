@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.9.3] - 2020-04-16
+
+- Adds ability to send timezone when booking or rescheduling appointments [`17c97d4ee4`](https://github.com/coconutcalendar/coconut-open-api-js/commit/17c97d4ee4)
+
 ## [0.9.2] - 2020-04-15
 
 - Adds ability to send supported locale along with a booking [`374ed0b475`](https://github.com/coconutcalendar/coconut-open-api-js/commit/374ed0b475)
@@ -344,7 +348,9 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.9.1...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.9.3...HEAD
+[0.9.3]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.9.2...v0.9.3
+[0.9.2]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.9.1...v0.9.2
 [0.9.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.8.3...v0.9.0
 [0.8.3]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.8.2...v0.8.3
