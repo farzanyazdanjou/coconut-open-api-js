@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.9.2] - 2020-04-15
+
+- Adds ability to send supported locale along with a booking [`374ed0b475`](https://github.com/coconutcalendar/coconut-open-api-js/commit/374ed0b475)
+
 ## [0.9.1] - 2020-03-19
 
 - Added support for filtering users by meeting method support [`#14`](https://github.com/coconutcalendar/coconut-open-api-js/pull/14)
