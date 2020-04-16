@@ -92,6 +92,10 @@ Set a relationship which will tell the API to use the given service identifier w
 
 Find an appointment matching the pre-set matching parameters.
 
+- `in(timezone: string)`
+
+Set the timezone in which the server will interpret the appointment start time as.
+
 - `matching(matchers: AppointmentMatcherParameters)`
 
 Set a filter to use in order to find an existing appointment.
@@ -149,7 +153,7 @@ class Appointments {
   async add(attributes) {
     const {
       address, appointment, campaign, city, content, country, email, firstName, 
-      language, lastName, locale, medium, notes, phone, question, source, term, value,
+      language, lastName, medium, notes, phone, question, source, term, value,
     } = attributes;
 
     const answer = (new Answer())
@@ -171,7 +175,6 @@ class Appointments {
       .medium(medium)
       .method(MeetingMethods.AT_LOCATION)
       .source(source)
-      .supporting(locale)
       .term(term)
       .with(attendee)
       .notify(Notifications.ALL)
@@ -181,7 +184,7 @@ class Appointments {
   async book(attributes) {
     const {
       address, campaign, city, content, country, email, firstName, invitation, language, lastName,
-      location, medium, notes, phone, question, service, source, start, term, user, value,
+      location, locale, medium, notes, phone, question, service, source, start, term, timezone, user, value,
     } = attributes;
 
     const answer = (new Answer())
@@ -205,7 +208,9 @@ class Appointments {
       .campaign(campaign)
       .content(content)
       .medium(medium)
+      .in(timezone)
       .source(source)
+      .supporting(locale)
       .term(term)
       .via(invitation)
       .with(attendee)
