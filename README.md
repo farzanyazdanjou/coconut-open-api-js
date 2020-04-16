@@ -120,6 +120,10 @@ Set an attribute which will tell the API to use the given start date time string
 
 Set an attribute which will tell the API to use the given string as the source UTM parameter when creating an appointment.
 
+- `supporting(locale: string | null)`
+
+Set a locale to use as a filter when not supplying a staff preference to ensure the best possible match when creating an appointment.
+
 - `term(term: string)`
 
 Set an attribute which will tell the API to use the given string as the term UTM parameter when creating an appointment.
@@ -145,7 +149,7 @@ class Appointments {
   async add(attributes) {
     const {
       address, appointment, campaign, city, content, country, email, firstName, 
-      language, lastName, medium, notes, phone, question, source, term, value,
+      language, lastName, locale, medium, notes, phone, question, source, term, value,
     } = attributes;
 
     const answer = (new Answer())
@@ -167,6 +171,7 @@ class Appointments {
       .medium(medium)
       .method(MeetingMethods.AT_LOCATION)
       .source(source)
+      .supporting(locale)
       .term(term)
       .with(attendee)
       .notify(Notifications.ALL)
