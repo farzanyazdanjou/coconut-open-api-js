@@ -163,6 +163,7 @@ it('can get users with additional parameters', async () => {
   expect(mockAxios.get).toHaveBeenCalledWith('users', {
     params: {
       'filter[assignments]': true,
+      'filter[client_view_meeting_method]': MeetingMethods.PHONE_CALL,
       'filter[location]': 1,
       'filter[meeting_method]': MeetingMethods.PHONE_CALL,
       'filter[service]': [1, 2],

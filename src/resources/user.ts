@@ -14,6 +14,7 @@ export interface UserFilter {
 
 export interface UserParameters {
   assignments?: boolean;
+  client_view_meeting_method?: number;
   service?: number | number[] | string | string[];
   location?: number | string;
   user?: number | string;
@@ -136,6 +137,7 @@ export default class User extends Conditional implements UserResource {
     }
 
     if (typeof this.filters.method !== 'undefined') {
+      params.client_view_meeting_method = this.filters.method;
       params.meeting_method = this.filters.method;
     }
 
