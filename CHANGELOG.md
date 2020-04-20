@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.10.0] - 2020-04-20
+
+- Adds additional fake filter to the user api call to work with the assignments filter to ensure we are checking the correct field when narrowing users by meeting method support [`e4dd3f3e24`](https://github.com/coconutcalendar/coconut-open-api-js/commit/e4dd3f3e24)
+- Converts meeting_method filter being sent to new client_view_meeting_method filter to support the addition of staff only preferences [`3a05ee834b`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3a05ee834b)
+
 ## [0.9.3] - 2020-04-16
 
 - Adds ability to send timezone when booking or rescheduling appointments [`17c97d4ee4`](https://github.com/coconutcalendar/coconut-open-api-js/commit/17c97d4ee4)
@@ -348,7 +353,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.9.3...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.10.0...HEAD
+[0.10.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.9.3...v0.10.0
 [0.9.3]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.9.2...v0.9.3
 [0.9.2]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.9.1...v0.9.2
 [0.9.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.9.0...v0.9.1
