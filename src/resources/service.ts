@@ -18,10 +18,10 @@ export interface ServiceFilter {
 export interface ServiceParameters {
   assignments?: number;
   category?: number | string;
+  client_view_meeting_method?: number;
   group?: number;
   invite_only?: number;
   location?: number | string;
-  meeting_method?: number;
   preferred?: number;
   user?: number | string;
 }
@@ -182,7 +182,7 @@ export default class Service extends Conditional implements ServiceResource {
     }
 
     if (typeof this.filters.method !== 'undefined') {
-      params.meeting_method = this.filters.method;
+      params.client_view_meeting_method = this.filters.method;
     }
 
     if (typeof this.filters.preferred !== 'undefined') {

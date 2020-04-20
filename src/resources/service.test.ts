@@ -189,10 +189,10 @@ it('can get services with additional parameters', async () => {
     params: {
       'filter[assignments]': 1,
       'filter[category]': 3,
+      'filter[client_view_meeting_method]': MeetingMethods.PHONE_CALL,
       'filter[group]': 0,
       'filter[invite_only]': 1,
       'filter[location]': 1,
-      'filter[meeting_method]': MeetingMethods.PHONE_CALL,
       'filter[preferred]': 1,
       'filter[user]': 2,
       limit: 5,
