@@ -409,6 +409,10 @@ Set a sorting string to determine how the returned results are sorted.
 
 Retrieve a set of location suggestions based on the given query. _(not publicly available yet)_
 
+- `supporting(method: number)`
+
+Set a filter which will tell the API to return locations that are supported by the given meeting method.
+
 - `take(limit: number)`
 
 Set the limit which you want returned.
@@ -431,7 +435,7 @@ class Locations {
     return await this.api.details(identifier);
   }
 
-  async get({ page, limit, services, sortable, user }) {
+  async get({ page, limit, method, services, sortable, user }) {
     return await this.api
       .locations()
       .assigned()
@@ -439,6 +443,7 @@ class Locations {
       .invitable()
       .providing(services)
       .physical()
+      .supporting(method)
       .sortBy(sortable)
       .on(page)
       .take(limit)
