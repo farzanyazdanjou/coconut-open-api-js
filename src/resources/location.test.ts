@@ -1,7 +1,8 @@
 import mockAxios from 'axios';
 
-import Location from './location';
+import MeetingMethods from "../constants/meeting-methods";
 import { STORAGE_KEY } from '../helpers/token';
+import Location from './location';
 
 it('will set assigned filter', async () => {
   const resource = new Location(mockAxios);
@@ -81,6 +82,14 @@ it('will set service filter using an array of strings', async () => {
   });
 });
 
+it('will set meeting method filter using a number', async () => {
+  const resource = new Location(mockAxios);
+
+  expect(resource.supporting(MeetingMethods.PHONE_CALL)).toHaveProperty('filters', {
+    method: MeetingMethods.PHONE_CALL,
+  });
+});
+
 it('will set the physical locations only filter', async () => {
   const resource = new Location(mockAxios);
 
@@ -142,6 +151,7 @@ it('can string all filterable options together', async () => {
       .sortBy('created')
       .physical()
       .preferred()
+      .supporting(MeetingMethods.PHONE_CALL)
       .located({ city: 'Fake City', country: 'FC', region: 'FR' })
       .take(5)
       .on(1),
@@ -152,6 +162,7 @@ it('can string all filterable options together', async () => {
     city: 'Fake City',
     country: 'FC',
     invitable: 1,
+    method: MeetingMethods.PHONE_CALL,
     preferred: 1,
     region: 'FR',
     services: [1, 2],
@@ -182,6 +193,7 @@ it('can get locations with additional parameters', async () => {
     .invitable()
     .physical()
     .preferred()
+    .supporting(MeetingMethods.PHONE_CALL)
     .located({ city: 'Fake City', country: 'FC', region: 'FR' })
     .sortBy('created')
     .take(5)
@@ -193,6 +205,7 @@ it('can get locations with additional parameters', async () => {
     params: {
       'filter[assignments]': 1,
       'filter[city]': 'Fake City',
+      'filter[client_view_meeting_method]': MeetingMethods.PHONE_CALL,
       'filter[country]': 'FC',
       'filter[invite_only]': 1,
       'filter[preferred]': 1,
