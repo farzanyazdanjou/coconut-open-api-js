@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.10.1] - 2020-05-19
+
+- Adds support for adding a meeting method filter to a location resource [`4fd7dc90d9`](https://github.com/coconutcalendar/coconut-open-api-js/commit/4fd7dc90d9)
+- Adds tests to support adding a meeting method filter to a location resource [`055aec3a48`](https://github.com/coconutcalendar/coconut-open-api-js/commit/055aec3a48)
+
 ## [0.10.0] - 2020-04-20
 
 - Adds additional fake filter to the user api call to work with the assignments filter to ensure we are checking the correct field when narrowing users by meeting method support [`e4dd3f3e24`](https://github.com/coconutcalendar/coconut-open-api-js/commit/e4dd3f3e24)
@@ -353,7 +358,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.10.0...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.10.1...HEAD
+[0.10.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.10.0...v0.10.1
 [0.10.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.9.3...v0.10.0
 [0.9.3]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.9.2...v0.9.3
 [0.9.2]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.9.1...v0.9.2
