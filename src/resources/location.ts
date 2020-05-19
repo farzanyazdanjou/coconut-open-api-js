@@ -19,6 +19,7 @@ export interface LocationFilter {
   assigned?: boolean;
   invitable?: number;
   preferred?: number;
+  method?: number;
   services?: number | number[] | string | string[];
   user?: number | string;
   virtual?: number;
@@ -27,6 +28,7 @@ export interface LocationFilter {
 export interface LocationParameters {
   assignments?: number;
   city?: string;
+  client_view_meeting_method?: number;
   country?: string;
   invite_only?: number;
   preferred?: number;
@@ -54,6 +56,8 @@ export interface LocationResource extends Pageable, ConditionalResource {
   providing(services: number | number[] | string | string[]): this;
 
   suggest(query: string): Promise<any>;
+
+  supporting(method: number): this;
 
   virtual(): this;
 }
@@ -176,6 +180,12 @@ export default class Location extends Conditional implements LocationResource {
     return await this.client.get('location-suggestions', { headers, params });
   }
 
+  public supporting(method: number): this {
+    this.filters.method = method;
+
+    return this;
+  }
+
   public take(limit: number): this {
     this.limit = limit;
 
@@ -205,6 +215,10 @@ export default class Location extends Conditional implements LocationResource {
 
     if (typeof this.filters.invitable !== 'undefined') {
       params.invite_only = this.filters.invitable;
+    }
+
+    if (typeof this.filters.method !== 'undefined') {
+      params.client_view_meeting_method = this.filters.method;
     }
 
     if (typeof this.filters.preferred !== 'undefined') {
