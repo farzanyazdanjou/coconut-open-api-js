@@ -12,6 +12,16 @@ it('can set an identifier for the attendee', async () => {
   );
 });
 
+it('can set an external identifier for the attendee', async () => {
+  const attendee = new Attendee();
+
+  expect(attendee.alias("ABC-123").getAttributes()).toEqual(
+    expect.objectContaining({
+      alias: "ABC-123",
+    }),
+  );
+})
+
 it('can set answers when providing a single answer', async () => {
   const answer = new Answer();
   const attendee = new Attendee();
