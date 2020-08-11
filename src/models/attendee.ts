@@ -4,6 +4,8 @@ import Model from './model';
 import { ResponseModel } from './response';
 
 export interface AttendeeModel extends ModelInterface {
+  alias(alias: string | number): this;
+
   answers(answers: AnswerModel | AnswerModel[]): this;
 
   as(identifier: number): this;
@@ -30,6 +32,7 @@ export interface AttendeeAttributes {
 }
 
 export interface AttendeeParameters {
+  alias?: string | number;
   address?: string;
   answers?: AnswerModel[] | [];
   cell_phone?: string;
@@ -78,6 +81,12 @@ export default class Attendee extends Model implements AttendeeModel {
       identifier: null,
       last_name: null,
     };
+  }
+
+  public alias(alias: string | number): this {
+    this.attributes.alias = alias;
+
+    return this;
   }
 
   public answers(answers: AnswerModel | AnswerModel[]): this {
