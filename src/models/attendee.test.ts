@@ -15,9 +15,9 @@ it('can set an identifier for the attendee', async () => {
 it('can set an external identifier for the attendee', async () => {
   const attendee = new Attendee();
 
-  expect(attendee.alias("ABC-123").getAttributes()).toEqual(
+  expect(attendee.alias('ABC-123').getAttributes()).toEqual(
     expect.objectContaining({
-      alias: "ABC-123",
+      alias: 'ABC-123',
     }),
   );
 })

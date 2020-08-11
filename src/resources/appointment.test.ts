@@ -229,6 +229,7 @@ it('can book an appointment with all available parameters', async () => {
       .actingAs(10)
       .with(
         attendee
+          .alias('ABC-123')
           .named('Jane', 'Doe')
           .reachable({
             cell_phone: '5555555555',
@@ -274,6 +275,7 @@ it('can book an appointment with all available parameters', async () => {
                   city: 'Fake City',
                   country: 'FC',
                   email: 'jane@doe.com',
+                  external_id: 'ABC-123',
                   first_name: 'Jane',
                   lang: 'es',
                   last_name: 'Doe',
