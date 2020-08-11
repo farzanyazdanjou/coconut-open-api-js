@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+## [0.10.2] - 2020-08-11
+
+- Ensures an attendee alias is sent in the correct format when it is supplied [`9d8cc94faa`](https://github.com/coconutcalendar/coconut-open-api-js/commit/9d8cc94faa)
+- Updates existing test to ensure that when setting an attendee alias, it propagates to the request format correctly [`41b1658ecb`](https://github.com/coconutcalendar/coconut-open-api-js/commit/41b1658ecb)
+- Adds support for setting an external identifier / alias on an attendee model [`15473efbfe`](https://github.com/coconutcalendar/coconut-open-api-js/commit/15473efbfe)
+- Adds test to set an external identifier / alias on an attendee model [`579408029e`](https://github.com/coconutcalendar/coconut-open-api-js/commit/579408029e)
+
 ## [0.10.1] - 2020-05-19
 
 - Adds support for adding a meeting method filter to a location resource [`4fd7dc90d9`](https://github.com/coconutcalendar/coconut-open-api-js/commit/4fd7dc90d9)
