@@ -182,6 +182,7 @@ export default class Attendee extends Model implements AttendeeModel {
       city: this.attributes.city,
       country: this.attributes.country,
       email: this.attributes.email,
+      external_id: this.attributes.alias,
       first_name: this.attributes.first_name,
       lang: this.attributes.language,
       last_name: this.attributes.last_name,
