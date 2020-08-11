@@ -253,6 +253,10 @@ class Appointments {
 
 ##### Methods
 
+- `alias(alias: string | number)`
+
+Set the external identifier for the given attendee. _(not publicly available yet)_
+
 - `answers(answers: AnswerModel | AnswerModel[])`
 
 Set a relationship which will tell the API to use the given answer model(s) for the attendee when booking an appointment.
@@ -297,13 +301,14 @@ import { Attendee, Answer } from 'coconut-open-api-js';
 class Attendees {
   static create(attributes) {
     const {
-      address, city, country, firstName, lastName,
+      address, alias, city, country, firstName, lastName,
       notes, phone, email, language, question, value
     } = attributes;
 
     const answer = (new Answer()).for(question).is(value);
 
     return (new Attendee())
+      .alias(alias)
       .answers(answer)
       .located({ address, city, country })
       .messagable()
