@@ -603,6 +603,10 @@ Set a filter which will tell the API to return only individual type services. _(
 
 Set a filter which will tell the API to return services that are specifically invite only.
 
+- `located(details: LocatableServiceParameters)`
+
+Set certain filters which will tell the API to return services that match the locatable details you provide.
+
 - `on(page: number)`
 
 Set the page offset which you want to view.
@@ -629,7 +633,7 @@ class Services {
     this.api = new OpenApi();
   }
 
-  async get({ category, limit, location, method, page, sortable, user }) {
+  async get({ category, limit, location, method, page, region, sortable, user }) {
     return await this.api
       .services()
       .assigned()
@@ -637,6 +641,7 @@ class Services {
       .by(user)
       .in(category)
       .invitable()
+      .located({ region })
       .supporting(method)
       .on(page)
       .sortBy(sortable)
@@ -756,6 +761,10 @@ Set a filter which will tell the API to return a user matching the provided iden
 
 Send the API request using the pre-set filters.
 
+- `located(details: LocatableUserParameters)`
+
+Set certain filters which will tell the API to return users that match the locatable details you provide.
+
 - `on(page: number)`
 
 Set the page offset which you want to view.
@@ -786,11 +795,12 @@ class Users {
     this.api = new OpenApi();
   }
 
-  async get({ limit, location, method, page, services, sortable }) {
+  async get({ limit, location, method, page, region, services, sortable }) {
     return await this.api
       .users()
       .assigned()
       .at(location)
+      .located({ region })
       .performing(services)
       .supporting(method)
       .on(page)
