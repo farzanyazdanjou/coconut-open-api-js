@@ -35,6 +35,13 @@ it('will set location filter using a string', async () => {
   });
 });
 
+it('will set the locatable filters as supplied', async () => {
+  const resource = new Service(mockAxios);
+  const region = 'SK';
+
+  expect(resource.located({ region })).toHaveProperty('filters', { region })
+});
+
 it('will set meeting method filter using a number', async () => {
   const resource = new Service(mockAxios);
 
@@ -136,6 +143,7 @@ it('can string all filterable options together', async () => {
       .in(3)
       .invitable()
       .individual()
+      .located({ region: 'SK' })
       .preferred()
       .supporting(MeetingMethods.PHONE_CALL)
       .sortBy('created')
@@ -151,6 +159,7 @@ it('can string all filterable options together', async () => {
     location: 1,
     method: MeetingMethods.PHONE_CALL,
     preferred: 1,
+    region: 'SK',
     user: 2,
   });
   expected.toHaveProperty('sortable', 'created');
@@ -177,6 +186,7 @@ it('can get services with additional parameters', async () => {
     .in(3)
     .invitable()
     .individual()
+    .located({ region: 'SK' })
     .preferred()
     .supporting(MeetingMethods.PHONE_CALL)
     .sortBy('created')
@@ -194,6 +204,7 @@ it('can get services with additional parameters', async () => {
       'filter[invite_only]': 1,
       'filter[location]': 1,
       'filter[preferred]': 1,
+      'filter[province]': 'SK',
       'filter[user]': 2,
       limit: 5,
       page: 1,

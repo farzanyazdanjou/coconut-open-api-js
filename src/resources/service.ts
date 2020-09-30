@@ -4,7 +4,15 @@ import { combine } from '../helpers/filters';
 import { Filterable, Pageable } from '../index';
 import Conditional, { ConditionalResource } from './conditional';
 
+type LocatableServiceDetail = 'region';
+
+export interface LocatableServiceParameters {
+  [key: string]: any;
+  region?: string;
+}
+
 export interface ServiceFilter {
+  [key: string]: any;
   assigned?: boolean;
   category?: number | string;
   group?: number;
@@ -23,6 +31,7 @@ export interface ServiceParameters {
   invite_only?: number;
   location?: number | string;
   preferred?: number;
+  province?: string;
   user?: number | string;
 }
 
@@ -40,6 +49,8 @@ export interface ServiceResource extends Pageable, ConditionalResource {
   individual(): this;
 
   invitable(): this;
+
+  located(details: LocatableServiceParameters): this;
 
   preferred(): this;
 
@@ -128,6 +139,16 @@ export default class Service extends Conditional implements ServiceResource {
     return this;
   }
 
+  public located(details: LocatableServiceParameters): this {
+    const keys = Object.keys(details) as LocatableServiceDetail[];
+
+    keys.map(key => {
+      this.filters[key] = details[key];
+    });
+
+    return this;
+  }
+
   public preferred(): this {
     this.filters.preferred = 1;
 
@@ -187,6 +208,10 @@ export default class Service extends Conditional implements ServiceResource {
 
     if (typeof this.filters.preferred !== 'undefined') {
       params.preferred = this.filters.preferred;
+    }
+
+    if (typeof this.filters.region !== 'undefined') {
+      params.province = this.filters.region;
     }
 
     if (typeof this.filters.user !== 'undefined') {
