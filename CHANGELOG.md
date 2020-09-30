@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.10.3] - 2020-09-29
+
+- Adds region filter to service and user resources [`b2e3fe51b0`](https://github.com/coconutcalendar/coconut-open-api-js/commit/b2e3fe51b0)
+
 ## [0.10.2] - 2020-08-11
 
 - Ensures an attendee alias is sent in the correct format when it is supplied [`9d8cc94faa`](https://github.com/coconutcalendar/coconut-open-api-js/commit/9d8cc94faa)
