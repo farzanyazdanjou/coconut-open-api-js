@@ -15,6 +15,7 @@ export interface AppointmentFilter {
   start?: string;
   timezone?: string;
   user?: number;
+  users?: number | number[];
 }
 
 export interface UtmParameters {
@@ -46,6 +47,7 @@ export interface AppointmentParameters {
       start: string | undefined;
       supported_locale: string | null;
       timezone?: string;
+      additional_staff_id?: number | number[],
     };
     relationships: {
       attendees: {
@@ -113,6 +115,8 @@ export interface AppointmentResource extends Resource, ConditionalResource {
   add(appointment: number): Promise<any>;
 
   at(location: number): this;
+
+  attendedBy(users: number | number[]): this;
 
   book(): Promise<any>;
 
@@ -196,6 +200,12 @@ export default class Appointment extends Conditional implements AppointmentResou
 
   public at(location: number): this {
     this.filters.location = location;
+
+    return this;
+  }
+
+  public attendedBy(users: number | number[]): this {
+    this.filters.users = users;
 
     return this;
   }
@@ -365,6 +375,10 @@ export default class Appointment extends Conditional implements AppointmentResou
 
       if (this.filters.user) {
         params.data.attributes.staff_id = this.filters.user;
+      }
+
+      if (this.filters.users) {
+        params.data.attributes.additional_staff_id = this.filters.users;
       }
 
       if (this.filters.invitation) {

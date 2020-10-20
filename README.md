@@ -64,6 +64,10 @@ Add the currently supplied attendees to the given appointment. _(not publicly av
 
 Set a relationship which will tell the API to use the given location identifier when creating an appointment.
 
+- `attendedBy(users: number | number[])`
+
+Set a relationship which will tell the API to use the given additional user identifier when creating an appointment.
+
 - `book()`
 
 Create a new appointment using the pre-set parameters.
@@ -184,7 +188,7 @@ class Appointments {
   async book(attributes) {
     const {
       address, campaign, city, content, country, email, firstName, invitation, language, lastName,
-      location, locale, medium, notes, phone, question, service, source, start, term, timezone, user, value,
+      location, locale, medium, notes, phone, question, service, source, start, term, timezone, user, users, value,
     } = attributes;
 
     const answer = (new Answer())
@@ -202,6 +206,7 @@ class Appointments {
     return this.api
       .appointments()
       .at(location)
+      .attendedBy(users)
       .by(user)
       .for(service)
       .starting(start)
