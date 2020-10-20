@@ -461,10 +461,10 @@ it('can retrieve matching appointments using a given set of matchers', async () 
 it('can cancel the given appointment for the given attendee', async () => {
   const resource = new Appointment(mockAxios);
 
-  await resource.cancel(1, 2);
+  await resource.cancel(1, 2, 'code');
 
   expect(mockAxios.delete).toHaveBeenCalledTimes(1);
-  expect(mockAxios.delete).toHaveBeenCalledWith('appointments/1/2', { data: {} });
+  expect(mockAxios.delete).toHaveBeenCalledWith('appointments/1/2', { data: {}, params: { code: 'code' } });
 });
 
 it('can cancel the given appointment for the given attendee while provided responses', async () => {
@@ -479,7 +479,7 @@ it('can cancel the given appointment for the given attendee while provided respo
     .with(
       attendee.as(2).responses(responses)
     )
-    .cancel(1, 2);
+    .cancel(1, 2, 'code');
 
   expect(mockAxios.delete).toHaveBeenCalledWith('appointments/1/2', {
     data: {
@@ -516,6 +516,9 @@ it('can cancel the given appointment for the given attendee while provided respo
         },
         type: 'appointments',
       },
+    },
+    params: {
+      code: 'code',
     },
   });
 });
