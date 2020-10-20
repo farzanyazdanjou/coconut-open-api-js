@@ -122,7 +122,7 @@ export interface AppointmentResource extends Resource, ConditionalResource {
 
   by(user: number): this;
 
-  cancel(appointment: number, attendee: number): Promise<any>;
+  cancel(appointment: number, attendee: number, code: string): Promise<any>;
 
   for(services: number | number[]): this;
 
@@ -226,8 +226,11 @@ export default class Appointment extends Conditional implements AppointmentResou
     return this;
   }
 
-  public async cancel(appointment: number, attendee: number): Promise<any> {
-    return await this.client.delete(`appointments/${appointment}/${attendee}`, { data: this.params() });
+  public async cancel(appointment: number, attendee: number, code: string): Promise<any> {
+    return await this.client.delete(`appointments/${appointment}/${attendee}`, {
+      data: this.params(),
+      params: { code },
+    });
   }
 
   public content(content: string): this {
