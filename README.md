@@ -683,6 +683,10 @@ class Settings {
 
 Set a filter which will tell the API to return time slots at the location matching the provided identifier.
 
+- `attendedBy(users: number | number[])`
+
+Set a filter which will tell the API to return time slots that match availability of the additional user matching the provided identifier.
+
 - `between(start: string, end: string)`
 
 Set a filter which will tell the API to return time slots between a given start and end date time string.
@@ -725,10 +729,11 @@ class TimeSlots {
     this.api = new OpenApi();
   }
 
-  async get({ appointment, end, location, service, start, user }) {
+  async get({ appointment, end, location, service, start, user, users }) {
     return await this.api
       .slots()
       .at(location)
+      .attendedBy(users)
       .by(user)
       .for(service)
       .between(start, end)
