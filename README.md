@@ -76,9 +76,9 @@ Create a new appointment using the pre-set parameters.
 
 Set a relationship which will tell the API to use the given user identifier when creating an appointment.
 
-- `cancel(appointment: number, attendee: number)`
+- `cancel(appointment: number, attendee: number, code: string)`
 
-Cancel an appointment for a specific attendee matching the given appointment and attendee identifiers.
+Cancel an appointment for a specific attendee matching the given appointment, attendee and confirmation code identifiers.
 
 - `campaign(campaign: string)`
 
@@ -224,7 +224,7 @@ class Appointments {
   }
 
   async cancel(attributes) {
-    const { appointment, attendee } = attributes;
+    const { appointment, attendee, code } = attributes;
 
     // We can optionally submit custom form responses when cancelling
     // appointments by utilizing the Response and Attendee models.
@@ -237,7 +237,7 @@ class Appointments {
 
     return this.api.appointments()
       .with(person)
-      .cancel(appointment, attendee);
+      .cancel(appointment, attendee, code);
   }
 
   async fetch({ code, id }) {
