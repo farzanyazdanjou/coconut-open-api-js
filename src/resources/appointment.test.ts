@@ -31,6 +31,22 @@ it('can set the user property', async () => {
   });
 });
 
+it('can set the users property using a number', async () => {
+  const resource = new Appointment(mockAxios);
+
+  expect(resource.attendedBy(1)).toHaveProperty('filters', {
+    users: 1,
+  });
+});
+
+it('can set the users property using an array of numbers', async () => {
+  const resource = new Appointment(mockAxios);
+
+  expect(resource.attendedBy([1, 2])).toHaveProperty('filters', {
+    users: [1, 2],
+  });
+});
+
 it('can set the meeting method property', async () => {
   const resource = new Appointment(mockAxios);
   const { PHONE_CALL } = MeetingMethods;
@@ -214,6 +230,7 @@ it('can book an appointment with all available parameters', async () => {
   for (const notification of notifications) {
     await resource
       .at(1)
+      .attendedBy([1, 2])
       .for([2, 3])
       .by(4)
       .via(5)
@@ -256,6 +273,7 @@ it('can book an appointment with all available parameters', async () => {
     expect(mockAxios.post).toHaveBeenCalledWith('appointments', {
       data: {
         attributes: {
+          additional_staff_id: [1, 2],
           invitation_id: 5,
           location_id: 1,
           meeting_method: PHONE_CALL,
