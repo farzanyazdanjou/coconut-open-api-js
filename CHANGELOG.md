@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.12.2] - 2020-11-10
+
+- Moves query parameter to actual string since it does not work when calling patch [`dd977f56a3`](https://github.com/coconutcalendar/coconut-open-api-js/commit/dd977f56a3)
+
 ## [0.12.1] - 2020-11-10
 
 - Fixes improperly config for reschedule call [`81a26a9192`](https://github.com/coconutcalendar/coconut-open-api-js/commit/81a26a9192)
