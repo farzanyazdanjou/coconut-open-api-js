@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.12.0] - 2020-11-10
+
+- Updates documentation for reschedule method to show the newly required code parameter [`b0688b4617`](https://github.com/coconutcalendar/coconut-open-api-js/commit/b0688b4617)
+- Adds required code parameter to reschedule an appointment [`a4935ab970`](https://github.com/coconutcalendar/coconut-open-api-js/commit/a4935ab970)
+
 ## [0.11.1] - 2020-11-10
 
 - Add resource to services locations and users [`#19`](https://github.com/coconutcalendar/coconut-open-api-js/pull/19)
@@ -384,7 +389,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.11.1...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.0...HEAD
+[0.12.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.11.1...v0.12.0
 [0.11.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.11.0...v0.11.1
 [0.11.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.10.4...v0.11.0
 [0.10.4]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.10.3...v0.10.4
