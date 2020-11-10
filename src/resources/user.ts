@@ -16,6 +16,7 @@ export interface UserFilter {
   assigned?: boolean;
   services?: number | number[] | string | string[];
   location?: number | string;
+  resource?: string;
   user?: number | string;
   method?: number;
 }
@@ -26,6 +27,7 @@ export interface UserParameters {
   service?: number | number[] | string | string[];
   location?: number | string;
   province?: string;
+  resource?: string;
   user?: number | string;
   meeting_method?: number;
 }
@@ -42,6 +44,8 @@ export interface UserResource extends Pageable, ConditionalResource {
   performing(services: number | number[] | string | string[]): this;
 
   supporting(method: number): this;
+
+  through(resource: string): this;
 }
 
 export default class User extends Conditional implements UserResource {
@@ -136,6 +140,12 @@ export default class User extends Conditional implements UserResource {
     return this;
   }
 
+  public through(resource: string): this {
+    this.filters.resource = resource;
+
+    return this;
+  }
+
   public take(limit: number): this {
     this.limit = limit;
 
@@ -164,6 +174,10 @@ export default class User extends Conditional implements UserResource {
     if (typeof this.filters.method !== 'undefined') {
       params.client_view_meeting_method = this.filters.method;
       params.meeting_method = this.filters.method;
+    }
+
+    if (typeof this.filters.resource !== 'undefined') {
+      params.resource = this.filters.resource;
     }
 
     if (typeof this.filters.user !== 'undefined') {

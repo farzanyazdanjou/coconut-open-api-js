@@ -427,6 +427,10 @@ Set a filter which will tell the API to return locations that are supported by t
 
 Set the limit which you want returned.
 
+- `through(resource: string)`
+
+Set a filter which will tell the API which resource the request comes from. Currently, only 'client_view' is supported.
+
 - `virtual()`
 
 Set a filter which will tell the API to return only virtual locations. _(not publicly available yet)_
@@ -445,7 +449,7 @@ class Locations {
     return await this.api.details(identifier);
   }
 
-  async get({ page, limit, method, services, sortable, user }) {
+  async get({ page, limit, method, resource, services, sortable, user }) {
     return await this.api
       .locations()
       .assigned()
@@ -455,6 +459,7 @@ class Locations {
       .physical()
       .supporting(method)
       .sortBy(sortable)
+      .through(resource)
       .on(page)
       .take(limit)
       .get();
@@ -628,6 +633,10 @@ Set a filter which will tell the API to return services that are supported by th
 
 Set the limit which you want returned.
 
+- `through(resource: string)`
+
+Set a filter which will tell the API which resource the request comes from. Currently, only 'client_view' is supported.
+
 ##### Example
 
 ```javascript
@@ -638,7 +647,7 @@ class Services {
     this.api = new OpenApi();
   }
 
-  async get({ category, limit, location, method, page, region, sortable, user }) {
+  async get({ category, limit, location, method, page, region, resource, sortable, user }) {
     return await this.api
       .services()
       .assigned()
@@ -648,6 +657,7 @@ class Services {
       .invitable()
       .located({ region })
       .supporting(method)
+      .through(resource)
       .on(page)
       .sortBy(sortable)
       .take(limit)
@@ -795,6 +805,10 @@ Set a filter which will tell the API to return users that support the given meet
 
 Set the limit which you want returned.
 
+- `through(resource: string)`
+
+Set a filter which will tell the API which resource the request comes from. Currently, only 'client_view' is supported.
+
 ##### Example
 
 ```javascript
@@ -805,7 +819,7 @@ class Users {
     this.api = new OpenApi();
   }
 
-  async get({ limit, location, method, page, region, services, sortable }) {
+  async get({ limit, location, method, page, region, resource, services, sortable }) {
     return await this.api
       .users()
       .assigned()
@@ -813,6 +827,7 @@ class Users {
       .located({ region })
       .performing(services)
       .supporting(method)
+      .through(resource)
       .on(page)
       .sortBy(sortable)
       .take(limit)

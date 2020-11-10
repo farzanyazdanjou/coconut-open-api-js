@@ -20,6 +20,7 @@ export interface ServiceFilter {
   location?: number | string;
   method?: number;
   preferred?: number;
+  resource?: string;
   user?: number | string;
 }
 
@@ -32,6 +33,7 @@ export interface ServiceParameters {
   location?: number | string;
   preferred?: number;
   province?: string;
+  resource?: string;
   user?: number | string;
 }
 
@@ -55,6 +57,8 @@ export interface ServiceResource extends Pageable, ConditionalResource {
   preferred(): this;
 
   supporting(method: number): this;
+
+  through(resource: string): this;
 }
 
 export default class Service extends Conditional implements ServiceResource {
@@ -179,6 +183,12 @@ export default class Service extends Conditional implements ServiceResource {
     return this;
   }
 
+  public through(resource: string): this {
+    this.filters.resource = resource;
+
+    return this;
+  }
+
   protected params(): ServiceParameters {
     const params: ServiceParameters = {};
 
@@ -212,6 +222,10 @@ export default class Service extends Conditional implements ServiceResource {
 
     if (typeof this.filters.region !== 'undefined') {
       params.province = this.filters.region;
+    }
+    
+    if (typeof this.filters.resource !== 'undefined') {
+      params.resource = this.filters.resource;
     }
 
     if (typeof this.filters.user !== 'undefined') {

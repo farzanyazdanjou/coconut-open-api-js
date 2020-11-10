@@ -104,6 +104,14 @@ it('will set service filter using an array of strings', async () => {
   });
 });
 
+it('will set resource filter', async () => {
+  const resource = new User(mockAxios);
+
+  expect(resource.through('client_view')).toHaveProperty('filters', {
+    resource: 'client_view',
+  });
+});
+
 it('will set the limit given', async () => {
   const resource = new User(mockAxios);
 
@@ -126,6 +134,7 @@ it('can string all filterable options together', async () => {
       .located({ region: 'SK' })
       .performing([1, 2])
       .supporting(MeetingMethods.PHONE_CALL)
+      .through('client_view')
       .sortBy('created')
       .find(1)
       .take(5)
@@ -137,6 +146,7 @@ it('can string all filterable options together', async () => {
     location: 1,
     method: MeetingMethods.PHONE_CALL,
     region: 'SK',
+    resource: 'client_view',
     services: [1, 2],
     user: 1,
   });
@@ -163,6 +173,7 @@ it('can get users with additional parameters', async () => {
     .located({ region: 'SK' })
     .performing([1, 2])
     .supporting(MeetingMethods.PHONE_CALL)
+    .through('client_view')
     .find(1)
     .sortBy('created')
     .take(5)
@@ -177,6 +188,7 @@ it('can get users with additional parameters', async () => {
       'filter[location]': 1,
       'filter[meeting_method]': MeetingMethods.PHONE_CALL,
       'filter[province]': 'SK',
+      'filter[resource]': 'client_view',
       'filter[service]': [1, 2],
       'filter[user]': 1,
       limit: 5,

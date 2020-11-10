@@ -106,6 +106,14 @@ it('will set the individual filter', async () => {
   });
 });
 
+it('will set the resource filter', async () => {
+  const resource = new Service(mockAxios);
+
+  expect(resource.through('client_view')).toHaveProperty('filters', {
+    resource: 'client_view',
+  });
+});
+
 it('will set the page we are on', async () => {
   const resource = new Service(mockAxios);
 
@@ -146,6 +154,7 @@ it('can string all filterable options together', async () => {
       .located({ region: 'SK' })
       .preferred()
       .supporting(MeetingMethods.PHONE_CALL)
+      .through('client_view')
       .sortBy('created')
       .take(5)
       .on(1),
@@ -160,6 +169,7 @@ it('can string all filterable options together', async () => {
     method: MeetingMethods.PHONE_CALL,
     preferred: 1,
     region: 'SK',
+    resource: 'client_view',
     user: 2,
   });
   expected.toHaveProperty('sortable', 'created');
@@ -189,6 +199,7 @@ it('can get services with additional parameters', async () => {
     .located({ region: 'SK' })
     .preferred()
     .supporting(MeetingMethods.PHONE_CALL)
+    .through('client_view')
     .sortBy('created')
     .take(5)
     .on(1)
@@ -205,6 +216,7 @@ it('can get services with additional parameters', async () => {
       'filter[location]': 1,
       'filter[preferred]': 1,
       'filter[province]': 'SK',
+      'filter[resource]': 'client_view',
       'filter[user]': 2,
       limit: 5,
       page: 1,
