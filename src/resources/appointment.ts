@@ -282,10 +282,7 @@ export default class Appointment extends Conditional implements AppointmentResou
   }
 
   public async reschedule(appointment: number, code: string): Promise<any> {
-    return await this.client.patch(`appointments/${appointment}`, {
-      data: this.rescheduleParams(appointment),
-      params: { code }
-    });
+    return await this.client.patch(`appointments/${appointment}?code=${code}`, this.rescheduleParams(appointment));
   }
 
   public starting(start: string): this {
