@@ -116,7 +116,7 @@ Set an attribute which will tell the API to use the given string as the medium U
 
 Set a filter to determine who should be notified when booking an appointment.
 
-- `reschedule(appointment: number)`
+- `reschedule(appointment: number, code: string)`
 
 Reschedule an appointment matching the given appointment identifier using the pre-set start parameter.
 
@@ -244,12 +244,12 @@ class Appointments {
     return this.api.appointments().matching({ code, id }).get();
   }
   
-  async reschedule({ appointment, start }) {
+  async reschedule({ appointment, code, start }) {
       return this.api
         .appointments()
         .starting(start)
         .notify(Notifications.ALL)
-        .reschedule(appointment);
+        .reschedule(appointment, code);
     }
   }
 ```
