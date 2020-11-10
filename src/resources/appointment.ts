@@ -87,6 +87,9 @@ export interface RescheduleParameters {
       user?: boolean;
     };
   };
+  params: {
+    code: string;
+  };
 }
 
 interface AddSingleAttendeeParameter {
@@ -134,7 +137,7 @@ export interface AppointmentResource extends Resource, ConditionalResource {
 
   notify(notifications: AppointmentNotificationParameters): this;
 
-  reschedule(appointment: number): Promise<any>;
+  reschedule(appointment: number, code: string): Promise<any>;
 
   starting(start: string): this;
 
@@ -281,8 +284,8 @@ export default class Appointment extends Conditional implements AppointmentResou
     return this;
   }
 
-  public async reschedule(appointment: number): Promise<any> {
-    return await this.client.patch(`appointments/${appointment}`, this.rescheduleParams(appointment));
+  public async reschedule(appointment: number, code: string): Promise<any> {
+    return await this.client.patch(`appointments/${appointment}`, this.rescheduleParams(appointment, code));
   }
 
   public starting(start: string): this {
@@ -435,7 +438,7 @@ export default class Appointment extends Conditional implements AppointmentResou
     return params;
   }
 
-  protected rescheduleParams(appointment: number): RescheduleParameters | object {
+  protected rescheduleParams(appointment: number, code: string): RescheduleParameters | object {
     let params: RescheduleParameters = {
       data: {
         attributes: {
@@ -444,6 +447,7 @@ export default class Appointment extends Conditional implements AppointmentResou
         id: appointment,
         type: 'appointments',
       },
+      params: { code },
     };
 
     if (this.filters.timezone) {
