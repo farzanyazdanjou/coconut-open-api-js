@@ -556,15 +556,17 @@ it('can reschedule an appointment with the minimum required parameters', async (
   expect(mockAxios.patch).toHaveBeenCalledTimes(1);
   expect(mockAxios.patch).toHaveBeenCalledWith('appointments/1', {
     data: {
-      attributes: {
-        start,
-      },
-      id: 1,
-      type: 'appointments',
+      data: {
+        attributes: {
+          start,
+        },
+        id: 1,
+        type: 'appointments',
+      }
     },
     params: {
       code: 'code',
-    }
+    },
   });
 });
 
@@ -582,19 +584,21 @@ it('can reschedule an appointment with all available parameters', async () => {
 
     expect(mockAxios.patch).toHaveBeenCalledWith('appointments/1', {
       data: {
-        attributes: {
-          start,
-          timezone: 'America/Toronto',
+        data: {
+          attributes: {
+            start,
+            timezone: 'America/Toronto',
+          },
+          id: 1,
+          type: 'appointments',
         },
-        id: 1,
-        type: 'appointments',
-      },
-      meta: {
-        notify: notification,
+        meta: {
+          notify: notification,
+        },
       },
       params: {
         code: 'code',
-      }
+      },
     });
   }
 
