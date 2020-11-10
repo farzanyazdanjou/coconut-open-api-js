@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.12.1] - 2020-11-10
+
+- Fixes improperly config for reschedule call [`81a26a9192`](https://github.com/coconutcalendar/coconut-open-api-js/commit/81a26a9192)
+
 ## [0.12.0] - 2020-11-10
 
 - Updates documentation for reschedule method to show the newly required code parameter [`b0688b4617`](https://github.com/coconutcalendar/coconut-open-api-js/commit/b0688b4617)
