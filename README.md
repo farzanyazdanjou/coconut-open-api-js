@@ -136,6 +136,10 @@ Set a locale to use as a filter when not supplying a staff preference to ensure 
 
 Set an attribute which will tell the API to use the given string as the term UTM parameter when creating an appointment.
 
+- `through(origin: number)`
+
+Set an attribute which will tell the API to use the given origin constant as the booked through value when creating an appointment.
+
 - `via(invitation: number)`
 
 Set an attribute which will tell the API to use the given invitation identifier when creating an appointment.
@@ -147,7 +151,7 @@ Set a relationship which will tell the API to use the given attendee model(s) wh
 ##### Example
 
 ```javascript
-import { OpenApi, Attendee, Answer, MeetingMethods, Notifications, Response } from 'coconut-open-api-js';
+import { OpenApi, Attendee, Answer, MeetingMethods, Notifications, Origins, Response } from 'coconut-open-api-js';
 
 class Appointments {
   constructor() {
@@ -219,6 +223,7 @@ class Appointments {
       .term(term)
       .via(invitation)
       .with(attendee)
+      .through(Origins.MODERN_CLIENT_VIEW)
       .notify(Notifications.ALL)
       .book();
   }
