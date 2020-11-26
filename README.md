@@ -185,6 +185,7 @@ class Appointments {
       .source(source)
       .term(term)
       .with(attendee)
+      .through(Origins.MODERN_CLIENT_VIEW)
       .notify(Notifications.ALL)
       .add(appointment);
   }
