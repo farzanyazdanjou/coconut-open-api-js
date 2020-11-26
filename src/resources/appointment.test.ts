@@ -2,6 +2,7 @@ import mockAxios from 'axios';
 
 import MeetingMethods from "../constants/meeting-methods";
 import Notifications from '../constants/notifications';
+import Origins from "../constants/origins";
 import Answer from '../models/answer';
 import Attendee from '../models/attendee';
 import Response from '../models/response';
@@ -14,6 +15,14 @@ it('can set the invitation property', async () => {
     invitation: 1,
   });
 });
+
+it('can set the booked through property', async () => {
+  const resource = new Appointment(mockAxios);
+
+  expect(resource.through(Origins.API)).toHaveProperty('filters', {
+    through: Origins.API,
+  });
+})
 
 it('can set the location property', async () => {
   const resource = new Appointment(mockAxios);
@@ -238,6 +247,7 @@ it('can book an appointment with all available parameters', async () => {
       .method(PHONE_CALL)
       .in('America/Toronto')
       .supporting('fr')
+      .through(Origins.MODERN_CLIENT_VIEW)
       .campaign('test campaign')
       .content('test content')
       .medium('test medium')
@@ -274,6 +284,7 @@ it('can book an appointment with all available parameters', async () => {
       data: {
         attributes: {
           additional_staff_id: [1, 2],
+          booked_through: Origins.MODERN_CLIENT_VIEW,
           invitation_id: 5,
           location_id: 1,
           meeting_method: PHONE_CALL,

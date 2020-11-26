@@ -13,6 +13,7 @@ export interface AppointmentFilter {
   notifications?: AppointmentNotificationParameters;
   services?: number | number[];
   start?: string;
+  through?: number;
   timezone?: string;
   user?: number;
   users?: number | number[];
@@ -39,6 +40,7 @@ export interface AppointmentNotificationParameters {
 export interface AppointmentParameters {
   data: {
     attributes?: {
+      booked_through?: number;
       invitation_id: number | null;
       location_id: number | undefined;
       meeting_method?: number;
@@ -139,6 +141,8 @@ export interface AppointmentResource extends Resource, ConditionalResource {
   starting(start: string): this;
 
   supporting(locale: string | null): this;
+
+  through(origin: number): this;
 
   via(invitation: number): this;
 
@@ -309,6 +313,12 @@ export default class Appointment extends Conditional implements AppointmentResou
     return this;
   }
 
+  public through(origin: number): this {
+    this.filters.through = origin;
+
+    return this
+  }
+
   public via(invitation: number): this {
     this.filters.invitation = invitation;
 
@@ -390,6 +400,10 @@ export default class Appointment extends Conditional implements AppointmentResou
 
       if (this.filters.method) {
         params.data.attributes.meeting_method = this.filters.method;
+      }
+
+      if (this.filters.through) {
+        params.data.attributes.booked_through = this.filters.through;
       }
 
       if (this.filters.timezone) {
