@@ -412,6 +412,34 @@ it('can add the given attendee to the given appointment with notification meta d
   });
 });
 
+it('can add the given attendee to the given appointment with booked through meta data', async () => {
+  const resource = new Appointment(mockAxios);
+  const attendee = (new Attendee()).named('Jane', 'Doe').reachable({ email: 'jane@doe.com' });
+
+  await resource.with(attendee).through(Origins.MODERN_CLIENT_VIEW).add(1);
+
+  expect(mockAxios.put).toHaveBeenCalledTimes(1);
+  expect(mockAxios.put).toHaveBeenCalledWith('appointments/1/attendees', {
+    data: [
+      {
+        attributes: {
+          email: 'jane@doe.com',
+          first_name: 'Jane',
+          last_name: 'Doe',
+        },
+        type: 'attendees',
+      }
+    ],
+    meta: {
+      origin: Origins.MODERN_CLIENT_VIEW,
+    },
+  }, {
+    headers: {
+      'Content-Type': 'application/json; ext=bulk',
+    },
+  });
+});
+
 it('can add the given attendee to the given appointment while supplying answers', async () => {
   const resource = new Appointment(mockAxios);
   const answer = (new Answer()).for(1).is('the value');

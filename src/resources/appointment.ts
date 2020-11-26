@@ -108,6 +108,7 @@ export interface AddAttendeeParameters {
       client?: boolean;
       user?: boolean;
     };
+    origin?: number;
   }
 }
 
@@ -340,6 +341,13 @@ export default class Appointment extends Conditional implements AppointmentResou
       params.meta = {
         booker: this.meta.booker,
       };
+    }
+
+    if (this.filters.through) {
+      params.meta = {
+        ...params.meta,
+        origin: this.filters.through,
+      }
     }
 
     if (this.filters.notifications) {
