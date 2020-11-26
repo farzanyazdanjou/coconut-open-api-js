@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+## [0.12.3] - 2020-11-26
+
+- Updates documentation for sending booked through value when adding an attendee to an appointment [`d80b13d353`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d80b13d353)
+- Adds ability to send a booked through origin when adding an attendee to an appointment [`297efe58e2`](https://github.com/coconutcalendar/coconut-open-api-js/commit/297efe58e2)
+- Updates documentation for sending booked through value when booking an appointment [`5d564acce6`](https://github.com/coconutcalendar/coconut-open-api-js/commit/5d564acce6)
+- Adds ability to send a booked through origin when booking an appointment [`b3be5ea4ac`](https://github.com/coconutcalendar/coconut-open-api-js/commit/b3be5ea4ac)
+
 ## [0.12.2] - 2020-11-10
 
 - Moves query parameter to actual string since it does not work when calling patch [`dd977f56a3`](https://github.com/coconutcalendar/coconut-open-api-js/commit/dd977f56a3)
@@ -397,7 +404,10 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.0...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.3...HEAD
+[0.12.3]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.2...v0.12.3
+[0.12.2]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.1...v0.12.2
+[0.12.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.0...v0.12.1
 [0.12.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.11.1...v0.12.0
 [0.11.1]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.11.0...v0.11.1
 [0.11.0]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.10.4...v0.11.0
