@@ -160,6 +160,14 @@ it('can set the starting time property', async () => {
   });
 });
 
+it('can set a booking shortcut property', async () => {
+  const resource = new Appointment(mockAxios);
+
+  expect(resource.shortcut(1)).toHaveProperty('filters', {
+    shortcut: 1,
+  });
+});
+
 it('can set a single attendee for the appointment', async () => {
   const resource = new Appointment(mockAxios);
   const attendee = new Attendee();
@@ -243,6 +251,7 @@ it('can book an appointment with all available parameters', async () => {
       .for([2, 3])
       .by(4)
       .via(5)
+      .shortcut(6)
       .starting(start)
       .method(PHONE_CALL)
       .in('America/Toronto')
@@ -285,6 +294,7 @@ it('can book an appointment with all available parameters', async () => {
         attributes: {
           additional_staff_id: [1, 2],
           booked_through: Origins.MODERN_CLIENT_VIEW,
+          booking_shortcut_id: 6,
           invitation_id: 5,
           location_id: 1,
           meeting_method: PHONE_CALL,

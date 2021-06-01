@@ -12,6 +12,7 @@ export interface AppointmentFilter {
   method?: number;
   notifications?: AppointmentNotificationParameters;
   services?: number | number[];
+  shortcut?: number;
   start?: string;
   through?: number;
   timezone?: string;
@@ -40,7 +41,9 @@ export interface AppointmentNotificationParameters {
 export interface AppointmentParameters {
   data: {
     attributes?: {
+      additional_staff_id?: number | number[],
       booked_through?: number;
+      booking_shortcut_id?: number;
       invitation_id: number | null;
       location_id: number | undefined;
       meeting_method?: number;
@@ -49,7 +52,6 @@ export interface AppointmentParameters {
       start: string | undefined;
       supported_locale: string | null;
       timezone?: string;
-      additional_staff_id?: number | number[],
     };
     relationships: {
       attendees: {
@@ -138,6 +140,8 @@ export interface AppointmentResource extends Resource, ConditionalResource {
   notify(notifications: AppointmentNotificationParameters): this;
 
   reschedule(appointment: number, code: string): Promise<any>;
+
+  shortcut(shortcut: number): this;
 
   starting(start: string): this;
 
@@ -290,6 +294,12 @@ export default class Appointment extends Conditional implements AppointmentResou
     return await this.client.patch(`appointments/${appointment}?code=${code}`, this.rescheduleParams(appointment));
   }
 
+  public shortcut(shortcut: number): this {
+    this.filters.shortcut = shortcut;
+
+    return this;
+  }
+
   public starting(start: string): this {
     this.filters.start = start;
 
@@ -417,7 +427,12 @@ export default class Appointment extends Conditional implements AppointmentResou
       if (this.filters.timezone) {
         params.data.attributes.timezone = this.filters.timezone;
       }
+
+      if (this.filters.shortcut) {
+        params.data.attributes.booking_shortcut_id = this.filters.shortcut;
+      }
     }
+
 
     if (this.filters.notifications) {
       params = {
