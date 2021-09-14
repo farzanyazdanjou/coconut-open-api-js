@@ -30,11 +30,11 @@ export default class WaitTime extends Conditional implements WaitTimeResource {
   }
 
   public async get(): Promise<any> {
-    let params: WaitTimeParameters = {};
+    const params: WaitTimeParameters = {};
     let location: string | number = '';
 
     if (this.location != null) {
-        location = this.location;
+      location = this.location;
     }
 
     if (this.limit) {
