@@ -9,24 +9,30 @@ export interface WaitTimeParameters {
 }
 
 export interface WaitTimeResource {
+    at(location: string | number): this;
     on(page: number): this;
     take(limit: number): this;
-    at(location: string | number): this;
 }
 
 export default class WaitTime extends Conditional implements WaitTimeResource {
   protected client: AxiosInstance;
+  protected limit: number | null;
   protected location: string | number | null;
   protected page: number | null;
-  protected limit: number | null;
 
   constructor(client: AxiosInstance) {
     super();
 
     this.client = client;
+    this.limit = null;
     this.location = null;
     this.page = null;
-    this.limit = null;
+  }
+
+  public at(location: string | number): this {
+    this.location = location;
+
+    return this;
   }
 
   public async get(): Promise<any> {
@@ -46,12 +52,6 @@ export default class WaitTime extends Conditional implements WaitTimeResource {
     }
 
     return await this.client.get(location ? `wait-time-average/${location}` : 'wait-time-average', { params });
-  }
-
-  public at(location: string | number): this {
-    this.location = location;
-
-    return this;
   }
 
   public on(page: number): this {
