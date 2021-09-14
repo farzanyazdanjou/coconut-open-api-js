@@ -45,7 +45,7 @@ export default class WaitTime extends Conditional implements WaitTimeResource {
       params.page = this.page;
     }
 
-    return await this.client.get(`wait-time-average/${location}`, { params });
+    return await this.client.get(location ? `wait-time-average/${location}` : 'wait-time-average', { params });
   }
 
   public at(location: string | number): this {
