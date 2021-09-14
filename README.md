@@ -58,7 +58,7 @@ class Answers {
 
 - `add(appointment: number)`
 
-Add the currently supplied attendees to the given appointment. _(not publicly available yet)_
+Add the currently supplied attendees to the given appointment.
 
 - `at(location: number)`
 
@@ -104,7 +104,7 @@ Set the timezone in which the server will interpret the appointment start time a
 
 Set a filter to use in order to find an existing appointment.
 
-- `method(method: number)` _(not publicly available yet)_
+- `method(method: number)`
 
 Set a filter which will tell the API to use the given meeting method when creating an appointment.
 
@@ -266,7 +266,7 @@ class Appointments {
 
 - `alias(alias: string | number)`
 
-Set the external identifier for the given attendee. _(not publicly available yet)_
+Set the external identifier for the given attendee.
 
 - `answers(answers: AnswerModel | AnswerModel[])`
 
@@ -274,7 +274,7 @@ Set a relationship which will tell the API to use the given answer model(s) for 
 
 - `as(identifier: number)`
 
-Set the identifier for a given attendee. _(not publicly available yet)_
+Set the identifier for a given attendee.
 
 - `located(details: LocatableDetailParameters)`
 
@@ -298,7 +298,7 @@ Set certain attributes on the attendee related to contact details such as cell p
 
 - `responses(answers: ResponseModel | ResponseModel[])`
 
-Set a relationship which will tell the API to use the given response model(s) for the attendee when cancelling an appointment. _(not publicly available yet)_
+Set a relationship which will tell the API to use the given response model(s) for the attendee when cancelling an appointment.
 
 - `speaks(language: string)`
 
@@ -337,23 +337,23 @@ class Attendees {
 
 - `cancellations()`
 
-Set a filter which will tell the API to return only cancellation forms. _(not publicly available yet)_
+Set a filter which will tell the API to return only cancellation forms.
 
 - `get()`
 
-Send the API request using the pre-set filters. _(not publicly available yet)_
+Send the API request using the pre-set filters.
 
 - `on(page: number)`
 
-Set the page offset which you want to view. _(not publicly available yet)_
+Set the page offset which you want to view.
 
 - `sortBy(sortable: string)`
 
-Set a sorting string to determine how the returned results are sorted. _(not publicly available yet)_
+Set a sorting string to determine how the returned results are sorted.
 
 - `take(limit: number)`
 
-Set the limit which you want returned. _(not publicly available yet)_
+Set the limit which you want returned.
 
 ##### Example
 
@@ -391,7 +391,7 @@ Set a filter which will tell the API to return locations where the supplied user
 
 - `details(identifier: string)`
 
-Retrieve a given location's details based on the given identifier. _(not publicly available yet)_
+Retrieve a given location's details based on the given identifier.
 
 - `get()`
 
@@ -411,7 +411,7 @@ Set the page offset which you want to view.
 
 - `physical()`
 
-Set a filter which will tell the API to return only non-virtual locations. _(not publicly available yet)_
+Set a filter which will tell the API to return only non-virtual locations.
 
 - `providing(services: number | number[] | string | string[])`
 
@@ -423,7 +423,7 @@ Set a sorting string to determine how the returned results are sorted.
 
 - `suggest(query: string)`
 
-Retrieve a set of location suggestions based on the given query. _(not publicly available yet)_
+Retrieve a set of location suggestions based on the given query.
 
 - `supporting(method: number)`
 
@@ -439,7 +439,7 @@ Set a filter which will tell the API which resource the request comes from. Curr
 
 - `virtual()`
 
-Set a filter which will tell the API to return only virtual locations. _(not publicly available yet)_
+Set a filter which will tell the API to return only virtual locations.
 
 ##### Example
 
@@ -557,11 +557,11 @@ class Questions {
 
 - `for(question: number)`
 
-Set an attribute to determine the identifier of the question being answer. _(not publicly available yet)_
+Set an attribute to determine the identifier of the question being answer.
 
 - `is(value: string)`
 
-Set an attribute to determine the actual answer's value. _(not publicly available yet)_
+Set an attribute to determine the actual answer's value.
 
 ##### Example
 
@@ -605,7 +605,7 @@ Send the API request using the pre-set filters.
 
 - `group()`
 
-Set a filter which will tell the API to return only group type services. _(not publicly available yet)_
+Set a filter which will tell the API to return only group type services.
 
 - `in(category: number | string)`
 
@@ -613,7 +613,7 @@ Set a filter which will tell the API to return services that match the given cat
 
 - `individual()`
 
-Set a filter which will tell the API to return only individual type services. _(not publicly available yet)_
+Set a filter which will tell the API to return only individual type services.
 
 - `invitable()`
 
@@ -718,7 +718,7 @@ Set a filter which will tell the API to return time slots that are specifically 
 
 - `excluding(exclusion: number)`
 
-Set a filter which will tell the API to exclude a particular appointment identifier when generating availability. _(not publicly available yet)_
+Set a filter which will tell the API to exclude a particular appointment identifier when generating availability.
 
 - `for(services: number | number[])`
 
@@ -730,15 +730,15 @@ Send the API request using the pre-set filters.
 
 - `in(timezone: string)`
 
-Set a filter which will tell the API to return time slots in the given timezone. _(not publicly available yet)_
+Set a filter which will tell the API to return time slots in the given timezone.
 
 - `supporting(locales: string[])`
 
-Set a filter which will tell the API to return time slots for users that support the given locales. _(not publicly available yet)_
+Set a filter which will tell the API to return time slots for users that support the given locales.
 
 - `visibility(visibility: number)`
 
-Set a filter which will tell the API whether to return time slots belonging to all resources or just public resources. _(not publicly available yet)_
+Set a filter which will tell the API whether to return time slots belonging to all resources or just public resources.
 
 ##### Example
 
