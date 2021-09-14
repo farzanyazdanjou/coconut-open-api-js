@@ -945,6 +945,46 @@ class WaitLists {
 }
 ```
 
+### Wait Times
+
+##### Methods
+
+- `at(location: number | string)`
+
+Set a relationship which will tell the API to use the given location identifier when fetching wait times.
+
+- `get()`
+
+Find wait times matching the pre-set matching parameters.
+
+- `on(page: number)`
+
+Set the page offset which you want to view.
+
+- `take(limit: number)`
+
+Set the limit which you want returned.
+
+##### Example
+
+```javascript
+import { OpenApi } from 'coconut-open-api-js';
+
+class WaitTimes {
+  constructor() {
+    this.api = new OpenApi();
+  }
+
+  async all() {
+    return this.api.waitTimes().get();
+  }
+
+  async find({ location }) {
+    return this.api.waitTimes().at(location).get();
+  }
+}
+```
+
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
