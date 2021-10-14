@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.12.6] - 2021-10-14
+
+- Add invite only resources filter [#35](https://github.com/coconutcalendar/coconut-open-api-js/pull/35)
+
 ## [0.12.5] - 2021-09-13
 
 - Reorganizes methods and properties to be alphabetical [`52378a899f`](https://github.com/coconutcalendar/coconut-open-api-js/commit/52378a899f)
@@ -417,7 +421,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.5...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.6...HEAD
+[0.12.6]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.5...v0.12.6
 [0.12.5]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.4...v0.12.5
 [0.12.4]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.3...v0.12.4
 [0.12.3]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.2...v0.12.3
