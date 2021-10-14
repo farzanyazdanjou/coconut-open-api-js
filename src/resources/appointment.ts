@@ -155,7 +155,7 @@ export interface AppointmentResource extends Resource, ConditionalResource {
 
   with(attendees: AttendeeModel | AttendeeModel[]): this;
 
-  withInviteOnly(invite_only_resources?: boolean): this;
+  withInviteOnly(inviteOnlyResources?: boolean): this;
 }
 
 export interface Utm {
@@ -346,8 +346,8 @@ export default class Appointment extends Conditional implements AppointmentResou
     return this;
   }
 
-  public withInviteOnly(invite_only_resources: boolean = true): this {
-    this.filters.invite_only_resources = invite_only_resources;
+  public withInviteOnly(inviteOnlyResources: boolean = true): this {
+    this.filters.invite_only_resources = inviteOnlyResources;
 
     return this;
   }

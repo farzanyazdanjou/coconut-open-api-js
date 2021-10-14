@@ -49,7 +49,7 @@ export interface UserResource extends Pageable, ConditionalResource {
 
   through(resource: string): this;
 
-  withInviteOnly(invite_only_resources?: boolean): this;
+  withInviteOnly(inviteOnlyResources?: boolean): this;
 }
 
 export default class User extends Conditional implements UserResource {
@@ -156,8 +156,8 @@ export default class User extends Conditional implements UserResource {
     return this;
   }
 
-  public withInviteOnly(invite_only_resources: boolean = true): this {
-    this.filters.invite_only_resources = invite_only_resources;
+  public withInviteOnly(inviteOnlyResources: boolean = true): this {
+    this.filters.invite_only_resources = inviteOnlyResources;
 
     return this;
   }
