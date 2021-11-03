@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.12.8] - 2021-11-03
+
+- Adds user category filter [#37](https://github.com/coconutcalendar/coconut-open-api-js/pull/37)
+
 ## [0.12.7] - 2021-10-25
 
 - Add skip meeting link generation for appointments [#36](https://github.com/coconutcalendar/coconut-open-api-js/pull/36)
