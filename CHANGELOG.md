@@ -2,9 +2,12 @@
 
 ## [Unreleased]
 
-## [0.12.10] - 2022-03-22
+## [0.12.11] - 2022-03-22
 
 - Add user category filter in user resources [#43](https://github.com/coconutcalendar/coconut-open-api-js/pull/43)
+
+## [0.12.10] - 2022-01-22
+
 - Add location category filter [#39](https://github.com/coconutcalendar/coconut-open-api-js/pull/39)
 
 ## [0.12.9] - 2021-12-09
