@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.12.10] - 2022-03-22
+
+- Add user category filter in user resources [#43](https://github.com/coconutcalendar/coconut-open-api-js/pull/43)
+- Add location category filter [#39](https://github.com/coconutcalendar/coconut-open-api-js/pull/39)
+
 ## [0.12.9] - 2021-12-09
 
 - Add google filter for time-slots [#38](https://github.com/coconutcalendar/coconut-open-api-js/pull/38)
@@ -433,7 +438,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.9...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.10...HEAD
+[0.12.10]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.9...v0.12.10
 [0.12.9]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.8...v0.12.9
 [0.12.8]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.7...v0.12.8
 [0.12.7]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.6...v0.12.7
