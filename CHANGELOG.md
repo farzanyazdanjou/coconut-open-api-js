@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+## [0.12.13] - 2022-06-21
+
+- Added uploads method to let users attach files to the appointment booking and attendee add [#47](https://github.com/coconutcalendar/coconut-open-api-js/pull/47)
+
+## [0.12.12] - 2022-03-30
+
+- Releases new appointment filter [`69d0cc670a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/69d0cc670a)
+
 ## [0.12.11] - 2022-03-22
 
 - Add user category filter in user resources [#43](https://github.com/coconutcalendar/coconut-open-api-js/pull/43)
@@ -441,7 +449,10 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.10...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.13...HEAD
+[0.12.13]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.12...v0.12.13
+[0.12.12]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.11...v0.12.12
+[0.12.11]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.10...v0.12.11
 [0.12.10]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.9...v0.12.10
 [0.12.9]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.8...v0.12.9
 [0.12.8]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.7...v0.12.8
