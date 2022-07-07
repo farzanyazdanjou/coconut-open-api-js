@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.12.14] - 2022-07-07
+
+- Added recaptcha token as an optional parameter [#48](https://github.com/coconutcalendar/coconut-open-api-js/pull/48)
+
 ## [0.12.13] - 2022-06-21
 
 - Added uploads method to let users attach files to the appointment booking and attendee add [#47](https://github.com/coconutcalendar/coconut-open-api-js/pull/47)
@@ -449,7 +453,8 @@
 - Removes mocked call chain [`3c253abd0a`](https://github.com/coconutcalendar/coconut-open-api-js/commit/3c253abd0a)
 - Removes ill-thought out version option [`d159644516`](https://github.com/coconutcalendar/coconut-open-api-js/commit/d159644516)
 
-[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.13...HEAD
+[Unreleased]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.14...HEAD
+[0.12.14]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.13...v0.12.14
 [0.12.13]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.12...v0.12.13
 [0.12.12]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.11...v0.12.12
 [0.12.11]: https://github.com/coconutcalendar/coconut-open-api-js/compare/v0.12.10...v0.12.11

@@ -280,6 +280,7 @@ export default class Appointment extends Conditional implements AppointmentResou
 
       return await this.client.post('appointments', formData);
     }
+
     return await this.client.post('appointments', this.params());
   }
 
