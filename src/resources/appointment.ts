@@ -12,6 +12,7 @@ export interface AppointmentFilter {
   matchers?: AppointmentMatcherParameters;
   method?: number;
   notifications?: AppointmentNotificationParameters;
+  recaptcha_token?: string | null;
   services?: number | number[];
   shortcut?: number;
   skip_meeting_link_generation?: boolean;
@@ -52,6 +53,7 @@ export interface AppointmentParameters {
       invite_only_resources?: number;
       location_id: number | undefined;
       meeting_method?: number;
+      recaptcha_token?: string;
       service_id: number | number[] | undefined;
       staff_category_id?: number;
       staff_id: number | null;
@@ -147,6 +149,8 @@ export interface AppointmentResource extends Resource, ConditionalResource {
   method(method: number): this;
 
   notify(notifications: AppointmentNotificationParameters): this;
+
+  recaptcha(recaptchaToken: string): this;
 
   reschedule(appointment: number, code: string): Promise<any>;
 
@@ -276,7 +280,6 @@ export default class Appointment extends Conditional implements AppointmentResou
 
       return await this.client.post('appointments', formData);
     }
-
     return await this.client.post('appointments', this.params());
   }
 
@@ -343,6 +346,12 @@ export default class Appointment extends Conditional implements AppointmentResou
 
   public notify(notifications: AppointmentNotificationParameters): this {
     this.filters.notifications = notifications;
+
+    return this;
+  }
+
+  public recaptcha(recaptchaToken: string): this {
+    this.filters.recaptcha_token = recaptchaToken;
 
     return this;
   }
@@ -490,6 +499,10 @@ export default class Appointment extends Conditional implements AppointmentResou
         start: this.filters.start,
         supported_locale: this.filters.locale || null,
       };
+
+      if (this.filters.recaptcha_token) {
+        params.data.attributes.recaptcha_token = this.filters.recaptcha_token;
+      }
 
       if (this.filters.user) {
         params.data.attributes.staff_id = this.filters.user;
