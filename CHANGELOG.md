@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+## [0.12.16] - 2023-06-15
+
+- Added support for queue appointment endpoints [#53](https://github.com/coconutcalendar/coconut-open-api-js/pull/53)
+
+## [0.12.15] - 2022-09-16
+
+- Added location category filter to service and time slot resource [#49](https://github.com/coconutcalendar/coconut-open-api-js/pull/49)
+
 ## [0.12.14] - 2022-07-07
 
 - Added recaptcha token as an optional parameter [#48](https://github.com/coconutcalendar/coconut-open-api-js/pull/48)

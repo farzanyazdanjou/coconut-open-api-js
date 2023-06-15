@@ -123,6 +123,7 @@ it('can book a queue appointment with the minimum required parameters', async ()
             attributes: {
               first_name: 'Jane',
               last_name: 'Doe',
+              receive_sms: false,
             },
             type: 'client',
           },
@@ -180,7 +181,6 @@ it('can book a queue appointment with all available parameters', async () => {
       relationships: {
         client: {
           data: {
-            receive_sms: false,
             attributes: {
               first_name: 'Jane',
               last_name: 'Doe',
@@ -188,6 +188,7 @@ it('can book a queue appointment with all available parameters', async () => {
               email: 'test@example.com',
               lang: 'fr',
               notes: 'testing notes',
+              receive_sms: true,
             },
             type: 'client',
             relationships: {

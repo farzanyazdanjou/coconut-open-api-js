@@ -94,11 +94,6 @@ export default class Client extends Model implements ClientModel {
     let parameters: object = this.parameters();
     const answers = this.attributes.answers || [];
 
-    parameters = {
-      ...parameters,
-      receive_sms: this.attributes.receive_sms,
-    };
-
     if (answers.length > 0) {
       parameters = {
         ...parameters,
