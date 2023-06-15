@@ -1,19 +1,21 @@
 import { AxiosInstance } from 'axios';
 
-import Client from './client';
+import { default as AxiosClient } from './client';
 import Days from './constants/days';
-import MeetingMethods from "./constants/meeting-methods";
+import MeetingMethods from './constants/meeting-methods';
 import Notifications from './constants/notifications';
 import Origins from './constants/origins';
-import Visibilities from "./constants/visibilities";
+import Visibilities from './constants/visibilities';
 import Answer from './models/answer';
 import Attendee from './models/attendee';
+import Client from './models/client';
 import Preference from './models/preference';
 import Response from './models/response';
 import Appointment, { AppointmentResource } from './resources/appointment';
 import Form, { FormResource } from './resources/form';
 import Location, { LocationResource } from './resources/location';
 import Question, { QuestionResource } from './resources/question';
+import QueueAppointment, { QueueAppointmentResource } from './resources/queue-appointment';
 import Service, { ServiceResource } from './resources/service';
 import Setting from './resources/setting';
 import TimeSlot, { TimeSlotResource } from './resources/time-slot';
@@ -51,10 +53,11 @@ export interface Sortable extends Resource {
   sortBy(sortable: string): this;
 }
 
-export { Answer, Attendee, Days, MeetingMethods, Notifications, Origins, Preference, Response, Visibilities };
+export { Answer, Attendee, Client, Days, MeetingMethods, Notifications, Origins, Preference, Response, Visibilities };
 
 export class OpenApi {
   protected appointment: AppointmentResource;
+  protected queueAppointment: QueueAppointmentResource;
   protected form: FormResource;
   protected client: AxiosInstance;
   protected domain?: string;
@@ -69,9 +72,10 @@ export class OpenApi {
   protected waitTime: WaitTimeResource;
 
   constructor(domain?: string) {
-    this.client = Client(domain);
+    this.client = AxiosClient(domain);
     this.domain = domain;
     this.appointment = new Appointment(this.client);
+    this.queueAppointment = new QueueAppointment(this.client);
     this.form = new Form(this.client);
     this.list = new WaitList(this.client);
     this.location = new Location(this.client);
@@ -86,6 +90,10 @@ export class OpenApi {
 
   public appointments(): AppointmentResource {
     return this.appointment;
+  }
+
+  public queueAppointments(): QueueAppointmentResource {
+    return this.queueAppointment;
   }
 
   public forms(): FormResource {
