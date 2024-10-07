@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.12.17] - 2024-10-07
+
+- Adds support for external ID on the client, adds to existing test 
+cases that queue-appointment API is hit with correct external ID 
+[#54](https://github.com/coconutcalendar/coconut-open-api-js/pull/54)
+
 ## [0.12.16] - 2023-06-15
 
 - Added support for queue appointment endpoints [#53](https://github.com/coconutcalendar/coconut-open-api-js/pull/53)
