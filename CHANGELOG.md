@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.12.18] - 2025-03-26
+
+- Adds support for preferred staff id and preferred language on queue-appointment API. 
+[#55](https://github.com/coconutcalendar/coconut-open-api-js/pull/55)
+
 ## [0.12.17] - 2024-10-07
 
 - Adds support for external ID on the client, adds to existing test 
