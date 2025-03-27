@@ -1058,6 +1058,10 @@ Set a filter which will tell the API to return users that are specifically for u
 
 Set a filter which will tell the API to return users that are specifically for users within the user category matching the provided identifier.
 
+- `availableInLobby(lobbyLocationId: number | string)`
+
+Set a filter which will tell the API to return users that have a `lobby_location_id` matching the provided identifier.
+
 ##### Example
 
 ```javascript

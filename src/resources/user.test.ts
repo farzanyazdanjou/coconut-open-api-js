@@ -67,6 +67,22 @@ it('will set location category filter using a string', async () => {
   });
 });
 
+it('will set lobby location filter using a number', async () => {
+  const resource = new User(mockAxios);
+
+  expect(resource.availableInLobby(1)).toHaveProperty('filters', {
+    lobby_location_id: 1,
+  });
+});
+
+it('will set lobby location filter using a string', async () => {
+  const resource = new User(mockAxios);
+
+  expect(resource.availableInLobby('1')).toHaveProperty('filters', {
+    lobby_location_id: '1',
+  });
+});
+
 it('will set the locatable filters as supplied', async () => {
   const resource = new User(mockAxios);
   const region = 'SK';
@@ -179,6 +195,7 @@ it('can string all filterable options together', async () => {
     resource
       .assigned()
       .at(1)
+      .availableInLobby(1)
       .located({ region: 'SK' })
       .performing([1, 2])
       .supporting(MeetingMethods.PHONE_CALL)
@@ -195,6 +212,7 @@ it('can string all filterable options together', async () => {
     assigned: true,
     invite_only_resources: true,
     location: 1,
+    lobby_location_id: 1,
     location_category: 1,
     method: MeetingMethods.PHONE_CALL,
     region: 'SK',
@@ -222,6 +240,7 @@ it('can get users with additional parameters', async () => {
   await resource
     .assigned()
     .at(1)
+    .availableInLobby(1)
     .located({ region: 'SK' })
     .performing([1, 2])
     .supporting(MeetingMethods.PHONE_CALL)
@@ -241,6 +260,7 @@ it('can get users with additional parameters', async () => {
       'filter[client_view_meeting_method]': MeetingMethods.PHONE_CALL,
       'filter[invite_only_resources]': 1,
       'filter[location]': 1,
+      'filter[lobby_location_id]': 1,
       'filter[location_category]': 1,
       'filter[meeting_method]': MeetingMethods.PHONE_CALL,
       'filter[province]': 'SK',
