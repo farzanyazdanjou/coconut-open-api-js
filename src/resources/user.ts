@@ -18,6 +18,7 @@ export interface UserFilter {
   invite_only_resources?: boolean;
   location?: number | string;
   location_category?: number | string;
+  lobby_location_id?: number | string;
   method?: number;
   resource?: string;
   services?: number | number[] | string | string[];
@@ -31,6 +32,7 @@ export interface UserParameters {
   invite_only_resources?: number;
   location?: number | string;
   location_category?: number | string;
+  lobby_location_id?: number | string;
   meeting_method?: number;
   province?: string;
   resource?: string;
@@ -182,6 +184,12 @@ export default class User extends Conditional implements UserResource {
     return this;
   }
 
+  public availableInLobby(lobbyLocationId: number | string): this {
+    this.filters.lobby_location_id = lobbyLocationId;
+  
+    return this;
+  }
+
   protected params(): UserParameters {
     const params: UserParameters = {};
 
@@ -203,6 +211,10 @@ export default class User extends Conditional implements UserResource {
 
     if (typeof this.filters.location_category !== 'undefined') {
       params.location_category = this.filters.location_category;
+    }
+
+    if (typeof this.filters.lobby_location_id !== 'undefined') {
+      params.lobby_location_id = this.filters.lobby_location_id;
     }
 
     if (typeof this.filters.method !== 'undefined') {
