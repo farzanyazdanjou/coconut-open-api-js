@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.12.19] - 2025-03-27
+
+- Adds support for a filter for lobby availability on users API. 
+[#56](https://github.com/coconutcalendar/coconut-open-api-js/pull/56)
+
 ## [0.12.18] - 2025-03-26
 
 - Adds support for preferred staff id and preferred language on queue-appointment API. 
